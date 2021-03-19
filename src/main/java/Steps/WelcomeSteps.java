@@ -15,7 +15,7 @@ public class WelcomeSteps extends Drive {
     Drive drivePage = PageFactory.initElements(driver, Drive.class);
 
     @Then("Open browser and go to Formy site")
-    public void chooseDriver() throws IOException {
+    public void chooseTheDriver() throws IOException {
         drivePage.chooseDriver();
     }
 

@@ -10,9 +10,9 @@ public class DatepickerSteps extends Drive {
     DatepickerPage datepickerPage = PageFactory.initElements(driver, DatepickerPage.class);
 
     @Then("Go to {string} page")
-    public void goToPage(String page) {
-        datepickerPage.goPage(page);//for list on welcome page only
-        datepickerPage.isDatepickerPage();
+    public void goToPage(String arg1) {
+        datepickerPage.goPage(arg1);//for list on welcome page only
+        datepickerPage.isPage(arg1);
     }
 
     @Then("Refresh the page and check: the datepicker page is opened and the input field is empty")
@@ -56,11 +56,6 @@ public class DatepickerSteps extends Drive {
         datepickerPage.clickOnTitleCheck();
     }
 
-    @Then("Click on {string} and check {string} page is opened")
-    public void pageOpened(String arg1, String arg2) {
-        datepickerPage.isPageOpened(arg1, arg2);
-    }
-
     //header
     @Then("Click on {string} and check inside a dropdown list with: {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}")
     public void componentsCheck(String arg1, String arg2, String arg3, String arg4, String arg5, String arg6, String arg7, String arg8,
@@ -70,12 +65,6 @@ public class DatepickerSteps extends Drive {
 
     @Then("Click on {string} and check {string} page has opened")
     public void componentsClick(String arg1, String arg2) {
-        datepickerPage.componentsClick1(arg1, arg2);
+        datepickerPage.isPageOpened(arg1, arg2);
     }
-
-    @Then("Click on {string} and check {string} page was opened")
-    public void backwardToComponents(String arg1, String arg2) {
-        datepickerPage.backwardPageComponents(arg1, arg2);
-    }
-
 }

@@ -2,15 +2,18 @@ package Pages;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Properties;
+import java.util.concurrent.TimeUnit;
 
 public class DatepickerPage {
     WebDriver driver;
@@ -26,7 +29,6 @@ public class DatepickerPage {
     public static WebElement formyPage;
     @FindBy(xpath = "//h1[text()='Welcome to Formy']")
     public static WebElement welcomeTitle;
-    String welcomePageURL = "https://formy-project.herokuapp.com/";
     @FindBy(xpath = "//h1[text()='Complete Web Form']")
     public static WebElement formTitle;
     @FindBy(xpath = "//a[text()='Form']")
@@ -34,7 +36,11 @@ public class DatepickerPage {
     @FindBy(xpath = "//a[@id='navbarDropdownMenuLink']")
     public static WebElement headerDropdownComponents;
     LocalDate currentDate = LocalDate.now();
+    //    String welcomePageURL = "https://formy-project.herokuapp.com/";
     String datepickerUrl = "https://formy-project.herokuapp.com/datepicker";
+//    String formURL = "https://formy-project.herokuapp.com/form";
+    // String getURLValue = driver.getCurrentUrl();
+
     //months
     String currentMonth = String.valueOf(currentDate.getMonth());
     LocalDate prevMonth = currentDate.minusMonths(1);
@@ -64,8 +70,7 @@ public class DatepickerPage {
         FileInputStream fis = new FileInputStream("src/main/resources/config.properties");
         Properties prop = new Properties();
         prop.load(fis);
-        String os = prop.getProperty("os");
-        return os;
+        return prop.getProperty("os");
     }
 
     public void refreshPage() {
@@ -75,15 +80,6 @@ public class DatepickerPage {
     public void goPage(String page) {
         WebElement choosePage = driver.findElement(By.xpath("//li/a[@class='btn btn-lg' and text()='" + page + "']"));
         choosePage.click();
-    }
-
-    public void isDatepickerPage() {
-        String currentUrl = driver.getCurrentUrl();
-        if (titleDatepicker.isDisplayed() && currentUrl.equals(datepickerUrl)) {
-            System.out.println("This is datepicker page PASSED");
-        } else {
-            System.out.println("This is not datepicker page FAILED");
-        }
     }
 
     public void isCalendarOpened() throws Exception {
@@ -356,69 +352,100 @@ public class DatepickerPage {
         isDropdownClose();
     }
 
+    //header
     public void isPageOpened(String arg1, String arg2) {
-        if (arg1.equals("Formy") && arg2.equals("Welcome to Formy")) {
-            formyPage.click();
-            String getURLValue = driver.getCurrentUrl();
-            try {
-                if (getURLValue.equals(welcomePageURL) && welcomeTitle.isDisplayed()) {
-                    System.out.println(arg2 + " page is opened PASSED");
-                } else {
-                    System.out.println(arg2 + " page is not opened FAILED");
-                }
-            } catch (NoSuchElementException e) {
-                System.out.println(arg2 + " page is not opened FAILED");
-            }
+        switch (arg1) {
+            case "Formy":
+                formyPage.click();
+                break;
+            case "Form":
+                formPage.click();
+                break;
+            case "Backward":
+                driver.navigate().back();
+                break;
+            case "Forward":
+                driver.navigate().forward();
+                break;
+            default:
+                WebElement clickOnComponentElement = driver.findElement(By.xpath("//a[@class='dropdown-item' and text()='" + arg1 + "']"));
+                clickOnComponentElement.click();
+                break;
         }
-        if (arg1.equals("Backward") && arg2.equals("datepicker")) {
-            driver.navigate().back();
-            String getURLValue = driver.getCurrentUrl();
-            try {
-                if (titleDatepicker.isDisplayed() && getURLValue.equals(datepickerUrl)) {
-                    System.out.println(arg2 + " page is opened PASSED");
-                } else {
-                    System.out.println(arg2 + " page is not opened FAILED");
+        switch (arg2) {
+            case "Welcome to Formy":
+                try {
+                    welcomeTitle.isDisplayed();
+                    System.out.println(arg2 + " is opened PASSED");
+                } catch (NoSuchElementException e) {
+                    System.out.println(arg2 + " is not opened FAILED");
                 }
-            } catch (NoSuchElementException e) {
-                System.out.println(arg2 + " page is not opened FAILED");
-            }
-        }
-
-        if (arg1.equals("Forward") && arg2.equals("form")) {
-            driver.navigate().forward();
-            String getURLValue = driver.getCurrentUrl();
-            String formURL = "https://formy-project.herokuapp.com/form";
-            try {
-                if (formTitle.isDisplayed() && getURLValue.equals(formURL)) {
-                    System.out.println(arg2 + " page is opened PASSED");
+                break;
+            default:
+                String getURLValue = driver.getCurrentUrl();
+                if (getURLValue.substring(36).equals(arg2)) {
+                    System.out.println(arg2 + " is opened PASSED");
                 } else {
-                    System.out.println(arg2 + " page is not opened FAILED");
+                    System.out.println(arg2 + " is not opened FAILED");
                 }
-            } catch (NoSuchElementException e) {
-                System.out.println(arg2 + " page is not opened FAILED");
-            }
-        }
-
-        if (arg1.equals("Form") && arg2.equals("form")) {
-            formPage.click();
-            String getURLValue = driver.getCurrentUrl();
-            String formURL = "https://formy-project.herokuapp.com/form";
-            try {
-                if (formTitle.isDisplayed() && getURLValue.equals(formURL)) {
-                    System.out.println(arg2 + " page is opened PASSED");
-                } else {
-                    System.out.println(arg2 + " page is not opened FAILED");
-                }
-            } catch (NoSuchElementException e) {
-                System.out.println(arg2 + " page is not opened FAILED");
-
-            }
         }
     }
 
-    //header
-    public void headerComponentsCheck(String arg1, String... arg2) {
+    public void output(WebElement arg1, String arg2) {
+        try {
+            arg1.getText();
+            System.out.println(arg2 + " has opened");
+        } catch (NoSuchElementException e) {
+            System.out.println(arg2 + " has not opened");
+        }
+    }
 
+    public void isPage(String arg1) { //byTitle
+        switch (arg1) {
+            case "Buttons":
+                WebElement buttonPrimary = driver.findElement(By.xpath("//button[@type='button' and text()='Primary']"));
+                output(buttonPrimary, arg1);
+                break;
+            case "Checkbox":
+                WebElement pageTitleCheckbox = driver.findElement(By.xpath("//h1[text()='Checkboxes']"));
+                output(pageTitleCheckbox, arg1);
+                break;
+            case "Drag and Drop":
+                WebElement pageTitleDragDrop = driver.findElement(By.xpath("//h1[text()='Drag the image into the box']"));
+                output(pageTitleDragDrop, arg1);
+                break;
+            case "Enabled and disabled elements":
+                WebElement pageTitleEnabled = driver.findElement(By.xpath("//h1[text()='Enabled and Disabled elements']"));
+                output(pageTitleEnabled, arg1);
+                break;
+            case "File Upload":
+                WebElement pageTitleFileUpload = driver.findElement(By.xpath("//h1[text()='File upload']"));
+                output(pageTitleFileUpload, arg1);
+                break;
+            case "Key and Mouse Press":
+                WebElement pageTitleKey = driver.findElement(By.xpath("//h1[text()='Keyboard and Mouse Input']"));
+                output(pageTitleKey, arg1);
+                break;
+            case "Page Scroll":
+                WebElement pageTitlePageScroll = driver.findElement(By.xpath("//h1[text()='Large page content']"));
+                output(pageTitlePageScroll, arg1);
+                break;
+            case "Radio Button":
+                WebElement pageTitleRadioButtons = driver.findElement(By.xpath("//h1[text()='Radio buttons']"));
+                output(pageTitleRadioButtons, arg1);
+                break;
+            case "Thanks":
+                WebElement pageTitleThanks = driver.findElement(By.xpath("//h1[text()='Thanks for submitting your form']"));
+                output(pageTitleThanks, arg1);
+                break;
+            default:
+                WebElement findElementsInComponentsDropdown = driver.findElement(By.xpath("//h1[text()='" + arg1 + "']"));
+                output(findElementsInComponentsDropdown, arg1);
+                break;
+        }
+    }
+
+    public void headerComponentsCheck(String arg1, String... arg2) {
         String getComponentsName = headerDropdownComponents.getText();
         if (getComponentsName.equals(arg1)) {
             headerDropdownComponents.click();
@@ -433,41 +460,6 @@ public class DatepickerPage {
             System.out.println("all elements are in components dropdown PASSED");
         } catch (NoSuchElementException e) {
             System.out.println("not all elements are in components dropdown FAILED");
-        }
-    }
-
-    public void componentsClick1(String arg1, String arg2) {
-        WebElement elementFromComponentsDropdown = driver.findElement(By.xpath("//a[@class='dropdown-item' and text()='" + arg1 + "']"));
-        elementFromComponentsDropdown.click();
-        String getCurrentURL = driver.getCurrentUrl().substring(36);
-        if (getCurrentURL.equals(arg2)) {
-            System.out.println(arg2 + " is opened PASSED");
-        } else {
-            System.out.println(arg2 + " is not opened FAILED");
-        }
-    }
-
-    public void backwardPageComponents(String arg1, String arg2) {
-        if (arg1.equals("Backward")) {
-            driver.navigate().back();
-        }
-        if (arg1.equals("Forward")) {
-            driver.navigate().forward();
-        }
-        if (arg2.equals("formy")) {
-            String getCurrentURL = driver.getCurrentUrl();
-            if (getCurrentURL.equals(welcomePageURL)) {
-                System.out.println(arg2 + " is opened PASSED");
-            } else {
-                System.out.println(arg2 + " is not opened FAILED");
-            }
-        } else {
-            String getCurrentURL = driver.getCurrentUrl().substring(36);
-            if (getCurrentURL.equals(arg2)) {
-                System.out.println(arg2 + " is opened PASSED");
-            } else {
-                System.out.println(arg2 + " is not opened FAILED");
-            }
         }
     }
 }
