@@ -2,18 +2,15 @@ package Pages;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.StringSelection;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Properties;
-import java.util.concurrent.TimeUnit;
 
 public class DatepickerPage {
     WebDriver driver;
@@ -36,10 +33,6 @@ public class DatepickerPage {
     @FindBy(xpath = "//a[@id='navbarDropdownMenuLink']")
     public static WebElement headerDropdownComponents;
     LocalDate currentDate = LocalDate.now();
-    //    String welcomePageURL = "https://formy-project.herokuapp.com/";
-    String datepickerUrl = "https://formy-project.herokuapp.com/datepicker";
-//    String formURL = "https://formy-project.herokuapp.com/form";
-    // String getURLValue = driver.getCurrentUrl();
 
     //months
     String currentMonth = String.valueOf(currentDate.getMonth());
@@ -198,6 +191,8 @@ public class DatepickerPage {
     }
 
     public String getInputFieldValue() throws Exception {
+        StringSelection sS = new StringSelection("");
+        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(sS, null);
         String osType = getOSValue();
         if (osType.equals("macOS")) {
             inputFieldDatepicker.sendKeys(Keys.chord(Keys.COMMAND + "a"));
@@ -367,6 +362,9 @@ public class DatepickerPage {
             case "Forward":
                 driver.navigate().forward();
                 break;
+            case "Refresh":
+                driver.navigate().refresh();
+                break;
             default:
                 WebElement clickOnComponentElement = driver.findElement(By.xpath("//a[@class='dropdown-item' and text()='" + arg1 + "']"));
                 clickOnComponentElement.click();
@@ -419,7 +417,7 @@ public class DatepickerPage {
                 output(pageTitleEnabled, arg1);
                 break;
             case "File Upload":
-                WebElement pageTitleFileUpload = driver.findElement(By.xpath("//h1[text()='File upload']"));
+                WebElement pageTitleFileUpload = driver.findElement(By.tagName("h1"));
                 output(pageTitleFileUpload, arg1);
                 break;
             case "Key and Mouse Press":
@@ -438,6 +436,7 @@ public class DatepickerPage {
                 WebElement pageTitleThanks = driver.findElement(By.xpath("//h1[text()='Thanks for submitting your form']"));
                 output(pageTitleThanks, arg1);
                 break;
+
             default:
                 WebElement findElementsInComponentsDropdown = driver.findElement(By.xpath("//h1[text()='" + arg1 + "']"));
                 output(findElementsInComponentsDropdown, arg1);

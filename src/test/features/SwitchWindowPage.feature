@@ -4,6 +4,12 @@ Feature: Switch window page
     Then Open browser and go to Formy site
     Then Go to "Switch Window" page
 
+#web layout
+  Scenario: Page title Switch Window - displays correctly
+    Then Check "Switch Window" has page title "Switch Window"
+
+#functional
+
   #header
   Scenario: Header: Formy referral check
     Then Click on "Formy" and check "Welcome to Formy" page has opened

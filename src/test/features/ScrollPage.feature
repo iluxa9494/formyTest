@@ -4,6 +4,12 @@ Feature: Scroll page
     Then Open browser and go to Formy site
     Then Go to "Page Scroll" page
 
+#web layout
+  Scenario: Page title Large page content - displays correctly
+    Then Check "Page Scroll" has page title "Large page content"
+
+#functional
+
   #header
   Scenario: Header: Formy referral check
     Then Click on "Formy" and check "Welcome to Formy" page has opened

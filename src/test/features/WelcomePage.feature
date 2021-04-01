@@ -4,6 +4,15 @@ Feature: Welcome to Formy page
     Then Open browser and go to Formy site
     # проверить скролл
 
+#web layout
+  Scenario: Page title Form - displays correctly
+    Then Check "Welcome Page" has page title "Welcome to Formy"
+
+#functional
+
+
+
+
    #header
   Scenario: Header: Form referral check
     Then Click on "Form" and check "form" page has opened

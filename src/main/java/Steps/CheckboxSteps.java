@@ -8,9 +8,9 @@ import org.openqa.selenium.support.PageFactory;
 public class CheckboxSteps extends Drive {
     CheckboxPage checkboxPage = PageFactory.initElements(driver, CheckboxPage.class);
 
-    @Then("Check {string} title has displayed correctly")
-    public void correctTitle(String arg1) {
-        checkboxPage.isCorrectTitle(arg1);
+    @Then("Check {string} has page title {string}")
+    public void correctTitle(String arg1, String arg2) {
+        checkboxPage.isCorrectTitle(arg1, arg2);
     }
 
     @Then("Check all checkboxes has not selected")

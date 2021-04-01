@@ -4,6 +4,11 @@ Feature: Modal page
     Then Open browser and go to Formy site
     Then Go to "Modal" page
 
+#web layout
+  Scenario: Page title Modal - displays correctly
+    Then Check "Modal" has page title "Modal"
+
+#functional
 
    #header
   Scenario: Header: Formy referral check

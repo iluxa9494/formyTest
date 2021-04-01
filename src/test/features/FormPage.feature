@@ -4,6 +4,10 @@ Feature: Form page
     Then Open browser and go to Formy site
     Then Go to "Form" page
 
+    #web layout
+  Scenario: Page title Form - displays correctly
+    Then Check "Form" has page title "Complete Web Form"
+#  functional
  #header
   Scenario: Header: Formy referral check
     Then Click on "Formy" and check "Welcome to Formy" page has opened

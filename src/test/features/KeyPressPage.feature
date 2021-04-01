@@ -4,6 +4,13 @@ Feature: Key and mouse press page
     Then Open browser and go to Formy site
     Then Go to "Key and Mouse Press" page
 
+#web layout
+  Scenario: Page title Keyboard and Mouse Input - displays correctly
+  Then Check "Key and Mouse Press" has page title "Keyboard and Mouse Input"
+
+#functional
+
+
   #header
   Scenario: Header: Formy referral check
     Then Click on "Formy" and check "Welcome to Formy" page has opened

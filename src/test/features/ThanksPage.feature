@@ -5,6 +5,12 @@ Feature: Thanks page
     Then Go to "Form" page
 #    next add some case with complete all fields and press submit to go to thanks page
 
+#web layout
+  Scenario: Page title Thanks for submitting your form - displays correctly
+    Then Check "Thanks" has page title "Thanks for submitting your form"
+
+#functional
+
  #header
   Scenario: Header: Formy referral check
     Then Click on "Formy" and check "Welcome to Formy" page has opened

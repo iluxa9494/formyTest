@@ -4,6 +4,12 @@ Feature: Radio button page
     Then Open browser and go to Formy site
     Then Go to "Radio Button" page
 
+#web layout
+  Scenario: Page title Radio buttons - displays correctly
+    Then Check "Radio Button" has page title "Radio buttons"
+
+#functional
+
  #header
   Scenario: Header: Formy referral check
     Then Click on "Formy" and check "Welcome to Formy" page has opened

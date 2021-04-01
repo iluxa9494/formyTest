@@ -4,48 +4,65 @@ Feature: Buttons page
     Then Open browser and go to Formy site
     Then Go to "Buttons" page
 
-    #стиль
+#web layout
+#  Scenario: Focus of buttons
+#  Scenario: Backward, Forward, Refresh - focused off
 
- #функционал
- #ввод данных
- #сохранение состояний: обновить/назад/вперед
+#functional
+  Scenario: Any page title - absence
+    Then Check there are no any page titles
 
-#  Scenario: Отсутствие title
-#  Scenario: Стили Primary Button
-#
-#  Scenario: Стили Success Button
-#
-#  Scenario: Стили Info Button
-#
-#  Scenario: Стили Warning Button
-#
-#  Scenario: Стили Danger Button
-#
-#  Scenario: Стили Link Button
-#
-#  Scenario: Стили Left Button
-#
-#  Scenario: Стили Middle Button
-#
-#  Scenario: Стили Right Button
-#
-#  Scenario: Стили 1 Button
-#
-#  Scenario: Стили 2 Button
-#
-#  Scenario: Стили Dropdown Button
-#
-#  Scenario: Кликабельность кнопок Primary, Success, Info, Warning, Danger, Link, Left, Middle, Right, 1, 2, Dropdown без действия
-#
-#  Scenario: Кликабельность кнопок Dropdown link 1, Dropdown link 2 с переходом на заглушку
-#
-#  Scenario: "Обновить" - сброс выделения кнопки
-#
-#  Scenario: "Назад" - сброс выделения кнопки
-#
-#  Scenario: "Вперед" - сброс выделения кнопки
+  Scenario: All buttons - titles correctness, presence
+    Then Check "Primary" button has correct title
+    Then Check "Success" button has correct title
+    Then Check "Info" button has correct title
+    Then Check "Warning" button has correct title
+    Then Check "Danger" button has correct title
+    Then Check "Link" button has correct title
+    Then Check "Middle" button has correct title
+    Then Check "Right" button has correct title
+    Then Check "1" button has correct title
+    Then Check "2" button has correct title
+    Then Check "Dropdown" button has correct title
 
-  #header
+  Scenario: All buttons - clickability, display dropdown list for Dropdown buttons
+    Then Click on and check "Primary" button is clickable
+    Then Click on and check "Success" button is clickable
+    Then Click on and check "Info" button is clickable
+    Then Click on and check "Warning" button is clickable
+    Then Click on and check "Danger" button is clickable
+    Then Click on and check "Link" button is clickable
+    Then Click on and check "Middle" button is clickable
+    Then Click on and check "Right" button is clickable
+    Then Click on and check "1" button is clickable
+    Then Click on and check "2" button is clickable
+    Then Click on and check "Dropdown" button is clickable
+    Then Check dropdown list with Dropdown link 1, Dropdown link 2 elements has opened
+
+  Scenario: Dropdown link 1 elements - go to # page
+    Then Click on and check "Dropdown" button is clickable
+    Then Check dropdown list with Dropdown link 1, Dropdown link 2 elements has opened
+    Then Click on "Dropdown link 1" and check "buttons#" page has opened
+
+  Scenario: Dropdown link 2 elements - go to # page
+    Then Click on and check "Dropdown" button is clickable
+    Then Check dropdown list with Dropdown link 1, Dropdown link 2 elements has opened
+    Then Click on "Dropdown link 2" and check "buttons#" page has opened
+
+  Scenario: Backward to the page - referral check
+    Then Click on and check "Dropdown" button is clickable
+    Then Check dropdown list with Dropdown link 1, Dropdown link 2 elements has opened
+    Then Click on "Dropdown link 1" and check "buttons#" page has opened
+    Then Click on "Backward" and check "buttons" page has opened
+
+  Scenario: Refresh the page - referral check
+    Then Click on "Refresh" and check "buttons" page has opened
+
+  Scenario: Forward to the page - referral check
+    Then Click on "Backward" and check "Welcome to Formy" page has opened
+    Then Click on "Forward" and check "buttons" page has opened
+
+#  #header
   Scenario: Header: Formy referral check
     Then Click on "Formy" and check "Welcome to Formy" page has opened
     Then Click on "Backward" and check "buttons" page has opened
