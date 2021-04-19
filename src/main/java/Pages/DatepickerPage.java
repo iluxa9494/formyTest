@@ -2,6 +2,7 @@ package Pages;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
+
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
@@ -19,7 +20,7 @@ public class DatepickerPage {
     @FindBy(xpath = "//h1[text()='Datepicker']")
     public static WebElement titleDatepicker;
     //calendar
-    @FindBy(xpath = "//div[@class='datepicker datepicker-dropdown dropdown-menu datepicker-orient-left datepicker-orient-bottom']")
+    @FindBy(xpath = "//div[@class='datepicker-days']")
     public static WebElement calendarBody;
     //header elements
     @FindBy(xpath = "//a[@id='logo']")
@@ -223,13 +224,10 @@ public class DatepickerPage {
         }
 
         if (arg1.equals("01/01/2021")) {
-            String inputCalendarPlaceholderValue = getInputFieldValue();
-            if (inputCalendarPlaceholderValue.equals(arg1)) {
-                System.out.println(arg1 + " " + arg2 + " displays correctly PASSED");
-            } else {
-                System.out.println(arg1 + " " + arg2 + " displays incorrectly FAILED");
-            }
+            System.out.println(getInputFieldValue().equals(arg1) ? arg1 + " " + arg2 + " displays correctly PASSED"
+                    : arg1 + " " + arg2 + " displays incorrectly FAILED");
         }
+
         if ((arg1.equals("current") || arg1.equals("previous")) && arg2.equals("month")) {
             WebElement calendarSwitcher = driver.findElement(By.xpath("//div[@class='datepicker-days']//th[@class='datepicker-switch']"));
             String getCurrentValueFromCalendar = calendarSwitcher.getText();
@@ -256,14 +254,8 @@ public class DatepickerPage {
     public void getCalendarPlaceholderValueByClipboard(String date) throws Exception {
         switch (date) {
             case "1th day":
-                String inputCalendarPlaceholderValue = getInputFieldValue();
-                String firstDayCheck = "/01/";
-                String getDayFromPlaceholderValue = inputCalendarPlaceholderValue.substring(2, 6);
-                if (getDayFromPlaceholderValue.equals(firstDayCheck)) {
-                    System.out.println("The " + date + " has displayed in the input field PASSED");
-                } else {
-                    System.out.println("The " + date + " hasn't displayed in the input field FAILED");
-                }
+                System.out.println(getInputFieldValue().startsWith("/01/", 2) ? "The " + date + " has displayed in the input field PASSED"
+                        : "The " + date + " hasn't displayed in the input field FAILED");
                 break;
 
             case "current date":
@@ -273,7 +265,6 @@ public class DatepickerPage {
     }
 
     public void chooseAndCheckCurrentYearIsDisplayed(String arg1, String arg2, String arg3, String arg4, String... arg5) throws Exception { //переделать
-
         if (arg1.equals("month") || arg1.equals("year") || arg1.equals("decade") || arg1.equals("century")) {
 
             if (arg1.equals("month")) {

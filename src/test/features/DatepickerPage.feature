@@ -167,7 +167,7 @@ Feature: Datepicker page
     Then Type "џ®њƒ" and press Enter
     Then Check "current" "date" is displayed
 
-  Scenario: Saving calendar state atfer page field click
+  Scenario: Saving calendar state after page field click
     Then Refresh the page and check: the datepicker page is opened and the input field is empty
     Then Click on input field and check calendar is opened
     Then Click on and check "previous" "month" is displayed

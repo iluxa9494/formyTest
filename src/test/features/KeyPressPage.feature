@@ -5,12 +5,83 @@ Feature: Key and mouse press page
     Then Go to "Key and Mouse Press" page
 
 #web layout
-  Scenario: Page title Keyboard and Mouse Input - displays correctly
-  Then Check "Key and Mouse Press" has page title "Keyboard and Mouse Input"
-
-#functional
-
-
+#  Scenario: Page title Keyboard and Mouse Input - displays correctly
+#    Then Check "Key and Mouse Press" has page title "Keyboard and Mouse Input"
+#
+#  Scenario: Element titles - display correctly
+#    Then Check "full name input" has a "Full name" title
+#    Then Check "button" has title "Button"
+#
+#  Scenario: Element placeholder - display correctly
+#    Then Check full name input has a "Enter full name" placeholder
+#
+##functional
+#  Scenario: Elements - enabled, unselected
+#    Then Check "full name input" has not selected and enabled
+#    Then Check "button" has not selected and enabled
+#
+#  Scenario: Button - has not referred any page after click
+#    Then Enter "Alice" in "first name input" field and check data has entered
+#    Then Click on button and check "keypress" has opened
+#    Then Check "full name input" has a "Alice" value
+#
+#  Scenario: Full name field - successful data entry
+#    Then Check "full name input" has empty
+#    Then Enter "џ®њƒ" in "full name input" field and check data has entered
+#    Then Enter "01/01/2021" in "full name input" field and check data has entered
+#    Then Enter "00:00:00" in "full name input" field and check data has entered
+#    Then Enter "11111" in "full name input" field and check data has entered
+#    Then Enter "Alice" in "full name input" field and check data has entered
+#    Then Enter "Smith" in "full name input" field and check data has entered
+#
+#  Scenario: Full name field - entering max length of symbols for value
+## 100 symbols for full name field
+#    Then Enter "MenloMenloMenloMenloMenloMenloMenloMenloMenloMenloMenloMenloMenloMenloMenloMenloMenloMenloMenloMenlo" in "full name input" field and check data has entered
+#    Then Clear "full name input" field via delete
+#    Then Enter "Menlo Menlo Menlo Menlo Menlo Menlo Menlo Menlo Menlo Menlo Menlo Menlo Menlo Menlo Menlo Menlo Menlo Menlo Menlo Menlo" in "full name input" field and check data has entered
+#
+#  Scenario: Full name field - opportunity to copy/paste/delete data
+#    Then Enter "Menlo Park" in "full name input" and check data has entered
+#    Then Copy data from "full name input", clear via delete, paste data to the field and check the functions have worked
+##  https://www.selenium.dev/docs/site/en/support_packages/mouse_and_keyboard_actions_in_detail/
+#  Scenario: Full name field - opportunity to copy/paste/delete data
+#    Then Click on "full name input"
+#    Then Enter "Jane" in "full name input" and check data has entered
+#    Then Clear "full name input"
+#    Then Check "full name input" has empty
+#
+#  Scenario: Full name field - opportunity to copy/paste/delete data
+#    Then Click on "full name input"
+#    Then Enter "Jane" in "full name input" and check data has entered
+#    Then Press Enter
+#    Then Check "full name input" has empty
+#
+#  Scenario: Refresh the page - the field has reset its state, the button has enabled
+#    Then Click on "full name input"
+#    Then Enter "Jane" in "full name input" and check data has entered
+#    Then Check "button" has not selected and enabled
+#    Then Click on "Refresh" and check "keypress" page has opened
+#    Then Check "full name input" has empty
+#    Then Check "button" has not selected and enabled
+#
+#  Scenario: Backward to the page - the field has saved its state, the button has enabled
+#    Then Click on "full name input"
+#    Then Enter "Jane" in "full name input" and check data has entered
+#    Then Check "button" has not selected and enabled
+#    Then Click on "Fromy" and check "Welcome to Formy" page has opened
+#    Then Click on "Backward" and check "keypress" page has opened
+#    Then Check "full name input" has "Jane" value
+#    Then Check "button" has not selected and enabled
+#
+#  Scenario: Forward to the page - the field has saved its state, the button has enabled
+#    Then Click on "full name input"
+#    Then Enter "Jane" in "full name input" and check data has entered
+#    Then Check "button" has not selected and enabled
+#    Then Click on "Backward" and check "Welcome to Formy" page has opened
+#    Then Click on "Forward" and check "keypress" page has opened
+#    Then Check "full name input" has "Jane" value
+#    Then Check "button" has not selected and enabled
+#
 #  #header
 #  Scenario: Header: Formy referral check
 #    Then Click on "Formy" and check "Welcome to Formy" page has opened

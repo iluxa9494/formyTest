@@ -342,83 +342,36 @@ public class AutocompletePage {
     public void copyDataFromField(String arg1) throws Exception {
         switch (arg1) {
             case "Address":
-                String copyDataFromAddressField = getInputFieldValue(inputFieldAddress);
-                inputFieldAddress.sendKeys(Keys.DELETE);
-                pasteValueToInputField(inputFieldAddress);
-                String copyDataFromAddressFieldFinal = getInputFieldValue(inputFieldAddress);
-                if (copyDataFromAddressField.equals(copyDataFromAddressFieldFinal)) {
-                    System.out.println("Copy/paste/delete functions have worked for address field PASSED");
-                } else {
-                    System.out.println("Copy/paste/delete functions have not worked for address field FAILED");
-                }
+                clearMethod(inputFieldAddress);
                 break;
             case "Street address":
-                String copyDataFromStreetAddressField = getInputFieldValue(inputFieldStreetAddress);
-                inputFieldStreetAddress.sendKeys(Keys.DELETE);
-                pasteValueToInputField(inputFieldStreetAddress);
-                String copyDataFromStreetAddressFieldFinal = getInputFieldValue(inputFieldStreetAddress);
-                if (copyDataFromStreetAddressField.equals(copyDataFromStreetAddressFieldFinal)) {
-                    System.out.println("Copy/paste/delete functions have worked for street address field PASSED");
-                } else {
-                    System.out.println("Copy/paste/delete functions have not worked for street address field FAILED");
-                }
+                clearMethod(inputFieldStreetAddress);
                 break;
             case "Street address 2":
-                String copyDataFromStreetAddress2Field = getInputFieldValue(inputFieldStreetAddress2);
-                inputFieldStreetAddress2.sendKeys(Keys.DELETE);
-                pasteValueToInputField(inputFieldStreetAddress2);
-                String copyDataFromStreetAddress2FieldFinal = getInputFieldValue(inputFieldStreetAddress2);
-                if (copyDataFromStreetAddress2Field.equals(copyDataFromStreetAddress2FieldFinal)) {
-                    System.out.println("Copy/paste/delete functions have worked for street address 2 field PASSED");
-                } else {
-                    System.out.println("Copy/paste/delete functions have not worked for street address 2 FAILED");
-                }
+                clearMethod(inputFieldStreetAddress2);
                 break;
             case "City":
-                String copyDataFromCityField = getInputFieldValue(inputFieldCity);
-                inputFieldCity.sendKeys(Keys.DELETE);
-                pasteValueToInputField(inputFieldCity);
-                String copyDataFromCityFieldFinal = getInputFieldValue(inputFieldCity);
-                if (copyDataFromCityField.equals(copyDataFromCityFieldFinal)) {
-                    System.out.println("Copy/paste/delete functions have worked for city field PASSED");
-                } else {
-                    System.out.println("Copy/paste/delete functions have not worked for city field FAILED");
-                }
+                clearMethod(inputFieldCity);
                 break;
             case "State":
-                String copyDataFromStateField = getInputFieldValue(inputFieldState);
-                inputFieldState.sendKeys(Keys.DELETE);
-                pasteValueToInputField(inputFieldState);
-                String copyDataFromStateFieldFinal = getInputFieldValue(inputFieldState);
-                if (copyDataFromStateField.equals(copyDataFromStateFieldFinal)) {
-                    System.out.println("Copy/paste/delete functions have worked for state field PASSED");
-                } else {
-                    System.out.println("Copy/paste/delete functions have not worked for state field FAILED");
-                }
+                clearMethod(inputFieldState);
                 break;
             case "Zip code":
-                String copyDataFromZipCodeField = getInputFieldValue(inputFieldZipCode);
-                inputFieldZipCode.sendKeys(Keys.DELETE);
-                pasteValueToInputField(inputFieldZipCode);
-                String copyDataFromZipCodeFieldFinal = getInputFieldValue(inputFieldZipCode);
-                if (copyDataFromZipCodeField.equals(copyDataFromZipCodeFieldFinal)) {
-                    System.out.println("Copy/paste/delete functions have worked for zip code field PASSED");
-                } else {
-                    System.out.println("Copy/paste/delete functions have not worked for zip code FAILED");
-                }
+                clearMethod(inputFieldZipCode);
                 break;
             case "Country":
-                String copyDataFromCountryField = getInputFieldValue(inputFieldCountry);
-                inputFieldCountry.sendKeys(Keys.DELETE);
-                pasteValueToInputField(inputFieldCountry);
-                String copyDataFromCountryFieldFinal = getInputFieldValue(inputFieldCountry);
-                if (copyDataFromCountryField.equals(copyDataFromCountryFieldFinal)) {
-                    System.out.println("Copy/paste/delete functions have worked for country field PASSED");
-                } else {
-                    System.out.println("Copy/paste/delete functions have not worked for country field FAILED");
-                }
+                clearMethod(inputFieldCountry);
                 break;
         }
+    }
+
+    public void clearMethod(WebElement arg1 ) throws Exception {
+        String copyDataFromField = getInputFieldValue(arg1);
+        arg1.sendKeys(Keys.DELETE);
+        pasteValueToInputField(arg1);
+        String copyDataFromFieldFinal = getInputFieldValue(arg1);
+        System.out.println(copyDataFromField.equals(copyDataFromFieldFinal)? "Copy/paste/delete functions have worked PASSED"
+                :"Copy/paste/delete functions have not worked FAILED");
     }
 
     public void clearViaDelete(String arg1) {
