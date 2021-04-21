@@ -371,12 +371,8 @@ public class DatepickerPage {
                 }
                 break;
             default:
-                String getURLValue = driver.getCurrentUrl();
-                if (getURLValue.substring(36).equals(arg2)) {
-                    System.out.println(arg2 + " is opened PASSED");
-                } else {
-                    System.out.println(arg2 + " is not opened FAILED");
-                }
+                System.out.println(driver.getCurrentUrl().substring(36).equals(arg2) ? arg2 + " page has opened PASSED"
+                        : arg2 + " page has not opened FAILED");
         }
     }
 
