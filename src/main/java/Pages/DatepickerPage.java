@@ -25,10 +25,6 @@ public class DatepickerPage {
     //header elements
     @FindBy(xpath = "//a[@id='logo']")
     public static WebElement formyPage;
-    @FindBy(xpath = "//h1[text()='Welcome to Formy']")
-    public static WebElement welcomeTitle;
-    @FindBy(xpath = "//h1[text()='Complete Web Form']")
-    public static WebElement formTitle;
     @FindBy(xpath = "//a[text()='Form']")
     public static WebElement formPage;
     @FindBy(xpath = "//a[@id='navbarDropdownMenuLink']")
@@ -361,19 +357,21 @@ public class DatepickerPage {
                 clickOnComponentElement.click();
                 break;
         }
-        switch (arg2) {
-            case "Welcome to Formy":
-                try {
-                    welcomeTitle.isDisplayed();
-                    System.out.println(arg2 + " is opened PASSED");
-                } catch (NoSuchElementException e) {
-                    System.out.println(arg2 + " is not opened FAILED");
-                }
-                break;
-            default:
-                System.out.println(driver.getCurrentUrl().substring(36).equals(arg2) ? arg2 + " page has opened PASSED"
-                        : arg2 + " page has not opened FAILED");
+        if ("Welcome to Formy".equals(arg2)) {
+            try {
+                WebElement welcomeTitle = driver.findElement(By.xpath("//h1[text()='Welcome to Formy']"));
+                System.out.println(welcomeTitle.isEnabled() ? arg2 + " is opened PASSED" : arg2 + " is not opened FAILED");
+            } catch (NoSuchElementException e) {
+                System.out.println(arg2 + " Something went wrong FAILED");
+            }
+        } else {
+            openedPageCheck(driver.getCurrentUrl(), arg2);
         }
+    }
+
+    public void openedPageCheck(String arg1, String arg2) {
+        System.out.println(arg1.substring(36).equals(arg2) ? arg2 + " page has opened PASSED"
+                : arg2 + " page has not opened FAILED");
     }
 
     public void output(WebElement arg1, String arg2) {

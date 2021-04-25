@@ -7,6 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 public class KeyPressPage {
     WebDriver driver;
     AutocompletePage autocompletePage = PageFactory.initElements(driver, AutocompletePage.class);
+    DatepickerPage datepickerPage = PageFactory.initElements(driver, DatepickerPage.class);
 
     @FindBy(id = "name")
     public static WebElement fullNameInput;
@@ -63,8 +64,7 @@ public class KeyPressPage {
 
     public void hasClickElementAndPageCheck(String arg1) {
         button.click();
-        System.out.println(driver.getCurrentUrl().substring(36).equals(arg1) ? arg1 + " page has opened PASSED"
-                : arg1 + " page has not opened FAILED");
+        datepickerPage.openedPageCheck(driver.getCurrentUrl(), arg1);
     }
 
     public void hasFieldValueCheck(String arg1) throws Exception {
