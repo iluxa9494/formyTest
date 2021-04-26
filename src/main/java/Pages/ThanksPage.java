@@ -16,6 +16,7 @@ public class ThanksPage {
     }
 
     public void hasThanksElementTitleCheck(String arg1) {
+        System.out.println(driver);
         System.out.println(successTitle.getText().equals(arg1) ? "Title has displayed correctly PASSED" :
                 "Title has displayed incorrectly FAILED");
     }
@@ -32,6 +33,4 @@ public class ThanksPage {
                 break;
         }
     }
-
-
 }

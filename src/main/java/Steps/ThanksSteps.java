@@ -10,14 +10,11 @@ public class ThanksSteps extends Drive {
 
     @Then("Check success title has a {string} text")
     public void thanksElementTitleCheck(String arg1) {
-    thanksPage.hasThanksElementTitleCheck(arg1);
+        thanksPage.hasThanksElementTitleCheck(arg1);
     }
 
     @Then("Check {string} has been unselected")
     public void unselectedTitleCheck(String arg1) {
         thanksPage.hasUnselectedTitleCheck(arg1);
     }
-
-
-
 }
