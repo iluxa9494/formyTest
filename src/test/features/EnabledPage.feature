@@ -1,163 +1,384 @@
 Feature: Enabled and disabled elements page
 
   Background:
-    Then Open browser and go to Formy site
-    Then Go to "Enabled and disabled elements" page
+    * Open browser and go to Formy site
+    * Go to "Enabled and disabled elements" page
 
 #web layout
   Scenario: Page title Dropdown - displays correctly
-    Then Check "Enabled and disabled elements" has page title "Enabled and Disabled elements"
+    * Check "Enabled and disabled elements" has page title "Enabled and Disabled elements"
+    * Close browser
 
 #functional
 #disabled field
   Scenario: Disabled input - not selected, not enabled
-    Then Check disabled input field has not selected and not enabled
+    * Check disabled input field has not selected and not enabled
+    * Close browser
 
   Scenario: Disabled input placeholder - correct title
-    Then Check placeholder of "disabled input field" has text "Disabled input here..."
+    * Check placeholder of "disabled input field" has text "Disabled input here..."
+    * Close browser
 
   Scenario: Disabled input - try to enter value
-    Then Enter "M1џ01/0100:00" in disabled input field and check data has not entered
+    * Enter "M1џ01/0100:00" in disabled input field and check data has not entered
+    * Close browser
 
 #enabled field
   Scenario: Enabled input - not selected, enabled
-    Then Check input field has not selected, enabled
+    * Check input field has not selected, enabled
+    * Close browser
 
   Scenario: Enabled input field - empty field when page just opened
-    Then Check input field is empty
+    * Check input field is empty
+    * Close browser
 
   Scenario: Enabled input placeholder - correct title
-    Then Check placeholder of "enabled input field" has text "Input here..."
+    * Check placeholder of "enabled input field" has text "Input here..."
+    * Close browser
 
   Scenario: Enabled input field - opportunity to enter miscellaneous symbols/date/time/numbers/letters
-    Then Enter "џ®њƒ" in enabled input field and check data has entered
-    Then Enter "01/01/2021" in enabled input field and check data has entered
-    Then Enter "00:00:00" in enabled input field and check data has entered
-    Then Enter "11111" in enabled input field and check data has entered
-    Then Enter "Menlo Park" in enabled input field and check data has entered
+    * Check data has entered in enabled input field after entering
+      | џ®њƒ |
+    * Check data has entered in enabled input field after entering
+      | 01/01/2021 |
+    * Check data has entered in enabled input field after entering
+      | 00:00:00 |
+    * Check data has entered in enabled input field after entering
+      | 11111 |
+    * Check data has entered in enabled input field after entering
+      | Menlo Park |
+    * Close browser
 
   Scenario: Enabled input field - entering max length of symbols for value
 # 100 symbols max length
-    Then Enter "MenloMenloMenloMenloMenloMenloMenloMenloMenloMenloMenloMenloMenloMenloMenloMenloMenloMenloMenloMenlo" in enabled input field and check data has entered
-    Then Clear enabled input field via delete
-    Then Enter "Menlo Menlo Menlo Menlo Menlo Menlo Menlo Menlo Menlo Menlo Menlo Menlo Menlo Menlo Menlo Menlo Menlo Menlo Menlo Menlo" in enabled input field and check data has entered
+    * Check data has entered in enabled input field after entering
+      | MenloMenloMenloMenloMenloMenloMenloMenloMenloMenloMenloMenloMenloMenloMenloMenloMenloMenloMenloMenlo |
+    * Clear enabled input field via delete
+    * Check data has entered in enabled input field after entering
+      | Menlo Menlo Menlo Menlo Menlo Menlo Menlo Menlo Menlo Menlo Menlo Menlo Menlo Menlo Menlo Menlo Menlo Menlo Menlo Menlo |
+    * Close browser
 
   Scenario: Enabled input field - opportunity to copy/paste/delete data
-    Then Enter "Menlo Park" in enabled input field and check data has entered
-    Then Copy data from enabled input field, clear via delete, paste data to the field and check the functions have worked
+    * Check data has entered in enabled input field after entering
+      | Menlo Park |
+    * Copy data from enabled input field, clear via delete, paste data to the field and check the functions have worked
+    * Close browser
 
   Scenario: Refresh the page - disabled field save its state, enabled field - reset its state
-    Then Check input field is empty
-    Then Check disabled input field has not selected and not enabled
-    Then Enter "Menlo Park" in enabled input field and check data has entered
-    Then Click on "Refresh" and check "enabled" page has opened
-    Then Check input field is empty
-    Then Check disabled input field has not selected and not enabled
+    * Check input field is empty
+    * Check disabled input field has not selected and not enabled
+    * Check data has entered in enabled input field after entering
+      | Menlo Park |
+    * Click on "Refresh" and check "enabled" page has opened
+    * Check input field is empty
+    * Check disabled input field has not selected and not enabled
+    * Close browser
 
   Scenario: Backward - all fields saved the data
-    Then Check input field is empty
-    Then Check disabled input field has not selected and not enabled
-    Then Enter "Menlo Park" in enabled input field and check data has entered
-    Then Click on "Form" and check "form" page has opened
-    Then Check "Complete Web Form" title is displayed
-    Then Click on "Backward" and check "enabled" page has opened
-    Then Check disabled input field has not selected and not enabled
-    Then Check field input has "Menlo Park" value
+    * Check input field is empty
+    * Check disabled input field has not selected and not enabled
+    * Check data has entered in enabled input field after entering
+      | Menlo Park |
+    * Click on "Form" and check "form" page has opened
+    * Check "Complete Web Form" title is displayed
+    * Click on "Backward" and check "enabled" page has opened
+    * Check disabled input field has not selected and not enabled
+    * Check field input has "Menlo Park" value
+    * Close browser
 
   Scenario: Forward - all fields saved the data
-    Then Check input field is empty
-    Then Check disabled input field has not selected and not enabled
-    Then Enter "Menlo Park" in enabled input field and check data has entered
-    Then Click on "Backward" and check "Welcome to Formy" page has opened
-    Then Click on "Forward" and check "enabled" page has opened
-    Then Check disabled input field has not selected and not enabled
-    Then Check field input has "Menlo Park" value
+    * Check input field is empty
+    * Check disabled input field has not selected and not enabled
+    * Check data has entered in enabled input field after entering
+      | Menlo Park |
+    * Click on "Backward" and check "Welcome to Formy" page has opened
+    * Click on "Forward" and check "enabled" page has opened
+    * Check disabled input field has not selected and not enabled
+    * Check field input has "Menlo Park" value
+    * Close browser
 
 #  header
   Scenario: Header: Formy referral check
-    Then Click on "Formy" and check "Welcome to Formy" page has opened
-    Then Click on "Backward" and check "enabled" page has opened
-    Then Click on "Forward" and check "Welcome to Formy" page has opened
+    * Click on "Formy" and check "Welcome to Formy" page has opened
+    * Click on "Backward" and check "enabled" page has opened
+    * Click on "Forward" and check "Welcome to Formy" page has opened
+    * Close browser
 
   Scenario: Header: Form referral check
-    Then Click on "Form" and check "form" page has opened
-    Then Click on "Backward" and check "enabled" page has opened
-    Then Click on "Forward" and check "form" page has opened
+    * Click on "Form" and check "form" page has opened
+    * Click on "Backward" and check "enabled" page has opened
+    * Click on "Forward" and check "form" page has opened
+    * Close browser
 
   Scenario: Header, Components: Autocomplete referral check
-    Then Click on "Components" and check inside a dropdown list with: "Autocomplete", "Buttons", "Checkbox", "Datepicker", "Drag and Drop", "Dropdown", "Enabled and disabled elements", "File Upload", "Key and Mouse Press", "Modal", "Page Scroll", "Radio Button", "Switch Window", "Complete Web Form"
-    Then Click on "Autocomplete" and check "autocomplete" page has opened
-    Then Click on "Backward" and check "enabled" page has opened
-    Then Click on "Forward" and check "autocomplete" page has opened
+    * Click on "Components" and check inside a dropdown list with:
+      | Autocomplete                  |
+      | Buttons                       |
+      | Checkbox                      |
+      | Datepicker                    |
+      | Drag and Drop                 |
+      | Dropdown                      |
+      | Enabled and disabled elements |
+      | File Upload                   |
+      | Key and Mouse Press           |
+      | Modal                         |
+      | Page Scroll                   |
+      | Radio Button                  |
+      | Switch Window                 |
+      | Complete Web Form             |
+    * Click on "Autocomplete" and check "autocomplete" page has opened
+    * Click on "Backward" and check "enabled" page has opened
+    * Click on "Forward" and check "autocomplete" page has opened
+    * Close browser
 
   Scenario: Header, Components: Buttons referral check
-    Then Click on "Components" and check inside a dropdown list with: "Autocomplete", "Buttons", "Checkbox", "Datepicker", "Drag and Drop", "Dropdown", "Enabled and disabled elements", "File Upload", "Key and Mouse Press", "Modal", "Page Scroll", "Radio Button", "Switch Window", "Complete Web Form"
-    Then Click on "Buttons" and check "buttons" page has opened
-    Then Click on "Backward" and check "enabled" page has opened
-    Then Click on "Forward" and check "buttons" page has opened
+    * Click on "Components" and check inside a dropdown list with:
+      | Autocomplete                  |
+      | Buttons                       |
+      | Checkbox                      |
+      | Datepicker                    |
+      | Drag and Drop                 |
+      | Dropdown                      |
+      | Enabled and disabled elements |
+      | File Upload                   |
+      | Key and Mouse Press           |
+      | Modal                         |
+      | Page Scroll                   |
+      | Radio Button                  |
+      | Switch Window                 |
+      | Complete Web Form             |
+    * Click on "Buttons" and check "buttons" page has opened
+    * Click on "Backward" and check "enabled" page has opened
+    * Click on "Forward" and check "buttons" page has opened
+    * Close browser
 
   Scenario: Header, Components: Checkbox referral check
-    Then Click on "Components" and check inside a dropdown list with: "Autocomplete", "Buttons", "Checkbox", "Datepicker", "Drag and Drop", "Dropdown", "Enabled and disabled elements", "File Upload", "Key and Mouse Press", "Modal", "Page Scroll", "Radio Button", "Switch Window", "Complete Web Form"
-    Then Click on "Checkbox" and check "checkbox" page has opened
-    Then Click on "Backward" and check "enabled" page has opened
-    Then Click on "Forward" and check "checkbox" page has opened
+    * Click on "Components" and check inside a dropdown list with:
+      | Autocomplete                  |
+      | Buttons                       |
+      | Checkbox                      |
+      | Datepicker                    |
+      | Drag and Drop                 |
+      | Dropdown                      |
+      | Enabled and disabled elements |
+      | File Upload                   |
+      | Key and Mouse Press           |
+      | Modal                         |
+      | Page Scroll                   |
+      | Radio Button                  |
+      | Switch Window                 |
+      | Complete Web Form             |
+    * Click on "Checkbox" and check "checkbox" page has opened
+    * Click on "Backward" and check "enabled" page has opened
+    * Click on "Forward" and check "checkbox" page has opened
+    * Close browser
 
   Scenario: Header, Components: Autocomplete referral check
-    Then Click on "Components" and check inside a dropdown list with: "Autocomplete", "Buttons", "Checkbox", "Datepicker", "Drag and Drop", "Dropdown", "Enabled and disabled elements", "File Upload", "Key and Mouse Press", "Modal", "Page Scroll", "Radio Button", "Switch Window", "Complete Web Form"
-    Then Click on "Datepicker" and check "datepicker" page has opened
-    Then Click on "Backward" and check "enabled" page has opened
-    Then Click on "Forward" and check "datepicker" page has opened
+    * Click on "Components" and check inside a dropdown list with:
+      | Autocomplete                  |
+      | Buttons                       |
+      | Checkbox                      |
+      | Datepicker                    |
+      | Drag and Drop                 |
+      | Dropdown                      |
+      | Enabled and disabled elements |
+      | File Upload                   |
+      | Key and Mouse Press           |
+      | Modal                         |
+      | Page Scroll                   |
+      | Radio Button                  |
+      | Switch Window                 |
+      | Complete Web Form             |
+    * Click on "Datepicker" and check "datepicker" page has opened
+    * Click on "Backward" and check "enabled" page has opened
+    * Click on "Forward" and check "datepicker" page has opened
+    * Close browser
 
   Scenario: Header, Components: Drag and Drop referral check
-    Then Click on "Components" and check inside a dropdown list with: "Autocomplete", "Buttons", "Checkbox", "Datepicker", "Drag and Drop", "Dropdown", "Enabled and disabled elements", "File Upload", "Key and Mouse Press", "Modal", "Page Scroll", "Radio Button", "Switch Window", "Complete Web Form"
-    Then Click on "Drag and Drop" and check "dragdrop" page has opened
-    Then Click on "Backward" and check "enabled" page has opened
-    Then Click on "Forward" and check "dragdrop" page has opened
+    * Click on "Components" and check inside a dropdown list with:
+      | Autocomplete                  |
+      | Buttons                       |
+      | Checkbox                      |
+      | Datepicker                    |
+      | Drag and Drop                 |
+      | Dropdown                      |
+      | Enabled and disabled elements |
+      | File Upload                   |
+      | Key and Mouse Press           |
+      | Modal                         |
+      | Page Scroll                   |
+      | Radio Button                  |
+      | Switch Window                 |
+      | Complete Web Form             |
+    * Click on "Drag and Drop" and check "dragdrop" page has opened
+    * Click on "Backward" and check "enabled" page has opened
+    * Click on "Forward" and check "dragdrop" page has opened
+    * Close browser
 
   Scenario: Header, Components: Dropdown referral check
-    Then Click on "Components" and check inside a dropdown list with: "Autocomplete", "Buttons", "Checkbox", "Datepicker", "Drag and Drop", "Dropdown", "Enabled and disabled elements", "File Upload", "Key and Mouse Press", "Modal", "Page Scroll", "Radio Button", "Switch Window", "Complete Web Form"
-    Then Click on "Dropdown" and check "dropdown" page has opened
-    Then Click on "Backward" and check "enabled" page has opened
-    Then Click on "Forward" and check "dropdown" page has opened
+    * Click on "Components" and check inside a dropdown list with:
+      | Autocomplete                  |
+      | Buttons                       |
+      | Checkbox                      |
+      | Datepicker                    |
+      | Drag and Drop                 |
+      | Dropdown                      |
+      | Enabled and disabled elements |
+      | File Upload                   |
+      | Key and Mouse Press           |
+      | Modal                         |
+      | Page Scroll                   |
+      | Radio Button                  |
+      | Switch Window                 |
+      | Complete Web Form             |
+    * Click on "Dropdown" and check "dropdown" page has opened
+    * Click on "Backward" and check "enabled" page has opened
+    * Click on "Forward" and check "dropdown" page has opened
+    * Close browser
 
   Scenario: Header, Components: Enabled and disabled elements referral check
-    Then Click on "Components" and check inside a dropdown list with: "Autocomplete", "Buttons", "Checkbox", "Datepicker", "Drag and Drop", "Dropdown", "Enabled and disabled elements", "File Upload", "Key and Mouse Press", "Modal", "Page Scroll", "Radio Button", "Switch Window", "Complete Web Form"
-    Then Click on "File Upload" and check "fileupload" page has opened
-    Then Click on "Backward" and check "enabled" page has opened
-    Then Click on "Forward" and check "fileupload" page has opened
+    * Click on "Components" and check inside a dropdown list with:
+      | Autocomplete                  |
+      | Buttons                       |
+      | Checkbox                      |
+      | Datepicker                    |
+      | Drag and Drop                 |
+      | Dropdown                      |
+      | Enabled and disabled elements |
+      | File Upload                   |
+      | Key and Mouse Press           |
+      | Modal                         |
+      | Page Scroll                   |
+      | Radio Button                  |
+      | Switch Window                 |
+      | Complete Web Form             |
+    * Click on "File Upload" and check "fileupload" page has opened
+    * Click on "Backward" and check "enabled" page has opened
+    * Click on "Forward" and check "fileupload" page has opened
+    * Close browser
 
   Scenario: Header, Components: Key and Mouse Press referral check
-    Then Click on "Components" and check inside a dropdown list with: "Autocomplete", "Buttons", "Checkbox", "Datepicker", "Drag and Drop", "Dropdown", "Enabled and disabled elements", "File Upload", "Key and Mouse Press", "Modal", "Page Scroll", "Radio Button", "Switch Window", "Complete Web Form"
-    Then Click on "Key and Mouse Press" and check "keypress" page has opened
-    Then Click on "Backward" and check "enabled" page has opened
-    Then Click on "Forward" and check "keypress" page has opened
+    * Click on "Components" and check inside a dropdown list with:
+      | Autocomplete                  |
+      | Buttons                       |
+      | Checkbox                      |
+      | Datepicker                    |
+      | Drag and Drop                 |
+      | Dropdown                      |
+      | Enabled and disabled elements |
+      | File Upload                   |
+      | Key and Mouse Press           |
+      | Modal                         |
+      | Page Scroll                   |
+      | Radio Button                  |
+      | Switch Window                 |
+      | Complete Web Form             |
+    * Click on "Key and Mouse Press" and check "keypress" page has opened
+    * Click on "Backward" and check "enabled" page has opened
+    * Click on "Forward" and check "keypress" page has opened
+    * Close browser
 
   Scenario: Header, Components: Modal referral check
-    Then Click on "Components" and check inside a dropdown list with: "Autocomplete", "Buttons", "Checkbox", "Datepicker", "Drag and Drop", "Dropdown", "Enabled and disabled elements", "File Upload", "Key and Mouse Press", "Modal", "Page Scroll", "Radio Button", "Switch Window", "Complete Web Form"
-    Then Click on "Modal" and check "modal" page has opened
-    Then Click on "Backward" and check "enabled" page has opened
-    Then Click on "Forward" and check "modal" page has opened
+    * Click on "Components" and check inside a dropdown list with:
+      | Autocomplete                  |
+      | Buttons                       |
+      | Checkbox                      |
+      | Datepicker                    |
+      | Drag and Drop                 |
+      | Dropdown                      |
+      | Enabled and disabled elements |
+      | File Upload                   |
+      | Key and Mouse Press           |
+      | Modal                         |
+      | Page Scroll                   |
+      | Radio Button                  |
+      | Switch Window                 |
+      | Complete Web Form             |
+    * Click on "Modal" and check "modal" page has opened
+    * Click on "Backward" and check "enabled" page has opened
+    * Click on "Forward" and check "modal" page has opened
+    * Close browser
 
   Scenario: Header, Components: Page Scroll referral check
-    Then Click on "Components" and check inside a dropdown list with: "Autocomplete", "Buttons", "Checkbox", "Datepicker", "Drag and Drop", "Dropdown", "Enabled and disabled elements", "File Upload", "Key and Mouse Press", "Modal", "Page Scroll", "Radio Button", "Switch Window", "Complete Web Form"
-    Then Click on "Page Scroll" and check "scroll" page has opened
-    Then Click on "Backward" and check "enabled" page has opened
-    Then Click on "Forward" and check "scroll" page has opened
+    * Click on "Components" and check inside a dropdown list with:
+      | Autocomplete                  |
+      | Buttons                       |
+      | Checkbox                      |
+      | Datepicker                    |
+      | Drag and Drop                 |
+      | Dropdown                      |
+      | Enabled and disabled elements |
+      | File Upload                   |
+      | Key and Mouse Press           |
+      | Modal                         |
+      | Page Scroll                   |
+      | Radio Button                  |
+      | Switch Window                 |
+      | Complete Web Form             |
+    * Click on "Page Scroll" and check "scroll" page has opened
+    * Click on "Backward" and check "enabled" page has opened
+    * Click on "Forward" and check "scroll" page has opened
+    * Close browser
 
   Scenario: Header, Components: Radio Button referral check
-    Then Click on "Components" and check inside a dropdown list with: "Autocomplete", "Buttons", "Checkbox", "Datepicker", "Drag and Drop", "Dropdown", "Enabled and disabled elements", "File Upload", "Key and Mouse Press", "Modal", "Page Scroll", "Radio Button", "Switch Window", "Complete Web Form"
-    Then Click on "Radio Button" and check "radiobutton" page has opened
-    Then Click on "Backward" and check "enabled" page has opened
-    Then Click on "Forward" and check "radiobutton" page has opened
+    * Click on "Components" and check inside a dropdown list with:
+      | Autocomplete                  |
+      | Buttons                       |
+      | Checkbox                      |
+      | Datepicker                    |
+      | Drag and Drop                 |
+      | Dropdown                      |
+      | Enabled and disabled elements |
+      | File Upload                   |
+      | Key and Mouse Press           |
+      | Modal                         |
+      | Page Scroll                   |
+      | Radio Button                  |
+      | Switch Window                 |
+      | Complete Web Form             |
+    * Click on "Radio Button" and check "radiobutton" page has opened
+    * Click on "Backward" and check "enabled" page has opened
+    * Click on "Forward" and check "radiobutton" page has opened
+    * Close browser
 
   Scenario: Header, Components: Switch Window referral check
-    Then Click on "Components" and check inside a dropdown list with: "Autocomplete", "Buttons", "Checkbox", "Datepicker", "Drag and Drop", "Dropdown", "Enabled and disabled elements", "File Upload", "Key and Mouse Press", "Modal", "Page Scroll", "Radio Button", "Switch Window", "Complete Web Form"
-    Then Click on "Switch Window" and check "switch-window" page has opened
-    Then Click on "Backward" and check "enabled" page has opened
-    Then Click on "Forward" and check "switch-window" page has opened
+    * Click on "Components" and check inside a dropdown list with:
+      | Autocomplete                  |
+      | Buttons                       |
+      | Checkbox                      |
+      | Datepicker                    |
+      | Drag and Drop                 |
+      | Dropdown                      |
+      | Enabled and disabled elements |
+      | File Upload                   |
+      | Key and Mouse Press           |
+      | Modal                         |
+      | Page Scroll                   |
+      | Radio Button                  |
+      | Switch Window                 |
+      | Complete Web Form             |
+    * Click on "Switch Window" and check "switch-window" page has opened
+    * Click on "Backward" and check "enabled" page has opened
+    * Click on "Forward" and check "switch-window" page has opened
+    * Close browser
 
   Scenario: Header, Components: Complete Web Form referral check
-    Then Click on "Components" and check inside a dropdown list with: "Autocomplete", "Buttons", "Checkbox", "Datepicker", "Drag and Drop", "Dropdown", "Enabled and disabled elements", "File Upload", "Key and Mouse Press", "Modal", "Page Scroll", "Radio Button", "Switch Window", "Complete Web Form"
-    Then Click on "Complete Web Form" and check "form" page has opened
-    Then Click on "Backward" and check "enabled" page has opened
-    Then Click on "Forward" and check "form" page has opened
+    * Click on "Components" and check inside a dropdown list with:
+      | Autocomplete                  |
+      | Buttons                       |
+      | Checkbox                      |
+      | Datepicker                    |
+      | Drag and Drop                 |
+      | Dropdown                      |
+      | Enabled and disabled elements |
+      | File Upload                   |
+      | Key and Mouse Press           |
+      | Modal                         |
+      | Page Scroll                   |
+      | Radio Button                  |
+      | Switch Window                 |
+      | Complete Web Form             |
+    * Click on "Complete Web Form" and check "form" page has opened
+    * Click on "Backward" and check "enabled" page has opened
+    * Click on "Forward" and check "form" page has opened
+    * Close browser

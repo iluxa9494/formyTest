@@ -2,6 +2,7 @@ package Steps;
 
 import Config.Drive;
 import Pages.EnabledPage;
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Then;
 import org.openqa.selenium.ElementNotInteractableException;
 import org.openqa.selenium.support.PageFactory;
@@ -34,9 +35,9 @@ public class EnabledSteps extends Drive {
         enabledPage.whatFieldValueCheck(arg1);
     }
 
-    @Then("Enter {string} in enabled input field and check data has entered")
-    public void enterValueInEnabledInputFiled(String arg1) throws Exception {
-        enabledPage.isEnterValueInEnabledInputFiled(arg1);
+    @Then("Check data has entered in enabled input field after entering")
+    public void enterValueInEnabledInputFiled(DataTable table) throws Exception {
+        enabledPage.isEnterValueInEnabledInputFiled(table);
     }
 
     @Then("Clear enabled input field via delete")

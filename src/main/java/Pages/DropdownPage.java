@@ -1,10 +1,15 @@
 package Pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import io.cucumber.datatable.DataTable;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
+import org.testng.Assert;
+
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class DropdownPage {
     WebDriver driver;
@@ -17,48 +22,71 @@ public class DropdownPage {
         this.driver = driver;
     }
 
+    public void makeScreenshot() {
+        String arg1 = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss").format(new Date());
+        try {
+            File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+            FileUtils.copyFile(scrFile, new File("src/Screenshots/" + arg1 + ".png"));
+        } catch (IOException e) {
+            System.out.println("Some troubles with screenshot");
+        }
+    }
+
+    public void checkResult(boolean arg1) {
+        if (arg1) {
+            System.out.println("PASSED");
+        } else {
+            checkResultFailed();
+        }
+    }
+
+    public void checkResultFailed() {
+        makeScreenshot();
+        Assert.fail("FAILED");
+    }
+
     public void isTitleDisplayed(String arg1) {
-        System.out.println(dropdownButton.getText().equals(arg1) ? "Dropdown button has title " + arg1 + " PASSED" :
-                "Dropdown button has not title " + arg1 + " FAILED");
+        checkResult(dropdownButton.getText().equals(arg1));
     }
 
     public void isButtonSelectedOrEnabled() {
-        System.out.println(dropdownButton.isEnabled() && !(dropdownButton.isSelected()) ?
-                "Dropdown button has not selected but enabled PASSED" : "Dropdown button has not worked ok FAILED");
+        checkResult(dropdownButton.isEnabled() && !(dropdownButton.isSelected()));
     }
 
     public void isClickDropdownButton() {
         dropdownButton.click();
     }
 
-    public void isDropdownListDisplayed(String... arg1) {
+    public void isDropdownListDisplayed(DataTable table) {
+        java.util.List<String> elementsList = table.asList();
         try {
-            for (String a : arg1) {
+            for (String a : elementsList) {
                 WebElement findElementsInButtonDropdown = driver.findElement(By.xpath("//div[@class='dropdown-menu show']/a[@class='dropdown-item' and text()='" + a + "']"));
                 findElementsInButtonDropdown.getText();
             }
-            System.out.println("All elements have displayed in button dropdown PASSED");
+            System.out.println("PASSED");
         } catch (NoSuchElementException e) {
-            System.out.println("All elements have not displayed in button dropdown FAILED");
+            checkResultFailed();
         }
     }
 
     public void isListClosed() {
         try {
-            System.out.println(dropdownList.isDisplayed() ? "Dropdown list has opened FAILED" : "Dropdown list has not worked ok FAILED");
+            dropdownList.isDisplayed();
+            checkResultFailed();
         } catch (NoSuchElementException e) {
-            System.out.println("Dropdown list has closed PASSED");
+            System.out.println("PASSED");
         }
     }
 
     public void isPageOpenedFromDropdownList(String arg1, String arg2) {
-        WebElement findElementsInButtonDropdownList = driver.findElement(By.xpath("//div[@class='dropdown-menu show']/a[@class='dropdown-item' and text()='" + arg1 + "']"));
         try {
+            WebElement findElementsInButtonDropdownList = driver.findElement(By.xpath
+                    ("//div[@class='dropdown-menu show']/a[@class='dropdown-item' and text()='" + arg1 + "']"));
             findElementsInButtonDropdownList.click();
-            System.out.println(driver.getCurrentUrl().substring(36).equals(arg2) ? arg2 + " has opened PASSED" :
-                    arg2 + " has not opened FAILED");
+            checkResult(driver.getCurrentUrl().substring(36).equals(arg2));
         } catch (NoSuchElementException e) {
-            System.out.println(arg2 + " has not opened FAILED");
+            checkResultFailed();
         }
     }
 }

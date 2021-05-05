@@ -2,6 +2,7 @@ package Steps;
 
 import Config.Drive;
 import Pages.AutocompletePage;
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Then;
 import org.openqa.selenium.support.PageFactory;
 
@@ -13,24 +14,24 @@ public class AutocompleteSteps extends Drive {
         autocompletePage.isAllFieldsEmptyCheck();
     }
 
-    @Then("Enter {string} in {string} field and check data has entered")
-    public void enterInField(String arg1, String arg2) throws Exception {
-        autocompletePage.enterDataInField(arg1, arg2);
+    @Then("Check data has entered in {string} field after entering")
+    public void enterInField(String arg1, DataTable table) throws Exception {
+        autocompletePage.enterDataInField(arg1, table);
     }
 
     @Then("Check dropdown of {string} field {string} displayed")
-    public void isDropdownDisplayed(String arg1, String arg2) throws InterruptedException {
+    public void isDropdownDisplayed(String arg1, String arg2){
         autocompletePage.dropdownDisplayed(arg1);
     }
 
     @Then("Check all 5 elements of dropdown list contains {string} in its titles")
-    public void isElementsDropdownDisplayed(String arg1) {
+    public void isElementsDropdownDisplayed(String arg1) throws InterruptedException {
         autocompletePage.isElementsInDropdownDisplayed(arg1);
     }
 
-    @Then("Choose {string} in dropdown and check fields: City has got data {string}, state - {string}, country - {string} and other fields are empty")
-    public void isAutocomplete(String arg1, String arg2, String arg3, String arg4) throws Exception {
-        autocompletePage.isAutocompleteCorrect(arg1, arg2, arg3, arg4);
+    @Then("Choose {string} and check other fields has not had data excluding city, state, country:")
+    public void isAutocomplete(String arg1, DataTable table) throws Exception {
+        autocompletePage.isAutocompleteCorrect(arg1, table);
     }
 
     @Then("Refresh page and check all fields are empty")
@@ -38,9 +39,9 @@ public class AutocompleteSteps extends Drive {
         autocompletePage.refreshPageCheckFields();
     }
 
-    @Then("Check all fields saved its data: Address - {string}, Street address - {string}, Street address 2 - {string}, City - {string}, State - {string}, Zip code - {string}, Country - {string}")
-    public void backwardForwardPage(String arg1, String arg2, String arg3, String arg4, String arg5, String arg6, String arg7) throws Exception {
-        autocompletePage.backwardForwardPageSavingFieldsData(arg1, arg2, arg3, arg4, arg5, arg6, arg7);
+    @Then("Check all fields saved its data: Address, Street address, Street address 2, City, State, Zip code, Country:")
+    public void backwardForwardPage(DataTable table) throws Exception {
+        autocompletePage.backwardForwardPageSavingFieldsData(table);
     }
 
     @Then("Check {string} title is displayed")
@@ -53,7 +54,7 @@ public class AutocompleteSteps extends Drive {
         autocompletePage.isFieldTitlePlaceholderDisplayedCorrectly(arg1, arg2, arg3);
     }
 
-    @Then("Copy data from {string} field, clear via delete, paste data to the field and check the functions have worked")
+    @Then("Copy data from {string} field, clear via delete, paste data to the field and check the functions worked")
     public void copyData(String arg1) throws Exception {
         autocompletePage.copyDataFromField(arg1);
     }

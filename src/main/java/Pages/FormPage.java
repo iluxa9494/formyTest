@@ -1,13 +1,20 @@
 package Pages;
 
+import io.cucumber.datatable.DataTable;
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
+
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class FormPage {
     WebDriver driver;
     AutocompletePage autocompletePage = PageFactory.initElements(driver, AutocompletePage.class);
-
     @FindBy(xpath = "//label[@for='first-name']")
     public static WebElement firstNameTitle;
     @FindBy(xpath = "//label[@for='last-name']")
@@ -59,38 +66,56 @@ public class FormPage {
         this.driver = driver;
     }
 
-    public void hasElementPageTitle(String arg1, String arg2) {
-        switch (arg1) {
-            case "first name input":
-                compareTitles(firstNameTitle, arg2);
-                break;
-            case "last name input":
-                compareTitles(lastNameTitle, arg2);
-                break;
-            case "job title input":
-                compareTitles(jobTitle, arg2);
-                break;
-            case "education radio buttons":
-                compareTitles(educationTitle, arg2);
-                break;
-            case "sex checkboxes":
-                compareTitles(sexTitle, arg2);
-                break;
-            case "experience selector":
-                compareTitles(experienceTitle, arg2);
-                break;
-            case "input date":
-                compareTitles(dateTitle, arg2);
-                break;
-            case "submit button":
-                compareTitles(submitButton, arg2);
-                break;
+    public void makeScreenshot() {
+        String arg1 = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss").format(new Date());
+        try {
+            File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+            FileUtils.copyFile(scrFile, new File("src/Screenshots/" + arg1 + ".png"));
+        } catch (IOException e) {
+            System.out.println("Some troubles with screenshot");
         }
     }
 
-    public void compareTitles(WebElement arg1, String arg2) {
-        System.out.println(arg1.getText().equals(arg2) ? "Title has a " + arg2 + " text PASSED" :
-                "Title has not a " + arg2 + " text FAILED");
+    public void checkResult(boolean arg1) {
+        if (arg1) {
+            System.out.println("PASSED");
+        } else {
+            checkResultFailed();
+        }
+    }
+
+    public void checkResultFailed() {
+        makeScreenshot();
+        Assert.fail("FAILED");
+    }
+
+    public void hasElementPageTitle(String arg1, String arg2) {
+        switch (arg1) {
+            case "first name input":
+                checkResult(firstNameTitle.getText().equals(arg2));
+                break;
+            case "last name input":
+                checkResult(lastNameTitle.getText().equals(arg2));
+                break;
+            case "job title input":
+                checkResult(jobTitle.getText().equals(arg2));
+                break;
+            case "education radio buttons":
+                checkResult(educationTitle.getText().equals(arg2));
+                break;
+            case "sex checkboxes":
+                checkResult(sexTitle.getText().equals(arg2));
+                break;
+            case "experience selector":
+                checkResult(experienceTitle.getText().equals(arg2));
+                break;
+            case "input date":
+                checkResult(dateTitle.getText().equals(arg2));
+                break;
+            case "submit button":
+                checkResult(submitButton.getText().equals(arg2));
+                break;
+        }
     }
 
     public void hasElementPagePlaceholders(String arg1, String arg2) {
@@ -111,22 +136,20 @@ public class FormPage {
     }
 
     public void comparePlaceholders(String arg1) {
-        WebElement inputFieldElements = driver.findElement(By.xpath("//input[@placeholder='" + arg1 + "']"));
         try {
-            System.out.println(inputFieldElements.isDisplayed() ? "Placeholder has a " + arg1 + " text PASSED" :
-                    "Placeholder has not a " + arg1 + " text FAILED");
+            WebElement inputFieldElements = driver.findElement(By.xpath("//input[@placeholder='" + arg1 + "']"));
+            checkResult(inputFieldElements.isDisplayed());
         } catch (NoSuchElementException e) {
-            System.out.println(arg1 + " placeholder has absent FAILED");
+            checkResultFailed();
         }
     }
 
     public void isFieldTextCheck(String arg1) {
-        WebElement selected = driver.findElement(By.xpath("//option[text()='" + arg1 + "']"));
         try {
-            System.out.println(selected.getText().equals(arg1) ? "Experience selector has a " + arg1 + " field text PASSED" :
-                    arg1 + "Experience selector has not a " + arg1 + " field text FAILED");
+            WebElement selected = driver.findElement(By.xpath("//option[text()='" + arg1 + "']"));
+            checkResult(selected.getText().equals(arg1));
         } catch (NoSuchElementException e) {
-            System.out.println("Element experience selector has absent FAILED");
+            checkResultFailed();
         }
     }
 
@@ -175,44 +198,38 @@ public class FormPage {
     }
 
     public void elementHasOptionsCheck() {
-        System.out.println(!(!(selectorSelectAnOption.isSelected()) && selector01.isSelected() && selector24.isSelected()
-                && selector59.isSelected() && selector10plus.isSelected()) ? "Experience selector has correct elements PASSED"
-                : "Experience selector has incorrect elements FAILED");
+        checkResult(!(!(selectorSelectAnOption.isSelected()) && selector01.isSelected() && selector24.isSelected()
+                && selector59.isSelected() && selector10plus.isSelected()));
     }
 
     public void hasEmptyElementCheck(String arg1) throws Exception {
         switch (arg1) {
             case "first name input":
-                System.out.println(autocompletePage.getInputFieldValue(firstNameInput).equals("") ? arg1 + " has empty PASSED" :
-                        arg1 + " has empty FAILED");
+                checkResult(autocompletePage.getInputFieldValue(firstNameInput).equals(""));
                 break;
             case "last name input":
-                System.out.println(autocompletePage.getInputFieldValue(lastNameInput).equals("") ? arg1 + " has empty PASSED" :
-                        arg1 + " has empty FAILED");
+                checkResult(autocompletePage.getInputFieldValue(lastNameInput).equals(""));
                 break;
             case "job title input":
-                System.out.println(autocompletePage.getInputFieldValue(jobInput).equals("") ? arg1 + " has empty PASSED" :
-                        arg1 + " has empty FAILED");
+                checkResult(autocompletePage.getInputFieldValue(jobInput).equals(""));
                 break;
         }
     }
 
-    public void hasEnterAndCheckValue(String arg1, String arg2) throws Exception {
-        switch (arg2) {
+    public void hasEnterAndCheckValue(String arg1, DataTable table) throws Exception {
+        java.util.List<String> fieldData = table.asList();
+        switch (arg1) {
             case "first name input":
-                firstNameInput.sendKeys(arg1);
-                String inputFirstNameValue = autocompletePage.getInputFieldValue(firstNameInput);
-                autocompletePage.isDataMatchedCheck(inputFirstNameValue, arg1);
+                firstNameInput.sendKeys(fieldData.get(0));
+                autocompletePage.checkResult(autocompletePage.getInputFieldValue(firstNameInput).equals(fieldData.get(0)));
                 break;
             case "last name input":
-                lastNameInput.sendKeys(arg1);
-                String inputLastNameValue = autocompletePage.getInputFieldValue(lastNameInput);
-                autocompletePage.isDataMatchedCheck(inputLastNameValue, arg1);
+                lastNameInput.sendKeys(fieldData.get(0));
+                autocompletePage.checkResult(autocompletePage.getInputFieldValue(lastNameInput).equals(fieldData.get(0)));
                 break;
             case "job title input":
-                jobInput.sendKeys(arg1);
-                String inputJobTitleValue = autocompletePage.getInputFieldValue(jobInput);
-                autocompletePage.isDataMatchedCheck(inputJobTitleValue, arg1);
+                jobInput.sendKeys(fieldData.get(0));
+                autocompletePage.checkResult(autocompletePage.getInputFieldValue(jobInput).equals(fieldData.get(0)));
                 break;
         }
     }
@@ -250,80 +267,79 @@ public class FormPage {
             case "selected":
                 switch (arg1) {
                     case "High School radio button":
-                        selectElementCheck(radioButton1, arg1, arg2);
+                        selectElementCheck(radioButton1);
                         break;
                     case "College radio button":
-                        selectElementCheck(radioButton2, arg1, arg2);
+                        selectElementCheck(radioButton2);
                         break;
                     case "Grad School radio button":
-                        selectElementCheck(radioButton3, arg1, arg2);
+                        selectElementCheck(radioButton3);
                         break;
                     case "Male checkbox":
-                        selectElementCheck(checkbox1, arg1, arg2);
+                        selectElementCheck(checkbox1);
                         break;
                     case "Female checkbox":
-                        selectElementCheck(checkbox2, arg1, arg2);
+                        selectElementCheck(checkbox2);
                         break;
                     case "Prefer not to say checkbox":
-                        selectElementCheck(checkbox3, arg1, arg2);
+                        selectElementCheck(checkbox3);
                         break;
                     case "Select an option":
-                        selectElementCheck(selectorSelectAnOption, arg1, arg2);
+                        selectElementCheck(selectorSelectAnOption);
                         break;
                     case "0-1":
-                        selectElementCheck(selector01, arg1, arg2);
+                        selectElementCheck(selector01);
                         break;
                     case "2-4":
-                        selectElementCheck(selector24, arg1, arg2);
+                        selectElementCheck(selector24);
                         break;
                     case "5-9":
-                        selectElementCheck(selector59, arg1, arg2);
+                        selectElementCheck(selector59);
                         break;
                     case "10+":
-                        selectElementCheck(selector10plus, arg1, arg2);
+                        selectElementCheck(selector10plus);
                         break;
                 }
                 break;
             case "unselected":
                 switch (arg1) {
                     case "High School radio button":
-                        unselectElementCheck(radioButton1, arg1, arg2);
+                        unselectElementCheck(radioButton1);
                         break;
                     case "College radio button":
-                        unselectElementCheck(radioButton2, arg1, arg2);
+                        unselectElementCheck(radioButton2);
                         break;
                     case "Grad School radio button":
-                        unselectElementCheck(radioButton3, arg1, arg2);
+                        unselectElementCheck(radioButton3);
                         break;
                     case "Male checkbox":
-                        unselectElementCheck(checkbox1, arg1, arg2);
+                        unselectElementCheck(checkbox1);
                         break;
                     case "Female checkbox":
-                        unselectElementCheck(checkbox2, arg1, arg2);
+                        unselectElementCheck(checkbox2);
                         break;
                     case "Prefer not to say checkbox":
-                        unselectElementCheck(checkbox3, arg1, arg2);
+                        unselectElementCheck(checkbox3);
                         break;
                 }
                 break;
         }
     }
 
-    public void selectElementCheck(WebElement arg1, String arg2, String arg3) {
-        System.out.println(arg1.isSelected() ? arg2 + " has been " + arg3 + " PASSED" : arg2 + " has been " + arg3 + " FAILED");
+    public void selectElementCheck(WebElement arg1) {
+        checkResult(arg1.isSelected());
     }
 
-    public void unselectElementCheck(WebElement arg1, String arg2, String arg3) {
-        System.out.println(!(arg1.isSelected()) ? arg2 + " has been " + arg3 + " PASSED" : arg2 + " has been " + arg3 + " FAILED");
+    public void unselectElementCheck(WebElement arg1) {
+        checkResult(!(arg1.isSelected()));
     }
 
-    public void hasFormElementEnabledCheck(String arg1) {
-        System.out.println(submitButton.isEnabled() ? arg1 + " has been enabled" : arg1 + " has not been enabled");
+    public void hasFormElementEnabledCheck() {
+        checkResult(submitButton.isEnabled());
     }
 
     public void hasFormElementValueCheck(String arg1, String arg2, String arg3) throws Exception {
-        System.out.println(autocompletePage.getInputFieldValue(firstNameInput).equals(arg1) && autocompletePage.getInputFieldValue(lastNameInput).equals(arg2)
-                && autocompletePage.getInputFieldValue(jobInput).equals(arg3) ? "All elements have had correct value PASSED" :
-                "Elements have not had correct value FAILED");
+        checkResult(autocompletePage.getInputFieldValue(firstNameInput).equals(arg1) && autocompletePage.
+                getInputFieldValue(lastNameInput).equals(arg2) && autocompletePage.getInputFieldValue(jobInput).equals(arg3));
     }
 }

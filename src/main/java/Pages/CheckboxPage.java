@@ -1,10 +1,13 @@
 package Pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
+import org.testng.Assert;
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class CheckboxPage {
     WebDriver driver;
@@ -20,31 +23,44 @@ public class CheckboxPage {
         this.driver = driver;
     }
 
-    public void isCorrectTitle(String arg1, String arg2) {
-        WebElement pageTitle = driver.findElement(By.xpath("//h1[text()='" + arg2 + "']"));
+    public void makeScreenshot() {
+        String arg1 = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss").format(new Date());
         try {
-            if (pageTitle.getText().equals(arg2)) {
-                System.out.println(arg1 + " page title has displayed correctly PASSED");
-            }
+            File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+            FileUtils.copyFile(scrFile, new File("src/Screenshots/" + arg1 + ".png"));
+        } catch (IOException e) {
+            System.out.println("Some troubles with screenshot");
+        }
+    }
+
+    public void checkResult(boolean arg1) {
+        if (arg1) {
+            System.out.println("PASSED");
+        } else {
+            checkResultFailed();
+        }
+    }
+
+    public void checkResultFailed() {
+        makeScreenshot();
+        Assert.fail("FAILED");
+    }
+
+    public void isCorrectTitle(String arg1, String arg2) {
+        try {
+            WebElement pageTitle = driver.findElement(By.xpath("//h1[text()='" + arg2 + "']"));
+            checkResult(pageTitle.getText().equals(arg2));
         } catch (NoSuchElementException e) {
-            System.out.println(arg1 + " page title has not displayed correctly FAILED");
+            checkResultFailed();
         }
     }
 
     public void areCheckboxesNotSelected() {
-        if (!(checkbox1.isSelected() && checkbox1.isSelected() && checkbox1.isSelected())) {
-            System.out.println("All checkboxes has not selected PASSED");
-        } else {
-            System.out.println("All checkboxes has selected FAILED");
-        }
+        checkResult(!(checkbox1.isSelected() && checkbox2.isSelected() && checkbox3.isSelected()));
     }
 
     public void areCheckboxesSelected() {
-        if (checkbox1.isSelected() && checkbox1.isSelected() && checkbox1.isSelected()) {
-            System.out.println("All checkboxes has selected PASSED");
-        } else {
-            System.out.println("All checkboxes has not selected FAILED");
-        }
+        checkResult(checkbox1.isSelected() && checkbox2.isSelected() && checkbox3.isSelected());
     }
 
     public void areClickOnCheckbox(String arg1) {

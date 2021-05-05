@@ -2,6 +2,7 @@ package Steps;
 
 import Config.Drive;
 import Pages.DatepickerPage;
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Then;
 import org.openqa.selenium.support.PageFactory;
 
@@ -20,9 +21,9 @@ public class DatepickerSteps extends Drive {
         datepickerPage.refreshPage();
     }
 
-    @Then("Click on input field and check calendar is opened")
-    public void calendarOpened() throws Exception {
-        datepickerPage.isCalendarOpened();
+    @Then("Click on input field and check calendar is {string}")
+    public void calendarOpened(String arg1) throws Exception {
+        datepickerPage.isCalendarOpened(arg1);
     }
 
     @Then("Click on and check {string} {string} is displayed")
@@ -30,15 +31,14 @@ public class DatepickerSteps extends Drive {
         datepickerPage.chooseElementIsOpened(button, date);
     }
 
-    @Then("Pick {string} and check the calendar is closed and the picked date is displayed in the input field")
-    public void pickAndCheckCalendarDate(String date) throws Exception {
-        datepickerPage.pickAndCheckCalendarDateIsDisplayed(date);
+    @Then("Pick {string} and check the calendar is {string} and the picked date is displayed in the input field")
+    public void pickAndCheckCalendarDate(String arg1, String arg2) throws Exception {
+        datepickerPage.pickAndCheckCalendarDateIsDisplayed(arg1, arg2);
     }
 
-    @Then("Click on the {string} element and check {string} {string} and {string}: {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string} are displayed")
-    public void clickAndCheckCurrentYear(String arg1, String arg2, String arg3, String arg4, String arg5, String arg6, String arg7, String arg8,
-                                         String arg9, String arg10, String arg11, String arg12, String arg13, String arg14, String arg15, String arg16) throws Exception {
-        datepickerPage.chooseAndCheckCurrentYearIsDisplayed(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13, arg14, arg15, arg16);
+    @Then("Click on the {string} element and check {string} {string} and {string} are displayed:")
+    public void clickAndCheckCurrentYear(String arg1, String arg2, String arg3, String arg4, DataTable table) {
+        datepickerPage.chooseAndCheckCurrentYearIsDisplayed(arg1, arg2, arg3, arg4, table);
     }
 
     @Then("Type {string} and press Enter")
@@ -51,16 +51,15 @@ public class DatepickerSteps extends Drive {
         datepickerPage.checkCalendarValue(arg1, arg2);
     }
 
-    @Then("Click on title Datepicker and check calendar is closed")
-    public void clickOnTitle() throws Exception {
-        datepickerPage.clickOnTitleCheck();
+    @Then("Click on title Datepicker and check calendar is {string}")
+    public void clickOnTitle(String arg1) throws Exception {
+        datepickerPage.clickOnTitleCheck(arg1);
     }
 
     //header
-    @Then("Click on {string} and check inside a dropdown list with: {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}")
-    public void componentsCheck(String arg1, String arg2, String arg3, String arg4, String arg5, String arg6, String arg7, String arg8,
-                                String arg9, String arg10, String arg11, String arg12, String arg13, String arg14, String arg15) {
-        datepickerPage.headerComponentsCheck(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13, arg14, arg15);
+    @Then("Click on {string} and check inside a dropdown list with:")
+    public void componentsCheck1(String arg1, DataTable table) {
+        datepickerPage.headerComponentsCheck(arg1, table);
     }
 
     @Then("Click on {string} and check {string} page has opened")

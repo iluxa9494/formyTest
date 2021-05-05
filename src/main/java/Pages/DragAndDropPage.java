@@ -1,11 +1,15 @@
 package Pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
+import org.testng.Assert;
+
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class DragAndDropPage {
     WebDriver driver;
@@ -28,32 +32,42 @@ public class DragAndDropPage {
         this.driver = driver;
     }
 
+    public void makeScreenshot() {
+        String arg1 = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss").format(new Date());
+        try {
+            File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+            FileUtils.copyFile(scrFile, new File("src/Screenshots/" + arg1 + ".png"));
+        } catch (IOException e) {
+            System.out.println("Some troubles with screenshot");
+        }
+    }
+
+    public void checkResult(boolean arg1) {
+        if (arg1) {
+            System.out.println("PASSED");
+        } else {
+            checkResultFailed();
+        }
+    }
+
+    public void checkResultFailed() {
+        makeScreenshot();
+        Assert.fail("FAILED");
+    }
+
     public void isBoxTitleDisplayed(String arg1) {
         switch (arg1) {
             case "Drop here":
-                try {
-                    System.out.println(boxTitleDropHere.getText().equals(arg1) ?
-                            arg1 + " title has displayed PASSED" : arg1 + " title has not displayed FAILED");
-                } catch (NoSuchElementException e) {
-                    System.out.println("No such " + arg1 + " title here FAILED");
-                    break;
-                }
+                checkResult(boxTitleDropHere.getText().equals(arg1));
                 break;
             case "Dropped!":
-                try {
-                    System.out.println(boxTitleDropped.getText().equals(arg1) ?
-                            arg1 + " title has displayed PASSED" : arg1 + " title has not displayed FAILED");
-                } catch (NoSuchElementException e) {
-                    System.out.println("No such " + arg1 + " title here FAILED");
-                    break;
-                }
+                checkResult(boxTitleDropped.getText().equals(arg1));
                 break;
         }
     }
 
     public void isSeleniumLogoDisplayed() {
-        System.out.println(seleniumLogo.isDisplayed() ?
-                "Logo Selenium has displayed PASSED" : "Logo Selenium has not displayed FAILED");
+        checkResult(seleniumLogo.isDisplayed());
     }
 
     public void dropSeleniumLogo() {
@@ -63,12 +77,10 @@ public class DragAndDropPage {
     public void isLogoPosition(int i) {
         switch (i) { // i = 1 if needs logo has been on initial position and i = 2 if needs logo has not been on initial position
             case 1:
-                System.out.println(isDisplayedCheck(initialLogoPosition) ? "Logo Selenium has been on its initial position PASSED" :
-                        "Logo Selenium has absent on its initial position FAILED");
+                checkResult(isDisplayedCheck(initialLogoPosition));
                 break;
             case 2:
-                System.out.println(isDisplayedCheck(initialLogoPosition) ? "Logo Selenium has been on its initial position FAILED" :
-                        "Logo Selenium has absent on its initial position PASSED");
+                checkResult(!isDisplayedCheck(initialLogoPosition));
                 break;
         }
     }
@@ -82,8 +94,7 @@ public class DragAndDropPage {
     }
 
     public void isLogoInTheBox() {
-        System.out.println(isDisplayedCheck(droppedLogoPosition) ?
-                "Logo Selenium has on its dropped position PASSED" : "Logo Selenium has absent on its dropped position FAILED");
+        checkResult(isDisplayedCheck(droppedLogoPosition));
     }
 
     public void isLogoInTheInitialPosition() {
@@ -92,66 +103,54 @@ public class DragAndDropPage {
     }
 
     public void isLogoInitialPosition() {
-        System.out.println(isDisplayedCheck(initialLogoPositionVariant2) ?
-                "Logo Selenium has on its initial position PASSED" : "Logo Selenium has absent on its initial position FAILED");
+        checkResult(isDisplayedCheck(initialLogoPositionVariant2));
     }
 
     public void isDropWithoutTouching(String arg1) {
         switch (arg1) {
             case "below":
                 new Actions(driver).dragAndDropBy(seleniumLogo, 10, 250).build().perform();
-                System.out.println(checkLogoPosition("10", "250") ? "Selenium logo has dropped " + arg1 + " PASSED" :
-                        "Selenium logo has not dropped " + arg1 + " FAILED");
+                checkResult(checkLogoPosition("10", "250"));
                 break;
             case "to the right":
                 new Actions(driver).dragAndDropBy(seleniumLogo, 540, 0).build().perform();
-                System.out.println(checkLogoPosition("550", "250") ? "Selenium logo has dropped " + arg1 + " PASSED" :
-                        "Selenium logo has not dropped " + arg1 + " FAILED");
+                checkResult(checkLogoPosition("550", "250"));
                 break;
             case "above":
                 new Actions(driver).dragAndDropBy(seleniumLogo, 0, -250).build().perform();
-                System.out.println(checkLogoPosition("550", "0") ? "Selenium logo has dropped " + arg1 + " PASSED" :
-                        "Selenium logo has not dropped " + arg1 + " FAILED");
+                checkResult(checkLogoPosition("550", "0"));
                 break;
             case "less 50% of the right":
                 new Actions(driver).dragAndDropBy(seleniumLogo, 115, 70).build().perform();
-                System.out.println(checkLogoPosition("115", "70") ? "Selenium logo has dropped " + arg1 + " side length PASSED" :
-                        "Selenium logo has not dropped " + arg1 + " side length FAILED");
+                checkResult(checkLogoPosition("115", "70"));
                 break;
             case "less 50% of the upper":
                 new Actions(driver).dragAndDropBy(seleniumLogo, 150, 150).build().perform();
-                System.out.println(checkLogoPosition("265", "220") ? "Selenium logo has dropped " + arg1 + " side length PASSED" :
-                        "Selenium logo has not dropped " + arg1 + " side length FAILED");
+                checkResult(checkLogoPosition("265", "220"));
                 break;
             case "less 50% of the left":
                 new Actions(driver).dragAndDropBy(seleniumLogo, 165, -160).build().perform();
-                System.out.println(checkLogoPosition("430", "60") ? "Selenium logo has dropped " + arg1 + " side length PASSED" :
-                        "Selenium logo has not dropped " + arg1 + " side length FAILED");
+                checkResult(checkLogoPosition("430", "60"));
                 break;
             case "less 50% of the down":
                 new Actions(driver).dragAndDropBy(seleniumLogo, -170, -170).build().perform();
-                System.out.println(checkLogoPosition("260", "-110") ? "Selenium logo has dropped " + arg1 + " side length PASSED" :
-                        "Selenium logo has not dropped " + arg1 + " side length FAILED");
+                checkResult(checkLogoPosition("260", "-110"));
                 break;
             case "more 50% of the right":
                 new Actions(driver).dragAndDropBy(seleniumLogo, 150, 40).build().perform();
-                System.out.println(checkLogoPosition("150", "40") ? "Selenium logo has dropped " + arg1 + " side length PASSED" :
-                        "Selenium logo has not dropped " + arg1 + " side length FAILED");
+                checkResult(checkLogoPosition("150", "40"));
                 break;
             case "more 50% of the upper":
                 new Actions(driver).dragAndDropBy(seleniumLogo, 270, 180).build().perform();
-                System.out.println(checkLogoPosition("270", "180") ? "Selenium logo has dropped " + arg1 + " side length PASSED" :
-                        "Selenium logo has not dropped " + arg1 + " side length FAILED");
+                checkResult(checkLogoPosition("270", "180"));
                 break;
             case "more 50% of the left":
                 new Actions(driver).dragAndDropBy(seleniumLogo, 385, 40).build().perform();
-                System.out.println(checkLogoPosition("385", "40") ? "Selenium logo has dropped " + arg1 + " side length PASSED" :
-                        "Selenium logo has not dropped " + arg1 + " side length FAILED");
+                checkResult(checkLogoPosition("385", "40"));
                 break;
             case "more 50% of the down":
                 new Actions(driver).dragAndDropBy(seleniumLogo, 265, -70).build().perform();
-                System.out.println(checkLogoPosition("265", "-70") ? "Selenium logo has dropped " + arg1 + " side length PASSED" :
-                        "Selenium logo has not dropped " + arg1 + " side length FAILED");
+                checkResult(checkLogoPosition("265", "-70"));
                 break;
         }
     }

@@ -1,164 +1,373 @@
 Feature: Modal page
 
   Background:
-    Then Open browser and go to Formy site
-    Then Go to "Modal" page
+    * Open browser and go to Formy site
+    * Go to "Modal" page
 
 #web layout
   Scenario: Page title Modal - displays correctly
-    Then Check "Modal" has page title "Modal"
+    * Check "Modal" has page title "Modal"
+    * Close browser
 
   Scenario: Open modal button - displays correctly
-    Then Check open modal button has "Open modal" title
+    * Check open modal button has "Open modal" title
+    * Close browser
 
   Scenario: Modal window titles - displays correctly
-    Then Click on "open modal" button
-    Then Check modal window "has" displayed
-    Then Check "first" title has a "Modal title" text
-    Then Check "second" title has a "Some text here" text
+    * Click on "open modal" button
+    * Check modal window "has" displayed
+    * Check "first" title has a "Modal title" text
+    * Check "second" title has a "Some text here" text
+    * Close browser
 
 # functional
   Scenario: Open modal button - enabled, unselected
-    Then Check open modal button has not selected and enabled
+    * Check open modal button has not selected and enabled
+    * Close browser
 
   Scenario: Modal window - displayed
-    Then Click on "open modal" button
-    Then Check modal window "has" displayed
+    * Click on "open modal" button
+    * Check modal window "has" displayed
+    * Close browser
 
   Scenario: Modal window - close window via close button
-    Then Click on "open modal" button
-    Then Check modal window "has" displayed
-    Then Click on "close" button
-    Then Check modal window "has not" displayed
-    Then Check page "modal" has opened
+    * Click on "open modal" button
+    * Check modal window "has" displayed
+    * Click on "close" button
+    * Check modal window "has not" displayed
+    * Check page "modal" has opened
+    * Close browser
 
   Scenario: Modal window - close window via right top button
-    Then Click on "open modal" button
-    Then Check modal window "has" displayed
-    Then Click on "close right top" button
-    Then Check modal window "has not" displayed
-    Then Check page "modal" has opened
+    * Click on "open modal" button
+    * Check modal window "has" displayed
+    * Click on "close right top" button
+    * Check modal window "has not" displayed
+    * Check page "modal" has opened
+    * Close browser
 
   Scenario: Modal window - close window via escape
-    Then Click on "open modal" button
-    Then Check modal window "has" displayed
-    Then Press escape
-    Then Check modal window "has not" displayed
-    Then Check page "modal" has opened
+    * Click on "open modal" button
+    * Check modal window "has" displayed
+    * Press escape
+    * Check modal window "has not" displayed
+    * Check page "modal" has opened
+    * Close browser
 
   Scenario: Modal window - window stays open after pressing ok
-    Then Click on "open modal" button
-    Then Check modal window "has" displayed
-    Then Click on "ok" button
-    Then Check modal window "has" displayed
+    * Click on "open modal" button
+    * Check modal window "has" displayed
+    * Click on "ok" button
+    * Check modal window "has" displayed
+    * Close browser
 
   Scenario: Refresh the page - the field has reset its state, the button has enabled
-    Then Click on "open modal" button
-    Then Check modal window "has" displayed
-    Then Click on "Refresh" and check "modal" page has opened
-    Then Check modal window "has not" displayed
+    * Click on "open modal" button
+    * Check modal window "has" displayed
+    * Click on "Refresh" and check "modal" page has opened
+    * Check modal window "has not" displayed
+    * Close browser
 
   Scenario: Backward to the page - the field has saved its state, the button has enabled
-    Then Click on "Formy" and check "Welcome to Formy" page has opened
-    Then Click on "Backward" and check "modal" page has opened
-    Then Click on "open modal" button
-    Then Check modal window "has" displayed
-    Then Click on "Forward" and check "Welcome to Formy" page has opened
-    Then Click on "Backward" and check "modal" page has opened
-    Then Check modal window "has" displayed
+    * Click on "Formy" and check "Welcome to Formy" page has opened
+    * Click on "Backward" and check "modal" page has opened
+    * Click on "open modal" button
+    * Check modal window "has" displayed
+    * Click on "Forward" and check "Welcome to Formy" page has opened
+    * Click on "Backward" and check "modal" page has opened
+    * Check modal window "has" displayed
+    * Close browser
 
   Scenario: Forward to the page - the field has saved its state, the button has enabled
-    Then Click on "open modal" button
-    Then Check modal window "has" displayed
-    Then Click on "Backward" and check "Welcome to Formy" page has opened
-    Then Click on "Forward" and check "modal" page has opened
-    Then Check modal window "has" displayed
+    * Click on "open modal" button
+    * Check modal window "has" displayed
+    * Click on "Backward" and check "Welcome to Formy" page has opened
+    * Click on "Forward" and check "modal" page has opened
+    * Check modal window "has" displayed
+    * Close browser
 
 #header
   Scenario: Header: Formy referral check
-    Then Click on "Formy" and check "Welcome to Formy" page has opened
-    Then Click on "Backward" and check "modal" page has opened
-    Then Click on "Forward" and check "Welcome to Formy" page has opened
+    * Click on "Formy" and check "Welcome to Formy" page has opened
+    * Click on "Backward" and check "modal" page has opened
+    * Click on "Forward" and check "Welcome to Formy" page has opened
+    * Close browser
 
   Scenario: Header: Form referral check
-    Then Click on "Form" and check "form" page has opened
-    Then Click on "Backward" and check "modal" page has opened
-    Then Click on "Forward" and check "form" page has opened
+    * Click on "Form" and check "form" page has opened
+    * Click on "Backward" and check "modal" page has opened
+    * Click on "Forward" and check "form" page has opened
+    * Close browser
 
   Scenario: Header, Components: Autocomplete referral check
-    Then Click on "Components" and check inside a dropdown list with: "Autocomplete", "Buttons", "Checkbox", "Datepicker", "Drag and Drop", "Dropdown", "Enabled and disabled elements", "File Upload", "Key and Mouse Press", "Modal", "Page Scroll", "Radio Button", "Switch Window", "Complete Web Form"
-    Then Click on "Autocomplete" and check "autocomplete" page has opened
-    Then Click on "Backward" and check "modal" page has opened
-    Then Click on "Forward" and check "autocomplete" page has opened
+    * Click on "Components" and check inside a dropdown list with:
+      | Autocomplete                  |
+      | Buttons                       |
+      | Checkbox                      |
+      | Datepicker                    |
+      | Drag and Drop                 |
+      | Dropdown                      |
+      | Enabled and disabled elements |
+      | File Upload                   |
+      | Key and Mouse Press           |
+      | Modal                         |
+      | Page Scroll                   |
+      | Radio Button                  |
+      | Switch Window                 |
+      | Complete Web Form             |
+    * Click on "Autocomplete" and check "autocomplete" page has opened
+    * Click on "Backward" and check "modal" page has opened
+    * Click on "Forward" and check "autocomplete" page has opened
+    * Close browser
 
   Scenario: Header, Components: Buttons referral check
-    Then Click on "Components" and check inside a dropdown list with: "Autocomplete", "Buttons", "Checkbox", "Datepicker", "Drag and Drop", "Dropdown", "Enabled and disabled elements", "File Upload", "Key and Mouse Press", "Modal", "Page Scroll", "Radio Button", "Switch Window", "Complete Web Form"
-    Then Click on "Buttons" and check "buttons" page has opened
-    Then Click on "Backward" and check "modal" page has opened
-    Then Click on "Forward" and check "buttons" page has opened
+    * Click on "Components" and check inside a dropdown list with:
+      | Autocomplete                  |
+      | Buttons                       |
+      | Checkbox                      |
+      | Datepicker                    |
+      | Drag and Drop                 |
+      | Dropdown                      |
+      | Enabled and disabled elements |
+      | File Upload                   |
+      | Key and Mouse Press           |
+      | Modal                         |
+      | Page Scroll                   |
+      | Radio Button                  |
+      | Switch Window                 |
+      | Complete Web Form             |
+    * Click on "Buttons" and check "buttons" page has opened
+    * Click on "Backward" and check "modal" page has opened
+    * Click on "Forward" and check "buttons" page has opened
+    * Close browser
 
   Scenario: Header, Components: Checkbox referral check
-    Then Click on "Components" and check inside a dropdown list with: "Autocomplete", "Buttons", "Checkbox", "Datepicker", "Drag and Drop", "Dropdown", "Enabled and disabled elements", "File Upload", "Key and Mouse Press", "Modal", "Page Scroll", "Radio Button", "Switch Window", "Complete Web Form"
-    Then Click on "Checkbox" and check "checkbox" page has opened
-    Then Click on "Backward" and check "modal" page has opened
-    Then Click on "Forward" and check "checkbox" page has opened
+    * Click on "Components" and check inside a dropdown list with:
+      | Autocomplete                  |
+      | Buttons                       |
+      | Checkbox                      |
+      | Datepicker                    |
+      | Drag and Drop                 |
+      | Dropdown                      |
+      | Enabled and disabled elements |
+      | File Upload                   |
+      | Key and Mouse Press           |
+      | Modal                         |
+      | Page Scroll                   |
+      | Radio Button                  |
+      | Switch Window                 |
+      | Complete Web Form             |
+    * Click on "Checkbox" and check "checkbox" page has opened
+    * Click on "Backward" and check "modal" page has opened
+    * Click on "Forward" and check "checkbox" page has opened
+    * Close browser
 
   Scenario: Header, Components: Autocomplete referral check
-    Then Click on "Components" and check inside a dropdown list with: "Autocomplete", "Buttons", "Checkbox", "Datepicker", "Drag and Drop", "Dropdown", "Enabled and disabled elements", "File Upload", "Key and Mouse Press", "Modal", "Page Scroll", "Radio Button", "Switch Window", "Complete Web Form"
-    Then Click on "Datepicker" and check "datepicker" page has opened
-    Then Click on "Backward" and check "modal" page has opened
-    Then Click on "Forward" and check "datepicker" page has opened
+    * Click on "Components" and check inside a dropdown list with:
+      | Autocomplete                  |
+      | Buttons                       |
+      | Checkbox                      |
+      | Datepicker                    |
+      | Drag and Drop                 |
+      | Dropdown                      |
+      | Enabled and disabled elements |
+      | File Upload                   |
+      | Key and Mouse Press           |
+      | Modal                         |
+      | Page Scroll                   |
+      | Radio Button                  |
+      | Switch Window                 |
+      | Complete Web Form             |
+    * Click on "Datepicker" and check "datepicker" page has opened
+    * Click on "Backward" and check "modal" page has opened
+    * Click on "Forward" and check "datepicker" page has opened
+    * Close browser
 
   Scenario: Header, Components: Drag and Drop referral check
-    Then Click on "Components" and check inside a dropdown list with: "Autocomplete", "Buttons", "Checkbox", "Datepicker", "Drag and Drop", "Dropdown", "Enabled and disabled elements", "File Upload", "Key and Mouse Press", "Modal", "Page Scroll", "Radio Button", "Switch Window", "Complete Web Form"
-    Then Click on "Drag and Drop" and check "dragdrop" page has opened
-    Then Click on "Backward" and check "modal" page has opened
-    Then Click on "Forward" and check "dragdrop" page has opened
+    * Click on "Components" and check inside a dropdown list with:
+      | Autocomplete                  |
+      | Buttons                       |
+      | Checkbox                      |
+      | Datepicker                    |
+      | Drag and Drop                 |
+      | Dropdown                      |
+      | Enabled and disabled elements |
+      | File Upload                   |
+      | Key and Mouse Press           |
+      | Modal                         |
+      | Page Scroll                   |
+      | Radio Button                  |
+      | Switch Window                 |
+      | Complete Web Form             |
+    * Click on "Drag and Drop" and check "dragdrop" page has opened
+    * Click on "Backward" and check "modal" page has opened
+    * Click on "Forward" and check "dragdrop" page has opened
+    * Close browser
 
   Scenario: Header, Components: Dropdown referral check
-    Then Click on "Components" and check inside a dropdown list with: "Autocomplete", "Buttons", "Checkbox", "Datepicker", "Drag and Drop", "Dropdown", "Enabled and disabled elements", "File Upload", "Key and Mouse Press", "Modal", "Page Scroll", "Radio Button", "Switch Window", "Complete Web Form"
-    Then Click on "Dropdown" and check "dropdown" page has opened
-    Then Click on "Backward" and check "modal" page has opened
-    Then Click on "Forward" and check "dropdown" page has opened
+    * Click on "Components" and check inside a dropdown list with:
+      | Autocomplete                  |
+      | Buttons                       |
+      | Checkbox                      |
+      | Datepicker                    |
+      | Drag and Drop                 |
+      | Dropdown                      |
+      | Enabled and disabled elements |
+      | File Upload                   |
+      | Key and Mouse Press           |
+      | Modal                         |
+      | Page Scroll                   |
+      | Radio Button                  |
+      | Switch Window                 |
+      | Complete Web Form             |
+    * Click on "Dropdown" and check "dropdown" page has opened
+    * Click on "Backward" and check "modal" page has opened
+    * Click on "Forward" and check "dropdown" page has opened
+    * Close browser
 
   Scenario: Header, Components: Enabled and disabled elements referral check
-    Then Click on "Components" and check inside a dropdown list with: "Autocomplete", "Buttons", "Checkbox", "Datepicker", "Drag and Drop", "Dropdown", "Enabled and disabled elements", "File Upload", "Key and Mouse Press", "Modal", "Page Scroll", "Radio Button", "Switch Window", "Complete Web Form"
-    Then Click on "Enabled and disabled elements" and check "enabled" page has opened
-    Then Click on "Backward" and check "modal" page has opened
-    Then Click on "Forward" and check "enabled" page has opened
+    * Click on "Components" and check inside a dropdown list with:
+      | Autocomplete                  |
+      | Buttons                       |
+      | Checkbox                      |
+      | Datepicker                    |
+      | Drag and Drop                 |
+      | Dropdown                      |
+      | Enabled and disabled elements |
+      | File Upload                   |
+      | Key and Mouse Press           |
+      | Modal                         |
+      | Page Scroll                   |
+      | Radio Button                  |
+      | Switch Window                 |
+      | Complete Web Form             |
+    * Click on "Enabled and disabled elements" and check "enabled" page has opened
+    * Click on "Backward" and check "modal" page has opened
+    * Click on "Forward" and check "enabled" page has opened
+    * Close browser
 
   Scenario: Header, Components: Enabled and disabled elements referral check
-    Then Click on "Components" and check inside a dropdown list with: "Autocomplete", "Buttons", "Checkbox", "Datepicker", "Drag and Drop", "Dropdown", "Enabled and disabled elements", "File Upload", "Key and Mouse Press", "Modal", "Page Scroll", "Radio Button", "Switch Window", "Complete Web Form"
-    Then Click on "File Upload" and check "fileupload" page has opened
-    Then Click on "Backward" and check "modal" page has opened
-    Then Click on "Forward" and check "fileupload" page has opened
+    * Click on "Components" and check inside a dropdown list with:
+      | Autocomplete                  |
+      | Buttons                       |
+      | Checkbox                      |
+      | Datepicker                    |
+      | Drag and Drop                 |
+      | Dropdown                      |
+      | Enabled and disabled elements |
+      | File Upload                   |
+      | Key and Mouse Press           |
+      | Modal                         |
+      | Page Scroll                   |
+      | Radio Button                  |
+      | Switch Window                 |
+      | Complete Web Form             |
+    * Click on "File Upload" and check "fileupload" page has opened
+    * Click on "Backward" and check "modal" page has opened
+    * Click on "Forward" and check "fileupload" page has opened
+    * Close browser
 
   Scenario: Header, Components: Key and Mouse Press referral check
-    Then Click on "Components" and check inside a dropdown list with: "Autocomplete", "Buttons", "Checkbox", "Datepicker", "Drag and Drop", "Dropdown", "Enabled and disabled elements", "File Upload", "Key and Mouse Press", "Modal", "Page Scroll", "Radio Button", "Switch Window", "Complete Web Form"
-    Then Click on "Key and Mouse Press" and check "keypress" page has opened
-    Then Click on "Backward" and check "modal" page has opened
-    Then Click on "Forward" and check "keypress" page has opened
+    * Click on "Components" and check inside a dropdown list with:
+      | Autocomplete                  |
+      | Buttons                       |
+      | Checkbox                      |
+      | Datepicker                    |
+      | Drag and Drop                 |
+      | Dropdown                      |
+      | Enabled and disabled elements |
+      | File Upload                   |
+      | Key and Mouse Press           |
+      | Modal                         |
+      | Page Scroll                   |
+      | Radio Button                  |
+      | Switch Window                 |
+      | Complete Web Form             |
+    * Click on "Key and Mouse Press" and check "keypress" page has opened
+    * Click on "Backward" and check "modal" page has opened
+    * Click on "Forward" and check "keypress" page has opened
+    * Close browser
 
   Scenario: Header, Components: Page Scroll referral check
-    Then Click on "Components" and check inside a dropdown list with: "Autocomplete", "Buttons", "Checkbox", "Datepicker", "Drag and Drop", "Dropdown", "Enabled and disabled elements", "File Upload", "Key and Mouse Press", "Modal", "Page Scroll", "Radio Button", "Switch Window", "Complete Web Form"
-    Then Click on "Page Scroll" and check "scroll" page has opened
-    Then Click on "Backward" and check "modal" page has opened
-    Then Click on "Forward" and check "scroll" page has opened
+    * Click on "Components" and check inside a dropdown list with:
+      | Autocomplete                  |
+      | Buttons                       |
+      | Checkbox                      |
+      | Datepicker                    |
+      | Drag and Drop                 |
+      | Dropdown                      |
+      | Enabled and disabled elements |
+      | File Upload                   |
+      | Key and Mouse Press           |
+      | Modal                         |
+      | Page Scroll                   |
+      | Radio Button                  |
+      | Switch Window                 |
+      | Complete Web Form             |
+    * Click on "Page Scroll" and check "scroll" page has opened
+    * Click on "Backward" and check "modal" page has opened
+    * Click on "Forward" and check "scroll" page has opened
+    * Close browser
 
   Scenario: Header, Components: Radio Button referral check
-    Then Click on "Components" and check inside a dropdown list with: "Autocomplete", "Buttons", "Checkbox", "Datepicker", "Drag and Drop", "Dropdown", "Enabled and disabled elements", "File Upload", "Key and Mouse Press", "Modal", "Page Scroll", "Radio Button", "Switch Window", "Complete Web Form"
-    Then Click on "Radio Button" and check "radiobutton" page has opened
-    Then Click on "Backward" and check "modal" page has opened
-    Then Click on "Forward" and check "radiobutton" page has opened
+    * Click on "Components" and check inside a dropdown list with:
+      | Autocomplete                  |
+      | Buttons                       |
+      | Checkbox                      |
+      | Datepicker                    |
+      | Drag and Drop                 |
+      | Dropdown                      |
+      | Enabled and disabled elements |
+      | File Upload                   |
+      | Key and Mouse Press           |
+      | Modal                         |
+      | Page Scroll                   |
+      | Radio Button                  |
+      | Switch Window                 |
+      | Complete Web Form             |
+    * Click on "Radio Button" and check "radiobutton" page has opened
+    * Click on "Backward" and check "modal" page has opened
+    * Click on "Forward" and check "radiobutton" page has opened
+    * Close browser
 
   Scenario: Header, Components: Switch Window referral check
-    Then Click on "Components" and check inside a dropdown list with: "Autocomplete", "Buttons", "Checkbox", "Datepicker", "Drag and Drop", "Dropdown", "Enabled and disabled elements", "File Upload", "Key and Mouse Press", "Modal", "Page Scroll", "Radio Button", "Switch Window", "Complete Web Form"
-    Then Click on "Switch Window" and check "switch-window" page has opened
-    Then Click on "Backward" and check "modal" page has opened
-    Then Click on "Forward" and check "switch-window" page has opened
+    * Click on "Components" and check inside a dropdown list with:
+      | Autocomplete                  |
+      | Buttons                       |
+      | Checkbox                      |
+      | Datepicker                    |
+      | Drag and Drop                 |
+      | Dropdown                      |
+      | Enabled and disabled elements |
+      | File Upload                   |
+      | Key and Mouse Press           |
+      | Modal                         |
+      | Page Scroll                   |
+      | Radio Button                  |
+      | Switch Window                 |
+      | Complete Web Form             |
+    * Click on "Switch Window" and check "switch-window" page has opened
+    * Click on "Backward" and check "modal" page has opened
+    * Click on "Forward" and check "switch-window" page has opened
+    * Close browser
 
   Scenario: Header, Components: Complete Web Form referral check
-    Then Click on "Components" and check inside a dropdown list with: "Autocomplete", "Buttons", "Checkbox", "Datepicker", "Drag and Drop", "Dropdown", "Enabled and disabled elements", "File Upload", "Key and Mouse Press", "Modal", "Page Scroll", "Radio Button", "Switch Window", "Complete Web Form"
-    Then Click on "Complete Web Form" and check "form" page has opened
-    Then Click on "Backward" and check "modal" page has opened
-    Then Click on "Forward" and check "form" page has opened
+    * Click on "Components" and check inside a dropdown list with:
+      | Autocomplete                  |
+      | Buttons                       |
+      | Checkbox                      |
+      | Datepicker                    |
+      | Drag and Drop                 |
+      | Dropdown                      |
+      | Enabled and disabled elements |
+      | File Upload                   |
+      | Key and Mouse Press           |
+      | Modal                         |
+      | Page Scroll                   |
+      | Radio Button                  |
+      | Switch Window                 |
+      | Complete Web Form             |
+    * Click on "Complete Web Form" and check "form" page has opened
+    * Click on "Backward" and check "modal" page has opened
+    * Click on "Forward" and check "form" page has opened
+    * Close browser

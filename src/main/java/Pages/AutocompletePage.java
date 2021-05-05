@@ -1,14 +1,20 @@
 package Pages;
 
+import io.cucumber.datatable.DataTable;
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
+import org.testng.Assert;
 
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.StringSelection;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Properties;
 
 public class AutocompletePage {
@@ -45,6 +51,29 @@ public class AutocompletePage {
         this.driver = driver;
     }
 
+    public void makeScreenshot() {
+        String arg1 = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss").format(new Date());
+        try {
+            File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+            FileUtils.copyFile(scrFile, new File("src/Screenshots/" + arg1 + ".png"));
+        } catch (IOException e) {
+            System.out.println("Some troubles with screenshot");
+        }
+    }
+
+    public void checkResult(boolean arg1) {
+        if (arg1) {
+            System.out.println("PASSED");
+        } else {
+            checkResultFailed();
+        }
+    }
+
+    public void checkResultFailed() {
+        makeScreenshot();
+        Assert.fail("FAILED");
+    }
+
     public String getOSValue() throws IOException {
         FileInputStream fis = new FileInputStream("src/main/resources/config.properties");
         Properties prop = new Properties();
@@ -78,109 +107,56 @@ public class AutocompletePage {
         }
     }
 
-    public String isEmptyPartCheck(String arg1) {
-        if (arg1.equals("")) {
-            return "empty";
-        } else {
-            return "full";
-        }
-    }
-
-    public void isDataMatchedCheck(String arg1, String arg2) {
-        if (arg1.equals(arg2)) {
-            System.out.println("Entered data has matched PASSED");
-        } else {
-            System.out.println("Entered data has not matched FAILED");
-        }
-
-    }
-
     public void isDropdownDisplayedCheck(WebElement arg1, String arg2) {
         if (!(arg1.getText().equals(""))) {
-            if (arg2.equals("Address")) {
-                System.out.println("Dropdown of " + arg2 + " field has displayed PASSED");
-            } else {
-                System.out.println("Dropdown of " + arg2 + " field has displayed FAILED");
-            }
+            checkResult(arg2.equals("Address"));
         } else {
-            if (arg2.equals("Address")) {
-                System.out.println("Dropdown of " + arg2 + " field has not displayed FAILED");
-            } else {
-                System.out.println("Dropdown of " + arg2 + " field has not displayed PASSED ");
-            }
+            checkResult(!arg2.equals("Address"));
         }
     }
 
     public void isAllFieldsEmptyCheck() throws Exception {
-        String addressFieldValue = getInputFieldValue(inputFieldAddress);
-        String addressResult = isEmptyPartCheck(addressFieldValue);
-
-        String streetAddressFieldValue = getInputFieldValue(inputFieldStreetAddress);
-        String streetAddressResult = isEmptyPartCheck(streetAddressFieldValue);
-
-        String streetAdress2FieldValue = getInputFieldValue(inputFieldStreetAddress2);
-        String streetAddress2Result = isEmptyPartCheck(streetAdress2FieldValue);
-
-        String cityFieldValue = getInputFieldValue(inputFieldCity);
-        String cityResult = isEmptyPartCheck(cityFieldValue);
-
-        String stateFieldValue = getInputFieldValue(inputFieldState);
-        String stateResult = isEmptyPartCheck(stateFieldValue);
-
-        String zipCodeFieldValue = getInputFieldValue(inputFieldZipCode);
-        String zipCodeResult = isEmptyPartCheck(zipCodeFieldValue);
-
-        String countryFieldValue = getInputFieldValue(inputFieldCountry);
-        String countryResult = isEmptyPartCheck(countryFieldValue);
-        if (addressResult.equals("empty") && streetAddressResult.equals("empty") && streetAddress2Result.equals("empty") &&
-                cityResult.equals("empty") && stateResult.equals("empty") && zipCodeResult.equals("empty") && countryResult.equals("empty")) {
-            System.out.println("All fields are empty PASSED");
-        } else {
-            System.out.println("All fields are not empty FAILED");
-        }
+        checkResult(getInputFieldValue(inputFieldAddress).equals("") && getInputFieldValue(inputFieldStreetAddress)
+                .equals("") && getInputFieldValue(inputFieldStreetAddress2).equals("") && getInputFieldValue(inputFieldCity)
+                .equals("") && getInputFieldValue(inputFieldState).equals("") && getInputFieldValue(inputFieldZipCode)
+                .equals("") && getInputFieldValue(inputFieldCountry).equals(""));
     }
 
-    public void enterDataInField(String arg1, String arg2) throws Exception {
-        switch (arg2) {
+    public void enterDataInField(String arg1, DataTable table)throws Exception {
+        java.util.List<String> fieldData = table.asList();
+        switch (arg1) {
             case "Address":
-                inputFieldAddress.sendKeys(arg1);
-                String inputFieldAddressValue = getInputFieldValue(inputFieldAddress);
-                isDataMatchedCheck(inputFieldAddressValue, arg1);
+                inputFieldAddress.sendKeys(fieldData.get(0));
+                checkResult(getInputFieldValue(inputFieldAddress).equals(fieldData.get(0)));
                 break;
             case "Street address":
-                inputFieldStreetAddress.sendKeys(arg1);
-                String inputFieldStreetAddressValue = getInputFieldValue(inputFieldStreetAddress);
-                isDataMatchedCheck(inputFieldStreetAddressValue, arg1);
+                inputFieldStreetAddress.sendKeys(fieldData.get(0));
+                checkResult(getInputFieldValue(inputFieldStreetAddress).equals(fieldData.get(0)));
                 break;
             case "Street address 2":
-                inputFieldStreetAddress2.sendKeys(arg1);
-                String inputFieldStreetAddress2Value = getInputFieldValue(inputFieldStreetAddress2);
-                isDataMatchedCheck(inputFieldStreetAddress2Value, arg1);
+                inputFieldStreetAddress2.sendKeys(fieldData.get(0));
+                checkResult(getInputFieldValue(inputFieldStreetAddress2).equals(fieldData.get(0)));
                 break;
             case "City":
-                inputFieldCity.sendKeys(arg1);
-                String inputFieldCityValue = getInputFieldValue(inputFieldCity);
-                isDataMatchedCheck(inputFieldCityValue, arg1);
+                inputFieldCity.sendKeys(fieldData.get(0));
+                checkResult(getInputFieldValue(inputFieldCity).equals(fieldData.get(0)));
                 break;
             case "State":
-                inputFieldState.sendKeys(arg1);
-                String inputFieldStateValue = getInputFieldValue(inputFieldState);
-                isDataMatchedCheck(inputFieldStateValue, arg1);
+                inputFieldState.sendKeys(fieldData.get(0));
+                checkResult(getInputFieldValue(inputFieldState).equals(fieldData.get(0)));
                 break;
             case "Zip code":
-                inputFieldZipCode.sendKeys(arg1);
-                String inputFieldZipCodeValue = getInputFieldValue(inputFieldZipCode);
-                isDataMatchedCheck(inputFieldZipCodeValue, arg1);
+                inputFieldZipCode.sendKeys(fieldData.get(0));
+                checkResult(getInputFieldValue(inputFieldZipCode).equals(fieldData.get(0)));
                 break;
             case "Country":
-                inputFieldCountry.sendKeys(arg1);
-                String inputFieldCountryValue = getInputFieldValue(inputFieldCountry);
-                isDataMatchedCheck(inputFieldCountryValue, arg1);
+                inputFieldCountry.sendKeys(fieldData.get(0));
+                checkResult(getInputFieldValue(inputFieldCountry).equals(fieldData.get(0)));
                 break;
         }
     }
 
-    public void dropdownDisplayed(String arg1) throws InterruptedException {
+    public void dropdownDisplayed(String arg1){
         switch (arg1) {
             case "Address":
                 inputFieldAddress.sendKeys(Keys.RIGHT);
@@ -255,16 +231,15 @@ public class AutocompletePage {
         }
     }
 
-    public void isElementsInDropdownDisplayed(String arg1) {
-        if ((dropdownList.getText().contains(arg1)) && (dropdownList2Element.getText().contains(arg1)) && (dropdownList3Element.getText().contains(arg1)) &&
-                (dropdownList4Element.getText().contains(arg1)) && (dropdownList5Element.getText().contains(arg1))) {
-            System.out.println("All 5 elements of dropdown list have contained " + arg1 + " in its titles PASSED");
-        } else {
-            System.out.println("All 5 elements of dropdown list have not contained " + arg1 + " in its titles FAILED");
-        }
+    public void isElementsInDropdownDisplayed(String arg1) throws InterruptedException {
+        Thread.sleep(300);
+        checkResult((dropdownList.getText().contains(arg1)) && (dropdownList2Element.getText().contains(arg1)) &&
+                (dropdownList3Element.getText().contains(arg1)) && (dropdownList4Element.getText().contains(arg1)) &&
+                (dropdownList5Element.getText().contains(arg1)));
     }
 
-    public void isAutocompleteCorrect(String arg1, String arg2, String arg3, String arg4) throws Exception {
+    public void isAutocompleteCorrect(String arg1, DataTable table) throws Exception {
+        java.util.List<String> elements = table.asList();
         inputFieldAddress.sendKeys(Keys.RIGHT);
         dropdownList.getText();
         inputFieldAddress.sendKeys(Keys.LEFT);
@@ -273,22 +248,11 @@ public class AutocompletePage {
         dropdownList.getText();
         inputFieldAddress.sendKeys(Keys.SPACE);
         dropdownList.click();
-        String addressFieldValue = getInputFieldValue(inputFieldAddress);
-        String streetAddressValue = getInputFieldValue(inputFieldStreetAddress);
-        String streetAddress2Value = getInputFieldValue(inputFieldStreetAddress2);
-        String cityFieldValue = getInputFieldValue(inputFieldCity);
-        String stateFieldValue = getInputFieldValue(inputFieldState);
-        String zipCodeFieldValue = getInputFieldValue(inputFieldZipCode);
-        String countryFieldValue = getInputFieldValue(inputFieldCountry);
-
-        if (addressFieldValue.equals("Menlo Park, Калифорния, США")) {
-            if (cityFieldValue.equals(arg2) && stateFieldValue.equals(arg3) && countryFieldValue.equals(arg4) && streetAddressValue.equals("")
-                    && streetAddress2Value.equals("") && zipCodeFieldValue.equals("")) {
-                System.out.println("City has got data Menlo Park, state - CA, country - USA and other fields are empty PASSED");
-            } else {
-                System.out.println("Some of fields have not satisfied case conditions FAILED");
-            }
-        }
+        Thread.sleep(300);
+        checkResult(getInputFieldValue(inputFieldAddress).equals(arg1) && getInputFieldValue(inputFieldStreetAddress).equals("") &&
+                getInputFieldValue(inputFieldStreetAddress2).equals("") && getInputFieldValue(inputFieldCity).equals(elements.get(0)) &&
+                getInputFieldValue(inputFieldState).equals(elements.get(1)) && getInputFieldValue(inputFieldZipCode).equals("") &&
+                getInputFieldValue(inputFieldCountry).equals(elements.get(2)));
     }
 
     public void refreshPageCheckFields() throws Exception {
@@ -296,21 +260,13 @@ public class AutocompletePage {
         isAllFieldsEmptyCheck();
     }
 
-    public void backwardForwardPageSavingFieldsData(String arg1, String arg2, String arg3, String arg4, String arg5, String arg6, String arg7) throws Exception {
-        titleAutocomplete.getText();
-        String inputFieldAddressValue = getInputFieldValue(inputFieldAddress);
-        String streetAddressFieldValue = getInputFieldValue(inputFieldStreetAddress);
-        String streetAdress2FieldValue = getInputFieldValue(inputFieldStreetAddress2);
-        String cityFieldValue = getInputFieldValue(inputFieldCity);
-        String stateFieldValue = getInputFieldValue(inputFieldState);
-        String zipCodeFieldValue = getInputFieldValue(inputFieldZipCode);
-        String countryFieldValue = getInputFieldValue(inputFieldCountry);
-        if (inputFieldAddressValue.equals(arg1) && streetAddressFieldValue.equals(arg2) && streetAdress2FieldValue.equals(arg3) && cityFieldValue.equals(arg4) &&
-                stateFieldValue.equals(arg5) && zipCodeFieldValue.equals(arg6) && countryFieldValue.equals(arg7)) {
-            System.out.println("All fields have saved its data PASSED");
-        } else {
-            System.out.println("All fields have not saved its data FAILED");
-        }
+    public void backwardForwardPageSavingFieldsData(DataTable table) throws Exception {
+        Thread.sleep(500);
+        java.util.List<String> elements = table.asList();
+        checkResult(getInputFieldValue(inputFieldAddress).equals(elements.get(0)) && getInputFieldValue(inputFieldStreetAddress)
+                .equals(elements.get(1)) && getInputFieldValue(inputFieldStreetAddress2).equals(elements.get(2)) &&
+                getInputFieldValue(inputFieldCity).equals(elements.get(3)) && getInputFieldValue(inputFieldState).equals(elements.get(4)) &&
+                getInputFieldValue(inputFieldZipCode).equals(elements.get(5)) && getInputFieldValue(inputFieldCountry).equals(elements.get(6)));
     }
 
     public void isTitleDisplayedOk(String arg1) {
@@ -320,21 +276,21 @@ public class AutocompletePage {
 
     public void isFieldTitlePlaceholderDisplayedCorrectly(String arg1, String arg2, String arg3) {
         if (arg2.equals("title")) {
-            WebElement fieldTitle = driver.findElement(By.xpath("//label[text()='" + arg1 + "']"));
             try {
+            WebElement fieldTitle = driver.findElement(By.xpath("//label[text()='" + arg1 + "']"));
                 fieldTitle.getText();
-                System.out.println("Title " + arg1 + " has displayed correctly PASSED");
+                System.out.println("PASSED");
             } catch (NoSuchElementException e) {
-                System.out.println("Title " + arg1 + " has not displayed correctly FAILED");
+               checkResultFailed();
             }
         }
         if (arg2.equals("placeholder")) {
-            WebElement placeholderField = driver.findElement(By.xpath("//input[@placeholder='" + arg3 + "']"));
             try {
+            WebElement placeholderField = driver.findElement(By.xpath("//input[@placeholder='" + arg3 + "']"));
                 placeholderField.getText();
-                System.out.println("Placeholder " + arg3 + " has displayed correctly PASSED");
+                System.out.println("PASSED");
             } catch (NoSuchElementException e) {
-                System.out.println("Placeholder " + arg3 + " has not displayed correctly FAILED");
+                checkResultFailed();
             }
         }
     }
@@ -365,13 +321,12 @@ public class AutocompletePage {
         }
     }
 
-    public void clearMethod(WebElement arg1 ) throws Exception {
+    public void clearMethod(WebElement arg1) throws Exception {
         String copyDataFromField = getInputFieldValue(arg1);
         arg1.sendKeys(Keys.DELETE);
         pasteValueToInputField(arg1);
         String copyDataFromFieldFinal = getInputFieldValue(arg1);
-        System.out.println(copyDataFromField.equals(copyDataFromFieldFinal)? "Copy/paste/delete functions have worked PASSED"
-                :"Copy/paste/delete functions have not worked FAILED");
+        checkResult(copyDataFromField.equals(copyDataFromFieldFinal));
     }
 
     public void clearViaDelete(String arg1) {

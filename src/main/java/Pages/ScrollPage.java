@@ -1,8 +1,16 @@
 package Pages;
 
+import io.cucumber.datatable.DataTable;
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
+
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class ScrollPage {
     WebDriver driver;
@@ -16,35 +24,54 @@ public class ScrollPage {
         this.driver = driver;
     }
 
+    public void makeScreenshot() {
+        String arg1 = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss").format(new Date());
+        try {
+            File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+            FileUtils.copyFile(scrFile, new File("src/Screenshots/" + arg1 + ".png"));
+        } catch (IOException e) {
+            System.out.println("Some troubles with screenshot");
+        }
+    }
+
+    public void checkResult(boolean arg1) {
+        if (arg1) {
+            System.out.println("PASSED");
+        } else {
+            checkResultFailed();
+        }
+    }
+
+    public void checkResultFailed() {
+        makeScreenshot();
+        Assert.fail("FAILED");
+    }
+
     public void hasScrollTextParagraphCheck(String arg1, String arg2) {
         try {
             WebElement paragraph = driver.findElement(By.xpath("//p[" + arg1.charAt(0) + "]"));
-            System.out.println(paragraph.getText().equals(arg2) ? arg1 + " paragraph has had correct text PASSED" :
-                    arg1 + " paragraph has not had correct text FAILED");
+            checkResult(paragraph.getText().equals(arg2));
         } catch (NoSuchElementException e) {
-            System.out.println("Something has gone wrong FAILED");
+            checkResultFailed();
         }
     }
 
     public void hasScrollTitleTextCheck(String arg1, String arg2) {
         try {
             WebElement titleElement = driver.findElement(By.xpath("//label[text()='" + arg1 + "']"));
-            System.out.println(titleElement.getText().equals(arg2) ? arg2 + " title has been correct PASSED" :
-                    arg2 + " title has not been correct FAILED");
+            checkResult(titleElement.getText().equals(arg2));
         } catch (NoSuchElementException e) {
-            System.out.println("Something has gone wrong FAILED");
+            checkResultFailed();
         }
     }
 
     public void hasScrollPlaceholderTextCheck(String arg1, String arg2) {
         switch (arg1) {
             case "Full Name":
-                System.out.println(fullNameInput.getAttribute("placeholder").equals(arg2) ? "Placeholder has had correct text PASSED" :
-                        "Placeholder has not had correct text FAILED");
+                checkResult(fullNameInput.getAttribute("placeholder").equals(arg2));
                 break;
             case "Date":
-                System.out.println(dateInput.getAttribute("placeholder").equals(arg2) ? "Placeholder has had correct text PASSED" :
-                        "Placeholder has not had correct text FAILED");
+                checkResult(dateInput.getAttribute("placeholder").equals(arg2));
                 break;
         }
     }
@@ -52,27 +79,24 @@ public class ScrollPage {
     public void hasScrollFieldUnselectedEnabledCheck(String arg1) {
         switch (arg1) {
             case "Full Name":
-                System.out.println(!(fullNameInput.isSelected()) && fullNameInput.isEnabled() ? "Field has been unselected, enabled PASSED" :
-                        "Field has not been unselected or enabled FAILED");
+                checkResult(!fullNameInput.isSelected() && fullNameInput.isEnabled());
                 break;
             case "Date":
-                System.out.println(!(dateInput.isSelected()) && dateInput.isEnabled() ? "Field has been unselected, enabled PASSED" :
-                        "Field has not been unselected or enabled FAILED");
+                checkResult(!dateInput.isSelected() && dateInput.isEnabled());
                 break;
         }
     }
 
-    public void hasScrollFieldDataEnterCheck(String arg1, String arg2) throws Exception {
-        switch (arg2) {
+    public void hasScrollFieldDataEnterCheck(String arg1, DataTable table) throws Exception {
+        java.util.List<String> fieldData = table.asList();
+        switch (arg1) {
             case "full name":
-                fullNameInput.sendKeys(arg1);
-                System.out.println(autocompletePage.getInputFieldValue(fullNameInput).equals(arg1) ? "Data has entered PASSED" :
-                        "Data has not entered FAILED");
+                fullNameInput.sendKeys(fieldData.get(0));
+                checkResult(autocompletePage.getInputFieldValue(fullNameInput).equals(fieldData.get(0)));
                 break;
             case "date":
-                dateInput.sendKeys(arg1);
-                System.out.println(autocompletePage.getInputFieldValue(dateInput).equals(arg1) ? "Data has entered PASSED" :
-                        "Data has not entered FAILED");
+                dateInput.sendKeys(fieldData.get(0));
+                checkResult(autocompletePage.getInputFieldValue(dateInput).equals(fieldData.get(0)));
                 break;
         }
     }
@@ -90,7 +114,6 @@ public class ScrollPage {
 
     public void hasScrollPageToCheck(String arg1) {
         JavascriptExecutor js = (JavascriptExecutor) driver;
-
         switch (arg1) {
             case "500 px down to the page bottom":
                 js.executeScript("window.scrollBy(0,500)");
@@ -126,7 +149,6 @@ public class ScrollPage {
 
     public void positionCheck(Long arg1, String arg2) {
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        System.out.println((long) js.executeScript("return window.pageYOffset;") == arg1 ?
-                "Scroll has been in " + arg2 + " position PASSED" : "Scroll has not been in " + arg2 + " position FAILED");
+        checkResult((long) js.executeScript("return window.pageYOffset;") == arg1);
     }
 }

@@ -1,13 +1,16 @@
 package Pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
+import org.testng.Assert;
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class ButtonsPage {
-
+    WebDriver driver;
     @FindBy(id = "btnGroupDrop1")
     public static WebElement dropdownButton;
     @FindBy(xpath = "//div[@class='dropdown-menu show']")
@@ -17,64 +20,74 @@ public class ButtonsPage {
     @FindBy(xpath = "//a[text()= 'Dropdown link 2']")
     public static WebElement dropdownList2;
 
-    WebDriver driver;
-
     public ButtonsPage(WebDriver driver) {
         this.driver = driver;
+    }
+
+    public void makeScreenshot() {
+        String arg1 = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss").format(new Date());
+        try {
+            File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+            FileUtils.copyFile(scrFile, new File("src/Screenshots/" + arg1 + ".png"));
+        } catch (IOException e) {
+            System.out.println("Some troubles with screenshot");
+        }
+    }
+
+    public void checkResult(boolean arg1) {
+        if (arg1) {
+            System.out.println("PASSED");
+        } else {
+            checkResultFailed();
+        }
+    }
+
+    public void checkResultFailed() {
+        makeScreenshot();
+        driver.quit();
+        Assert.fail("FAILED");
     }
 
     public void isTitleAbsent() {
         try {
             WebElement buttonsTitle = driver.findElement(By.xpath("//h1"));
-            String pageTitle = buttonsTitle.getText();
-            System.out.println("There is a page title '" + pageTitle + "' FAILED");
+            buttonsTitle.getText();
+            checkResultFailed();
         } catch (NoSuchElementException e) {
-            System.out.println("There are no any page titles PASSED");
+            System.out.println("PASSED");
         }
     }
 
     public void isCorrectButtonsTitle(String arg1) {
         if (arg1.equals("Dropdown")) {
-            if (dropdownButton.getText().equals(arg1)) {
-                System.out.println(arg1 + " button has a '" + arg1 + "' title PASSED");
-            } else {
-                System.out.println(arg1 + " button has not a correct title FAILED");
-            }
+            checkResult(dropdownButton.getText().equals(arg1));
         } else {
             try {
                 WebElement buttonsTitle = driver.findElement(By.xpath("//button[text()='" + arg1 + "']"));
-                String buttonsCurrentTitle = buttonsTitle.getText();
-                System.out.println(arg1 + " button has a '" + buttonsCurrentTitle + "' title PASSED");
+                buttonsTitle.getText();
+                System.out.println("PASSED");
             } catch (NoSuchElementException e) {
-                System.out.println(arg1 + " button has not a correct title FAILED");
+                checkResultFailed();
             }
         }
     }
 
-    public void isButtonsClickable(String arg1) {
+    public void isButtonsEnabledDisplayed(String arg1) {
         if (arg1.equals("Dropdown")) {
-            if (dropdownButton.isEnabled() && dropdownButton.isDisplayed()) {
-                dropdownButton.click();
-                System.out.println(arg1 + " button is clickable PASSED");
-            } else {
-                System.out.println(arg1 + " button is not clickable FAILED");
-            }
+            checkResult(dropdownButton.isEnabled() && dropdownButton.isDisplayed());
+            dropdownButton.click();
         } else {
-            WebElement button = driver.findElement(By.xpath("//button[text()='" + arg1 + "']"));
-            if (button.isEnabled() && button.isDisplayed()) {
+            try {
+                WebElement button = driver.findElement(By.xpath("//button[text()='" + arg1 + "']"));
+                checkResult(button.isEnabled() && button.isDisplayed());
                 button.click();
-                System.out.println(arg1 + " button is clickable PASSED");
-            } else {
-                System.out.println(arg1 + " button is not clickable FAILED");
+            } catch (NoSuchElementException e) {
+                checkResultFailed();
             }
         }
     }
 
     public void isDropdownListOpened() {
-        if (dropdownList.isDisplayed() && dropdownList1.isDisplayed() && dropdownList2.isDisplayed()) {
-            System.out.println("Dropdown list with Dropdown link 1, Dropdown link 2 elements has opened PASSED");
-        } else {
-            System.out.println("Dropdown list with Dropdown link 1, Dropdown link 2 elements has not opened FAILED");
-        }
+        checkResult(dropdownList.isDisplayed() && dropdownList1.isDisplayed() && dropdownList2.isDisplayed());
     }
 }

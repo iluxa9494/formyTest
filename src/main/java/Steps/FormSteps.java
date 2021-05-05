@@ -3,6 +3,7 @@ package Steps;
 import Config.Drive;
 import Pages.DatepickerPage;
 import Pages.FormPage;
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Then;
 import org.openqa.selenium.support.PageFactory;
 
@@ -40,9 +41,9 @@ public class FormSteps extends Drive {
         formPage.hasEmptyElementCheck(arg1);
     }
 
-    @Then("Enter {string} in {string} and check data has entered")
-    public void enterAndCheckValue(String arg1, String arg2) throws Exception {
-        formPage.hasEnterAndCheckValue(arg1, arg2);
+    @Then("Check data has entered in {string} after entering")
+    public void enterAndCheckValue(String arg1, DataTable table) throws Exception {
+        formPage.hasEnterAndCheckValue(arg1, table);
     }
 
     @Then("Copy data from {string}, clear via delete, paste data to the field and check the functions have worked")
@@ -67,7 +68,7 @@ public class FormSteps extends Drive {
 
     @Then("Check element {string} has enabled")
     public void formElementEnabledCheck(String arg1) {
-        formPage.hasFormElementEnabledCheck(arg1);
+        formPage.hasFormElementEnabledCheck();
     }
 
     @Then("Check: first name input has a {string}, last name input has a {string}, job title input has a {string}")

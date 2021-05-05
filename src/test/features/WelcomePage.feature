@@ -1,199 +1,518 @@
 Feature: Welcome to Formy page
 
   Background:
-    Then Open browser and go to Formy site
+    * Open browser and go to Formy site
 
 #web layout
   Scenario: Page title Form - displays correctly
-    Then Check "Welcome Page" has page title "Welcome to Formy"
+    * Check "Welcome Page" has page title "Welcome to Formy"
+    * Close browser
 
   Scenario: Titles - displays correctly
-    Then Check "first title" has a "This is a simple site that has form components that can be used for testing purposes." text
-    Then Check "second title" has a "Here are the list of all the components" text
+    * Check "first title" has a "This is a simple site that has form components that can be used for testing purposes." text
+    * Check "second title" has a "Here are the list of all the components" text
+    * Close browser
 
   Scenario: All components list - displays correctly
-    Then Check list of the all components has displayed and contained: "Autocomplete", "Buttons", "Checkbox", "Datepicker", "Drag and Drop", "Dropdown", "Enabled and disabled elements", "File Upload", "Key and Mouse Press", "Modal", "Page Scroll", "Radio Button", "Switch Window", "Complete Web Form"
+    * Check list of the all components has displayed and contained:
+      | Autocomplete                  |
+      | Buttons                       |
+      | Checkbox                      |
+      | Datepicker                    |
+      | Drag and Drop                 |
+      | Dropdown                      |
+      | Enabled and disabled elements |
+      | File Upload                   |
+      | Key and Mouse Press           |
+      | Modal                         |
+      | Page Scroll                   |
+      | Radio Button                  |
+      | Switch Window                 |
+      | Complete Web Form             |
+    * Close browser
+
 #layouts in next steps
 #  Scenario: All components list - all elements have markers
-#    Then Check "Autocomplete" has a circles marker in the list
-#    Then Check "Buttons" has a circles marker in the list
-#    Then Check "Checkbox" has a circles marker in the list
-#    Then Check "Datepicker" has a circles marker in the list
-#    Then Check "Drag and Drop" has a circles marker in the list
-#    Then Check "Dropdown" has a circles marker in the list
-#    Then Check "Enabled and disabled elements" has a circles marker in the list
-#    Then Check "File Upload" has a circles marker in the list
-#    Then Check "Key and Mouse Press" has a circles marker in the list
-#    Then Check "Modal" has a circles marker in the list
-#    Then Check "Page Scroll" has a circles marker in the list
-#    Then Check "Radio Button" has a circles marker in the list
-#    Then Check "Switch Window" has a circles marker in the list
-#    Then Check "Complete Web Form" has a circles marker in the list
+#    * Check "Autocomplete" has a circles marker in the list
+#    * Check "Buttons" has a circles marker in the list
+#    * Check "Checkbox" has a circles marker in the list
+#    * Check "Datepicker" has a circles marker in the list
+#    * Check "Drag and Drop" has a circles marker in the list
+#    * Check "Dropdown" has a circles marker in the list
+#    * Check "Enabled and disabled elements" has a circles marker in the list
+#    * Check "File Upload" has a circles marker in the list
+#    * Check "Key and Mouse Press" has a circles marker in the list
+#    * Check "Modal" has a circles marker in the list
+#    * Check "Page Scroll" has a circles marker in the list
+#    * Check "Radio Button" has a circles marker in the list
+#    * Check "Switch Window" has a circles marker in the list
+#    * Check "Complete Web Form" has a circles marker in the list
+#    * Close browser
 
 #functional
   Scenario: All components list - go to its page
-    Then Go to "Autocomplete" page
-    Then Click on "Backward" and check "Welcome to Formy" page has opened
-    Then Go to "Buttons" page
-    Then Click on "Backward" and check "Welcome to Formy" page has opened
-    Then Go to "Checkbox" page
-    Then Click on "Backward" and check "Welcome to Formy" page has opened
-    Then Go to "Datepicker" page
-    Then Click on "Backward" and check "Welcome to Formy" page has opened
-    Then Go to "Drag and Drop" page
-    Then Click on "Backward" and check "Welcome to Formy" page has opened
-    Then Go to "Dropdown" page
-    Then Click on "Backward" and check "Welcome to Formy" page has opened
-    Then Go to "Enabled and disabled elements" page
-    Then Click on "Backward" and check "Welcome to Formy" page has opened
-    Then Go to "File Upload" page
-    Then Click on "Backward" and check "Welcome to Formy" page has opened
-    Then Go to "Key and Mouse Press" page
-    Then Click on "Backward" and check "Welcome to Formy" page has opened
-    Then Go to "Modal" page
-    Then Click on "Backward" and check "Welcome to Formy" page has opened
-    Then Go to "Radio Button" page
-    Then Click on "Backward" and check "Welcome to Formy" page has opened
-    Then Go to "Page Scroll" page
-    Then Click on "Backward" and check "Welcome to Formy" page has opened
-    Then Go to "Switch Window" page
-    Then Click on "Backward" and check "Welcome to Formy" page has opened
-    Then Go to "Complete Web Form" page
-    Then Click on "Backward" and check "Welcome to Formy" page has opened
+    * Go to "Autocomplete" page
+    * Click on "Backward" and check "Welcome to Formy" page has opened
+    * Go to "Buttons" page
+    * Click on "Backward" and check "Welcome to Formy" page has opened
+    * Go to "Checkbox" page
+    * Click on "Backward" and check "Welcome to Formy" page has opened
+    * Go to "Datepicker" page
+    * Click on "Backward" and check "Welcome to Formy" page has opened
+    * Go to "Drag and Drop" page
+    * Click on "Backward" and check "Welcome to Formy" page has opened
+    * Go to "Dropdown" page
+    * Click on "Backward" and check "Welcome to Formy" page has opened
+    * Go to "Enabled and disabled elements" page
+    * Click on "Backward" and check "Welcome to Formy" page has opened
+    * Go to "File Upload" page
+    * Click on "Backward" and check "Welcome to Formy" page has opened
+    * Go to "Key and Mouse Press" page
+    * Click on "Backward" and check "Welcome to Formy" page has opened
+    * Go to "Modal" page
+    * Click on "Backward" and check "Welcome to Formy" page has opened
+    * Go to "Radio Button" page
+    * Click on "Backward" and check "Welcome to Formy" page has opened
+    * Go to "Page Scroll" page
+    * Click on "Backward" and check "Welcome to Formy" page has opened
+    * Go to "Switch Window" page
+    * Click on "Backward" and check "Welcome to Formy" page has opened
+    * Go to "Complete Web Form" page
+    * Click on "Backward" and check "Welcome to Formy" page has opened
+    * Close browser
 
   Scenario: All components list - unselected, enabled
-    Then Check "Autocomplete" element has been unselected, enabled
-    Then Check "Buttons" element has been unselected, enabled
-    Then Check "Checkbox" element has been unselected, enabled
-    Then Check "Datepicker" element has been unselected, enabled
-    Then Check "Drag and Drop" element has been unselected, enabled
-    Then Check "Dropdown" element has been unselected, enabled
-    Then Check "Enabled and disabled elements" element has been unselected, enabled
-    Then Check "File Upload" element has been unselected, enabled
-    Then Check "Key and Mouse Press" element has been unselected, enabled
-    Then Check "Modal" element has been unselected, enabled
-    Then Check "Radio Button" element has been unselected, enabled
-    Then Check "Page Scroll" element has been unselected, enabled
-    Then Check "Switch Window" element has been unselected, enabled
-    Then Check "Complete Web Form" element has been unselected, enabled
+    * Check "Autocomplete" element has been unselected, enabled
+    * Check "Buttons" element has been unselected, enabled
+    * Check "Checkbox" element has been unselected, enabled
+    * Check "Datepicker" element has been unselected, enabled
+    * Check "Drag and Drop" element has been unselected, enabled
+    * Check "Dropdown" element has been unselected, enabled
+    * Check "Enabled and disabled elements" element has been unselected, enabled
+    * Check "File Upload" element has been unselected, enabled
+    * Check "Key and Mouse Press" element has been unselected, enabled
+    * Check "Modal" element has been unselected, enabled
+    * Check "Radio Button" element has been unselected, enabled
+    * Check "Page Scroll" element has been unselected, enabled
+    * Check "Switch Window" element has been unselected, enabled
+    * Check "Complete Web Form" element has been unselected, enabled
+    * Close browser
 
   Scenario: Backward to the page - all page elements have saved its state
-    Then Check "first title" has a "This is a simple site that has form components that can be used for testing purposes." text
-    Then Check "second title" has a "Here are the list of all the components" text
-    Then Check list of the all components has displayed and contained: "Autocomplete", "Buttons", "Checkbox", "Datepicker", "Drag and Drop", "Dropdown", "Enabled and disabled elements", "File Upload", "Key and Mouse Press", "Modal", "Page Scroll", "Radio Button", "Switch Window", "Complete Web Form"
-    Then Go to "Autocomplete" page
-    Then Click on "Backward" and check "Welcome to Formy" page has opened
-    Then Check "first title" has a "This is a simple site that has form components that can be used for testing purposes." text
-    Then Check "second title" has a "Here are the list of all the components" text
-    Then Check list of the all components has displayed and contained: "Autocomplete", "Buttons", "Checkbox", "Datepicker", "Drag and Drop", "Dropdown", "Enabled and disabled elements", "File Upload", "Key and Mouse Press", "Modal", "Page Scroll", "Radio Button", "Switch Window", "Complete Web Form"
+    * Check "first title" has a "This is a simple site that has form components that can be used for testing purposes." text
+    * Check "second title" has a "Here are the list of all the components" text
+    * Check list of the all components has displayed and contained:
+      | Autocomplete                  |
+      | Buttons                       |
+      | Checkbox                      |
+      | Datepicker                    |
+      | Drag and Drop                 |
+      | Dropdown                      |
+      | Enabled and disabled elements |
+      | File Upload                   |
+      | Key and Mouse Press           |
+      | Modal                         |
+      | Page Scroll                   |
+      | Radio Button                  |
+      | Switch Window                 |
+      | Complete Web Form             |
+    * Go to "Autocomplete" page
+    * Click on "Backward" and check "Welcome to Formy" page has opened
+    * Check "first title" has a "This is a simple site that has form components that can be used for testing purposes." text
+    * Check "second title" has a "Here are the list of all the components" text
+    * Check list of the all components has displayed and contained:
+      | Autocomplete                  |
+      | Buttons                       |
+      | Checkbox                      |
+      | Datepicker                    |
+      | Drag and Drop                 |
+      | Dropdown                      |
+      | Enabled and disabled elements |
+      | File Upload                   |
+      | Key and Mouse Press           |
+      | Modal                         |
+      | Page Scroll                   |
+      | Radio Button                  |
+      | Switch Window                 |
+      | Complete Web Form             |
+    * Close browser
 
   Scenario: Forward to the page - all page elements have saved its state
-    Then Go to "Autocomplete" page
-    Then Click on "Formy" and check "Welcome to Formy" page has opened
-    Then Check "first title" has a "This is a simple site that has form components that can be used for testing purposes." text
-    Then Check "second title" has a "Here are the list of all the components" text
-    Then Check list of the all components has displayed and contained: "Autocomplete", "Buttons", "Checkbox", "Datepicker", "Drag and Drop", "Dropdown", "Enabled and disabled elements", "File Upload", "Key and Mouse Press", "Modal", "Page Scroll", "Radio Button", "Switch Window", "Complete Web Form"
-    Then Click on "Backward" and check "autocomplete" page has opened
-    Then Click on "Forward" and check "Welcome to Formy" page has opened
-    Then Check "first title" has a "This is a simple site that has form components that can be used for testing purposes." text
-    Then Check "second title" has a "Here are the list of all the components" text
-    Then Check list of the all components has displayed and contained: "Autocomplete", "Buttons", "Checkbox", "Datepicker", "Drag and Drop", "Dropdown", "Enabled and disabled elements", "File Upload", "Key and Mouse Press", "Modal", "Page Scroll", "Radio Button", "Switch Window", "Complete Web Form"
+    * Go to "Autocomplete" page
+    * Click on "Formy" and check "Welcome to Formy" page has opened
+    * Check "first title" has a "This is a simple site that has form components that can be used for testing purposes." text
+    * Check "second title" has a "Here are the list of all the components" text
+    * Check list of the all components has displayed and contained:
+      | Autocomplete                  |
+      | Buttons                       |
+      | Checkbox                      |
+      | Datepicker                    |
+      | Drag and Drop                 |
+      | Dropdown                      |
+      | Enabled and disabled elements |
+      | File Upload                   |
+      | Key and Mouse Press           |
+      | Modal                         |
+      | Page Scroll                   |
+      | Radio Button                  |
+      | Switch Window                 |
+      | Complete Web Form             |
+    * Click on "Backward" and check "autocomplete" page has opened
+    * Click on "Forward" and check "Welcome to Formy" page has opened
+    * Check "first title" has a "This is a simple site that has form components that can be used for testing purposes." text
+    * Check "second title" has a "Here are the list of all the components" text
+    * Check list of the all components has displayed and contained:
+      | Autocomplete                  |
+      | Buttons                       |
+      | Checkbox                      |
+      | Datepicker                    |
+      | Drag and Drop                 |
+      | Dropdown                      |
+      | Enabled and disabled elements |
+      | File Upload                   |
+      | Key and Mouse Press           |
+      | Modal                         |
+      | Page Scroll                   |
+      | Radio Button                  |
+      | Switch Window                 |
+      | Complete Web Form             |
+    * Close browser
 
   Scenario: Refresh the page - all page elements have saved its state
-    Then Check "first title" has a "This is a simple site that has form components that can be used for testing purposes." text
-    Then Check "second title" has a "Here are the list of all the components" text
-    Then Check list of the all components has displayed and contained: "Autocomplete", "Buttons", "Checkbox", "Datepicker", "Drag and Drop", "Dropdown", "Enabled and disabled elements", "File Upload", "Key and Mouse Press", "Modal", "Page Scroll", "Radio Button", "Switch Window", "Complete Web Form"
-    Then Click on "Refresh" and check "Welcome to Formy" page has opened
-    Then Check "first title" has a "This is a simple site that has form components that can be used for testing purposes." text
-    Then Check "second title" has a "Here are the list of all the components" text
-    Then Check list of the all components has displayed and contained: "Autocomplete", "Buttons", "Checkbox", "Datepicker", "Drag and Drop", "Dropdown", "Enabled and disabled elements", "File Upload", "Key and Mouse Press", "Modal", "Page Scroll", "Radio Button", "Switch Window", "Complete Web Form"
+    * Check "first title" has a "This is a simple site that has form components that can be used for testing purposes." text
+    * Check "second title" has a "Here are the list of all the components" text
+    * Check list of the all components has displayed and contained:
+      | Autocomplete                  |
+      | Buttons                       |
+      | Checkbox                      |
+      | Datepicker                    |
+      | Drag and Drop                 |
+      | Dropdown                      |
+      | Enabled and disabled elements |
+      | File Upload                   |
+      | Key and Mouse Press           |
+      | Modal                         |
+      | Page Scroll                   |
+      | Radio Button                  |
+      | Switch Window                 |
+      | Complete Web Form             |
+    * Click on "Refresh" and check "Welcome to Formy" page has opened
+    * Check "first title" has a "This is a simple site that has form components that can be used for testing purposes." text
+    * Check "second title" has a "Here are the list of all the components" text
+    * Check list of the all components has displayed and contained:
+      | Autocomplete                  |
+      | Buttons                       |
+      | Checkbox                      |
+      | Datepicker                    |
+      | Drag and Drop                 |
+      | Dropdown                      |
+      | Enabled and disabled elements |
+      | File Upload                   |
+      | Key and Mouse Press           |
+      | Modal                         |
+      | Page Scroll                   |
+      | Radio Button                  |
+      | Switch Window                 |
+      | Complete Web Form             |
+    * Close browser
 
 #header
   Scenario: Header: Form referral check
-    Then Click on "Form" and check "form" page has opened
-    Then Click on "Backward" and check "Welcome to Formy" page has opened
-    Then Click on "Forward" and check "form" page has opened
+    * Click on "Form" and check "form" page has opened
+    * Click on "Backward" and check "Welcome to Formy" page has opened
+    * Click on "Forward" and check "form" page has opened
+    * Close browser
 
   Scenario: Header, Components: Autocomplete referral check
-    Then Click on "Components" and check inside a dropdown list with: "Autocomplete", "Buttons", "Checkbox", "Datepicker", "Drag and Drop", "Dropdown", "Enabled and disabled elements", "File Upload", "Key and Mouse Press", "Modal", "Page Scroll", "Radio Button", "Switch Window", "Complete Web Form"
-    Then Click on "Autocomplete" and check "autocomplete" page has opened
-    Then Click on "Backward" and check "Welcome to Formy" page has opened
-    Then Click on "Forward" and check "autocomplete" page has opened
+    * Click on "Components" and check inside a dropdown list with:
+      | Autocomplete                  |
+      | Buttons                       |
+      | Checkbox                      |
+      | Datepicker                    |
+      | Drag and Drop                 |
+      | Dropdown                      |
+      | Enabled and disabled elements |
+      | File Upload                   |
+      | Key and Mouse Press           |
+      | Modal                         |
+      | Page Scroll                   |
+      | Radio Button                  |
+      | Switch Window                 |
+      | Complete Web Form             |
+    * Click on "Autocomplete" and check "autocomplete" page has opened
+    * Click on "Backward" and check "Welcome to Formy" page has opened
+    * Click on "Forward" and check "autocomplete" page has opened
+    * Close browser
 
   Scenario: Header, Components: Buttons referral check
-    Then Click on "Components" and check inside a dropdown list with: "Autocomplete", "Buttons", "Checkbox", "Datepicker", "Drag and Drop", "Dropdown", "Enabled and disabled elements", "File Upload", "Key and Mouse Press", "Modal", "Page Scroll", "Radio Button", "Switch Window", "Complete Web Form"
-    Then Click on "Buttons" and check "buttons" page has opened
-    Then Click on "Backward" and check "Welcome to Formy" page has opened
-    Then Click on "Forward" and check "buttons" page has opened
+    * Click on "Components" and check inside a dropdown list with:
+      | Autocomplete                  |
+      | Buttons                       |
+      | Checkbox                      |
+      | Datepicker                    |
+      | Drag and Drop                 |
+      | Dropdown                      |
+      | Enabled and disabled elements |
+      | File Upload                   |
+      | Key and Mouse Press           |
+      | Modal                         |
+      | Page Scroll                   |
+      | Radio Button                  |
+      | Switch Window                 |
+      | Complete Web Form             |
+    * Click on "Buttons" and check "buttons" page has opened
+    * Click on "Backward" and check "Welcome to Formy" page has opened
+    * Click on "Forward" and check "buttons" page has opened
+    * Close browser
 
   Scenario: Header, Components: Checkbox referral check
-    Then Click on "Components" and check inside a dropdown list with: "Autocomplete", "Buttons", "Checkbox", "Datepicker", "Drag and Drop", "Dropdown", "Enabled and disabled elements", "File Upload", "Key and Mouse Press", "Modal", "Page Scroll", "Radio Button", "Switch Window", "Complete Web Form"
-    Then Click on "Checkbox" and check "checkbox" page has opened
-    Then Click on "Backward" and check "Welcome to Formy" page has opened
-    Then Click on "Forward" and check "checkbox" page has opened
+    * Click on "Components" and check inside a dropdown list with:
+      | Autocomplete                  |
+      | Buttons                       |
+      | Checkbox                      |
+      | Datepicker                    |
+      | Drag and Drop                 |
+      | Dropdown                      |
+      | Enabled and disabled elements |
+      | File Upload                   |
+      | Key and Mouse Press           |
+      | Modal                         |
+      | Page Scroll                   |
+      | Radio Button                  |
+      | Switch Window                 |
+      | Complete Web Form             |
+    * Click on "Checkbox" and check "checkbox" page has opened
+    * Click on "Backward" and check "Welcome to Formy" page has opened
+    * Click on "Forward" and check "checkbox" page has opened
+    * Close browser
 
   Scenario: Header, Components: Autocomplete referral check
-    Then Click on "Components" and check inside a dropdown list with: "Autocomplete", "Buttons", "Checkbox", "Datepicker", "Drag and Drop", "Dropdown", "Enabled and disabled elements", "File Upload", "Key and Mouse Press", "Modal", "Page Scroll", "Radio Button", "Switch Window", "Complete Web Form"
-    Then Click on "Datepicker" and check "datepicker" page has opened
-    Then Click on "Backward" and check "Welcome to Formy" page has opened
-    Then Click on "Forward" and check "datepicker" page has opened
+    * Click on "Components" and check inside a dropdown list with:
+      | Autocomplete                  |
+      | Buttons                       |
+      | Checkbox                      |
+      | Datepicker                    |
+      | Drag and Drop                 |
+      | Dropdown                      |
+      | Enabled and disabled elements |
+      | File Upload                   |
+      | Key and Mouse Press           |
+      | Modal                         |
+      | Page Scroll                   |
+      | Radio Button                  |
+      | Switch Window                 |
+      | Complete Web Form             |
+    * Click on "Datepicker" and check "datepicker" page has opened
+    * Click on "Backward" and check "Welcome to Formy" page has opened
+    * Click on "Forward" and check "datepicker" page has opened
+    * Close browser
 
   Scenario: Header, Components: Drag and Drop referral check
-    Then Click on "Components" and check inside a dropdown list with: "Autocomplete", "Buttons", "Checkbox", "Datepicker", "Drag and Drop", "Dropdown", "Enabled and disabled elements", "File Upload", "Key and Mouse Press", "Modal", "Page Scroll", "Radio Button", "Switch Window", "Complete Web Form"
-    Then Click on "Drag and Drop" and check "dragdrop" page has opened
-    Then Click on "Backward" and check "Welcome to Formy" page has opened
-    Then Click on "Forward" and check "dragdrop" page has opened
+    * Click on "Components" and check inside a dropdown list with:
+      | Autocomplete                  |
+      | Buttons                       |
+      | Checkbox                      |
+      | Datepicker                    |
+      | Drag and Drop                 |
+      | Dropdown                      |
+      | Enabled and disabled elements |
+      | File Upload                   |
+      | Key and Mouse Press           |
+      | Modal                         |
+      | Page Scroll                   |
+      | Radio Button                  |
+      | Switch Window                 |
+      | Complete Web Form             |
+    * Click on "Drag and Drop" and check "dragdrop" page has opened
+    * Click on "Backward" and check "Welcome to Formy" page has opened
+    * Click on "Forward" and check "dragdrop" page has opened
+    * Close browser
 
   Scenario: Header, Components: Dropdown referral check
-    Then Click on "Components" and check inside a dropdown list with: "Autocomplete", "Buttons", "Checkbox", "Datepicker", "Drag and Drop", "Dropdown", "Enabled and disabled elements", "File Upload", "Key and Mouse Press", "Modal", "Page Scroll", "Radio Button", "Switch Window", "Complete Web Form"
-    Then Click on "Dropdown" and check "dropdown" page has opened
-    Then Click on "Backward" and check "Welcome to Formy" page has opened
-    Then Click on "Forward" and check "dropdown" page has opened
+    * Click on "Components" and check inside a dropdown list with:
+      | Autocomplete                  |
+      | Buttons                       |
+      | Checkbox                      |
+      | Datepicker                    |
+      | Drag and Drop                 |
+      | Dropdown                      |
+      | Enabled and disabled elements |
+      | File Upload                   |
+      | Key and Mouse Press           |
+      | Modal                         |
+      | Page Scroll                   |
+      | Radio Button                  |
+      | Switch Window                 |
+      | Complete Web Form             |
+    * Click on "Dropdown" and check "dropdown" page has opened
+    * Click on "Backward" and check "Welcome to Formy" page has opened
+    * Click on "Forward" and check "dropdown" page has opened
+    * Close browser
 
   Scenario: Header, Components: Enabled and disabled elements referral check
-    Then Click on "Components" and check inside a dropdown list with: "Autocomplete", "Buttons", "Checkbox", "Datepicker", "Drag and Drop", "Dropdown", "Enabled and disabled elements", "File Upload", "Key and Mouse Press", "Modal", "Page Scroll", "Radio Button", "Switch Window", "Complete Web Form"
-    Then Click on "Enabled and disabled elements" and check "enabled" page has opened
-    Then Click on "Backward" and check "Welcome to Formy" page has opened
-    Then Click on "Forward" and check "enabled" page has opened
+    * Click on "Components" and check inside a dropdown list with:
+      | Autocomplete                  |
+      | Buttons                       |
+      | Checkbox                      |
+      | Datepicker                    |
+      | Drag and Drop                 |
+      | Dropdown                      |
+      | Enabled and disabled elements |
+      | File Upload                   |
+      | Key and Mouse Press           |
+      | Modal                         |
+      | Page Scroll                   |
+      | Radio Button                  |
+      | Switch Window                 |
+      | Complete Web Form             |
+    * Click on "Enabled and disabled elements" and check "enabled" page has opened
+    * Click on "Backward" and check "Welcome to Formy" page has opened
+    * Click on "Forward" and check "enabled" page has opened
+    * Close browser
 
   Scenario: Header, Components: Enabled and disabled elements referral check
-    Then Click on "Components" and check inside a dropdown list with: "Autocomplete", "Buttons", "Checkbox", "Datepicker", "Drag and Drop", "Dropdown", "Enabled and disabled elements", "File Upload", "Key and Mouse Press", "Modal", "Page Scroll", "Radio Button", "Switch Window", "Complete Web Form"
-    Then Click on "File Upload" and check "fileupload" page has opened
-    Then Click on "Backward" and check "Welcome to Formy" page has opened
-    Then Click on "Forward" and check "fileupload" page has opened
+    * Click on "Components" and check inside a dropdown list with:
+      | Autocomplete                  |
+      | Buttons                       |
+      | Checkbox                      |
+      | Datepicker                    |
+      | Drag and Drop                 |
+      | Dropdown                      |
+      | Enabled and disabled elements |
+      | File Upload                   |
+      | Key and Mouse Press           |
+      | Modal                         |
+      | Page Scroll                   |
+      | Radio Button                  |
+      | Switch Window                 |
+      | Complete Web Form             |
+    * Click on "File Upload" and check "fileupload" page has opened
+    * Click on "Backward" and check "Welcome to Formy" page has opened
+    * Click on "Forward" and check "fileupload" page has opened
+    * Close browser
 
   Scenario: Header, Components: Key and Mouse Press referral check
-    Then Click on "Components" and check inside a dropdown list with: "Autocomplete", "Buttons", "Checkbox", "Datepicker", "Drag and Drop", "Dropdown", "Enabled and disabled elements", "File Upload", "Key and Mouse Press", "Modal", "Page Scroll", "Radio Button", "Switch Window", "Complete Web Form"
-    Then Click on "Key and Mouse Press" and check "keypress" page has opened
-    Then Click on "Backward" and check "Welcome to Formy" page has opened
-    Then Click on "Forward" and check "keypress" page has opened
+    * Click on "Components" and check inside a dropdown list with:
+      | Autocomplete                  |
+      | Buttons                       |
+      | Checkbox                      |
+      | Datepicker                    |
+      | Drag and Drop                 |
+      | Dropdown                      |
+      | Enabled and disabled elements |
+      | File Upload                   |
+      | Key and Mouse Press           |
+      | Modal                         |
+      | Page Scroll                   |
+      | Radio Button                  |
+      | Switch Window                 |
+      | Complete Web Form             |
+    * Click on "Key and Mouse Press" and check "keypress" page has opened
+    * Click on "Backward" and check "Welcome to Formy" page has opened
+    * Click on "Forward" and check "keypress" page has opened
+    * Close browser
 
   Scenario: Header, Components: Modal referral check
-    Then Click on "Components" and check inside a dropdown list with: "Autocomplete", "Buttons", "Checkbox", "Datepicker", "Drag and Drop", "Dropdown", "Enabled and disabled elements", "File Upload", "Key and Mouse Press", "Modal", "Page Scroll", "Radio Button", "Switch Window", "Complete Web Form"
-    Then Click on "Modal" and check "modal" page has opened
-    Then Click on "Backward" and check "Welcome to Formy" page has opened
-    Then Click on "Forward" and check "modal" page has opened
+    * Click on "Components" and check inside a dropdown list with:
+      | Autocomplete                  |
+      | Buttons                       |
+      | Checkbox                      |
+      | Datepicker                    |
+      | Drag and Drop                 |
+      | Dropdown                      |
+      | Enabled and disabled elements |
+      | File Upload                   |
+      | Key and Mouse Press           |
+      | Modal                         |
+      | Page Scroll                   |
+      | Radio Button                  |
+      | Switch Window                 |
+      | Complete Web Form             |
+    * Click on "Modal" and check "modal" page has opened
+    * Click on "Backward" and check "Welcome to Formy" page has opened
+    * Click on "Forward" and check "modal" page has opened
+    * Close browser
 
   Scenario: Header, Components: Page Scroll referral check
-    Then Click on "Components" and check inside a dropdown list with: "Autocomplete", "Buttons", "Checkbox", "Datepicker", "Drag and Drop", "Dropdown", "Enabled and disabled elements", "File Upload", "Key and Mouse Press", "Modal", "Page Scroll", "Radio Button", "Switch Window", "Complete Web Form"
-    Then Click on "Page Scroll" and check "scroll" page has opened
-    Then Click on "Backward" and check "Welcome to Formy" page has opened
-    Then Click on "Forward" and check "scroll" page has opened
+    * Click on "Components" and check inside a dropdown list with:
+      | Autocomplete                  |
+      | Buttons                       |
+      | Checkbox                      |
+      | Datepicker                    |
+      | Drag and Drop                 |
+      | Dropdown                      |
+      | Enabled and disabled elements |
+      | File Upload                   |
+      | Key and Mouse Press           |
+      | Modal                         |
+      | Page Scroll                   |
+      | Radio Button                  |
+      | Switch Window                 |
+      | Complete Web Form             |
+    * Click on "Page Scroll" and check "scroll" page has opened
+    * Click on "Backward" and check "Welcome to Formy" page has opened
+    * Click on "Forward" and check "scroll" page has opened
+    * Close browser
 
   Scenario: Header, Components: Radio Button referral check
-    Then Click on "Components" and check inside a dropdown list with: "Autocomplete", "Buttons", "Checkbox", "Datepicker", "Drag and Drop", "Dropdown", "Enabled and disabled elements", "File Upload", "Key and Mouse Press", "Modal", "Page Scroll", "Radio Button", "Switch Window", "Complete Web Form"
-    Then Click on "Radio Button" and check "radiobutton" page has opened
-    Then Click on "Backward" and check "Welcome to Formy" page has opened
-    Then Click on "Forward" and check "radiobutton" page has opened
+    * Click on "Components" and check inside a dropdown list with:
+      | Autocomplete                  |
+      | Buttons                       |
+      | Checkbox                      |
+      | Datepicker                    |
+      | Drag and Drop                 |
+      | Dropdown                      |
+      | Enabled and disabled elements |
+      | File Upload                   |
+      | Key and Mouse Press           |
+      | Modal                         |
+      | Page Scroll                   |
+      | Radio Button                  |
+      | Switch Window                 |
+      | Complete Web Form             |
+    * Click on "Radio Button" and check "radiobutton" page has opened
+    * Click on "Backward" and check "Welcome to Formy" page has opened
+    * Click on "Forward" and check "radiobutton" page has opened
+    * Close browser
 
   Scenario: Header, Components: Switch Window referral check
-    Then Click on "Components" and check inside a dropdown list with: "Autocomplete", "Buttons", "Checkbox", "Datepicker", "Drag and Drop", "Dropdown", "Enabled and disabled elements", "File Upload", "Key and Mouse Press", "Modal", "Page Scroll", "Radio Button", "Switch Window", "Complete Web Form"
-    Then Click on "Switch Window" and check "switch-window" page has opened
-    Then Click on "Backward" and check "Welcome to Formy" page has opened
-    Then Click on "Forward" and check "switch-window" page has opened
+    * Click on "Components" and check inside a dropdown list with:
+      | Autocomplete                  |
+      | Buttons                       |
+      | Checkbox                      |
+      | Datepicker                    |
+      | Drag and Drop                 |
+      | Dropdown                      |
+      | Enabled and disabled elements |
+      | File Upload                   |
+      | Key and Mouse Press           |
+      | Modal                         |
+      | Page Scroll                   |
+      | Radio Button                  |
+      | Switch Window                 |
+      | Complete Web Form             |
+    * Click on "Switch Window" and check "switch-window" page has opened
+    * Click on "Backward" and check "Welcome to Formy" page has opened
+    * Click on "Forward" and check "switch-window" page has opened
+    * Close browser
 
   Scenario: Header, Components: Complete Web Form referral check
-    Then Click on "Components" and check inside a dropdown list with: "Autocomplete", "Buttons", "Checkbox", "Datepicker", "Drag and Drop", "Dropdown", "Enabled and disabled elements", "File Upload", "Key and Mouse Press", "Modal", "Page Scroll", "Radio Button", "Switch Window", "Complete Web Form"
-    Then Click on "Complete Web Form" and check "form" page has opened
-    Then Click on "Backward" and check "Welcome to Formy" page has opened
-    Then Click on "Forward" and check "form" page has opened
+    * Click on "Components" and check inside a dropdown list with:
+      | Autocomplete                  |
+      | Buttons                       |
+      | Checkbox                      |
+      | Datepicker                    |
+      | Drag and Drop                 |
+      | Dropdown                      |
+      | Enabled and disabled elements |
+      | File Upload                   |
+      | Key and Mouse Press           |
+      | Modal                         |
+      | Page Scroll                   |
+      | Radio Button                  |
+      | Switch Window                 |
+      | Complete Web Form             |
+    * Click on "Complete Web Form" and check "form" page has opened
+    * Click on "Backward" and check "Welcome to Formy" page has opened
+    * Click on "Forward" and check "form" page has opened
+    * Close browser

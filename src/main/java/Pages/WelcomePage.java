@@ -1,7 +1,14 @@
 package Pages;
 
+import io.cucumber.datatable.DataTable;
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
+import org.testng.Assert;
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class WelcomePage {
     WebDriver driver;
@@ -14,29 +21,51 @@ public class WelcomePage {
         this.driver = driver;
     }
 
+    public void makeScreenshot() {
+        String arg1 = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss").format(new Date());
+        try {
+            File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+            FileUtils.copyFile(scrFile, new File("src/Screenshots/" + arg1 + ".png"));
+        } catch (IOException e) {
+            System.out.println("Some troubles with screenshot");
+        }
+    }
+
+    public void checkResult(boolean arg1) {
+        if (arg1) {
+            System.out.println("PASSED");
+        } else {
+            checkResultFailed();
+        }
+    }
+
+    public void checkResultFailed() {
+        makeScreenshot();
+        Assert.fail("FAILED");
+    }
+
     public void hasFirstSecondTitleCheck(String arg1, String arg2) {
         switch (arg1) {
             case "first title":
-                System.out.println(firstTitle.getText().equals(arg2) ? arg1 + " has displayed correctly PASSED" :
-                        arg1 + " has displayed incorrectly FAILED");
+                checkResult(firstTitle.getText().equals(arg2));
                 break;
             case "second title":
-                System.out.println(secondTitle.getText().equals(arg2) ? arg1 + " has displayed correctly PASSED" :
-                        arg1 + " has displayed incorrectly FAILED");
+                checkResult(secondTitle.getText().equals(arg2));
                 break;
         }
     }
 
-    public void hasAllElementsInListCheck(String... arg1) throws InterruptedException {
+    public void hasAllElementsInListCheck(DataTable table) throws InterruptedException {
+        java.util.List<String> elementsList = table.asList();
         Thread.sleep(300);
         try {
-            for (String a : arg1) {
+            for (String a : elementsList) {
                 WebElement listElement = driver.findElement(By.xpath("//a[@class='dropdown-item' and text()='" + a + "']"));
                 listElement.isDisplayed();
             }
-            System.out.println("All elements have been in the list PASSED");
+            System.out.println("PASSED");
         } catch (NoSuchElementException e) {
-            System.out.println("Something went wrong FAILED");
+            checkResultFailed();
         }
     }
 
@@ -46,10 +75,9 @@ public class WelcomePage {
     public void haswelcomeElementUnselectedEnabledCheck(String arg1) {
         try {
             WebElement listElement = driver.findElement(By.xpath("//a[@class='dropdown-item' and text()='" + arg1 + "']"));
-            System.out.println(!(listElement.isSelected()) && (listElement.isEnabled()) ? arg1 + " element has been unselected and enabled PASSED"
-                    : arg1 + " element has not been unselected or enabled FAILED");
+            checkResult(!listElement.isSelected() && listElement.isEnabled());
         } catch (NoSuchElementException e) {
-            System.out.println("Something went wrong FAILED");
+            checkResultFailed();
         }
     }
 }

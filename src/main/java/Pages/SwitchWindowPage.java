@@ -1,11 +1,15 @@
 package Pages;
 
-import org.openqa.selenium.NoAlertPresentException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
+import org.testng.Assert;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class SwitchWindowPage {
 
@@ -19,15 +23,37 @@ public class SwitchWindowPage {
         this.driver = driver;
     }
 
+    public void makeScreenshot() {
+        String arg1 = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss").format(new Date());
+        try {
+            File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+            FileUtils.copyFile(scrFile, new File("src/Screenshots/" + arg1 + ".png"));
+        } catch (IOException e) {
+            System.out.println("Some troubles with screenshot");
+        }
+    }
+
+    public void checkResult(boolean arg1) {
+        if (arg1) {
+            System.out.println("PASSED");
+        } else {
+            checkResultFailed();
+        }
+    }
+
+    public void checkResultFailed() {
+        makeScreenshot();
+        Assert.fail("FAILED");
+    }
+
+
     public void hasSwitchWindowButtonTitleCheck(String arg1, String arg2) {
         switch (arg1) {
             case "open new tab":
-                System.out.println(openNewTabButton.getText().equals(arg2) ? arg1 + " has had correct title PASSED" :
-                        arg1 + " has not had correct title FAILED");
+                checkResult(openNewTabButton.getText().equals(arg2));
                 break;
             case "open alert":
-                System.out.println(openAlertButton.getText().equals(arg2) ? arg1 + " has had correct title PASSED" :
-                        arg1 + " has not had correct title FAILED");
+                checkResult(openAlertButton.getText().equals(arg2));
                 break;
         }
     }
@@ -35,12 +61,10 @@ public class SwitchWindowPage {
     public void hasSwitchWindowButtonsUnselectedEnabledCheck(String arg1) {
         switch (arg1) {
             case "open new tab":
-                System.out.println(!(openNewTabButton.isSelected()) && openNewTabButton.isEnabled() ? arg1 + " has been unselected, enabled PASSED" :
-                        arg1 + " has not been unselected or enabled FAILED");
+                checkResult(!openNewTabButton.isSelected() && openNewTabButton.isEnabled());
                 break;
             case "open alert":
-                System.out.println(!(openAlertButton.isSelected()) && openAlertButton.isEnabled() ? arg1 + " has been unselected, enabled PASSED" :
-                        arg1 + " has not been unselected or enabled FAILED");
+                checkResult(!openAlertButton.isSelected() && openAlertButton.isEnabled());
                 break;
         }
     }
@@ -72,10 +96,10 @@ public class SwitchWindowPage {
     public void hasSwitchWindowAlertOpenedCheck(String arg1) {
         switch (arg1) {
             case "opened":
-                System.out.println(alertCheck() ? "Alert has opened PASSED" : "Alert has absent FAILED");
+                checkResult(alertCheck());
                 break;
             case "absent":
-                System.out.println(alertCheck() ? "Alert has opened FAILED" : "Alert has absent PASSED");
+                checkResult(!alertCheck());
                 break;
         }
     }
@@ -90,8 +114,7 @@ public class SwitchWindowPage {
     }
 
     public void hasSwitchWindowAlertTitleCheck(String arg1) {
-        System.out.println(driver.switchTo().alert().getText().equals(arg1) ? "Alert has had correct title PASSED" :
-                "Alert has not had correct title FAILED");
+        checkResult(driver.switchTo().alert().getText().equals(arg1));
     }
 
     public void hasSwitchWindowAlertAcceptCheck() {

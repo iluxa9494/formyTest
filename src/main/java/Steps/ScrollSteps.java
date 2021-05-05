@@ -2,13 +2,14 @@ package Steps;
 
 import Config.Drive;
 import Pages.ScrollPage;
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Then;
 import org.openqa.selenium.support.PageFactory;
 
 public class ScrollSteps extends Drive {
     ScrollPage scrollPage = PageFactory.initElements(driver, ScrollPage.class);
 
-    @Then("Check {string} text paragraph has a {string} text")
+    @Then("Check {string} text paragraph has text:")
     public void scrollTextParagraphCheck(String arg1, String arg2) {
         scrollPage.hasScrollTextParagraphCheck(arg1, arg2);
     }
@@ -28,9 +29,9 @@ public class ScrollSteps extends Drive {
         scrollPage.hasScrollFieldUnselectedEnabledCheck(arg1);
     }
 
-    @Then("Enter {string} in the {string} field and check data has entered")
-    public void scrollFieldDataEnterCheck(String arg1, String arg2) throws Exception {
-        scrollPage.hasScrollFieldDataEnterCheck(arg1, arg2);
+    @Then("Check data has entered in the {string} field after entering")
+    public void scrollFieldDataEnterCheck(String arg1, DataTable table) throws Exception {
+        scrollPage.hasScrollFieldDataEnterCheck(arg1, table);
     }
 
     @Then("Clear the {string} field via delete")

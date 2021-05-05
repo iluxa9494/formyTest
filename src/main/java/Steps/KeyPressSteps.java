@@ -2,6 +2,7 @@ package Steps;
 
 import Config.Drive;
 import Pages.KeyPressPage;
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Then;
 import org.openqa.selenium.support.PageFactory;
 
@@ -18,9 +19,9 @@ public class KeyPressSteps extends Drive {
         keyPressPage.hasElementUnselectedEnabled(arg1);
     }
 
-    @Then("Enter {string} in full name input, check data has entered")
-    public void enterDataInField(String arg1) throws Exception {
-        keyPressPage.hasEnterDataInField(arg1);
+    @Then("Check data has entered in full name input after entering")
+    public void enterDataInField(DataTable table) throws Exception {
+        keyPressPage.hasEnterDataInField(table);
     }
 
     @Then("Click on button and check {string} has opened")

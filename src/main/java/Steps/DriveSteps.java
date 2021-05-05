@@ -13,4 +13,9 @@ public class DriveSteps extends Drive {
     public void chooseTheDriver() throws IOException {
         drivePage.chooseDriver();
     }
+
+    @Then("Close browser")
+    public void closeBrowser(){
+        drivePage.StopTest();
+    }
 }

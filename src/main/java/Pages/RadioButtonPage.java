@@ -1,13 +1,16 @@
 package Pages;
 
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
+import org.testng.Assert;
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class RadioButtonPage {
     WebDriver driver;
-
     @FindBy(id = "radio-button-1")
     public static WebElement radioButton1;
     @FindBy(xpath = "//input[@value='option2']")
@@ -25,30 +28,42 @@ public class RadioButtonPage {
         this.driver = driver;
     }
 
-    public void hasRadioButtonTitleCheck(String arg1, String arg2) {
-        switch (arg1) {
-            case "Radio button 1":
-                elementCheck(radioButton1Title, arg2);
-                break;
-            case "Radio button 2":
-                elementCheck(radioButton2Title, arg2);
-                break;
-            case "Radio button 3":
-                elementCheck(radioButton3Title, arg2);
-                break;
+    public void makeScreenshot() {
+        String arg1 = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss").format(new Date());
+        try {
+            File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+            FileUtils.copyFile(scrFile, new File("src/Screenshots/" + arg1 + ".png"));
+        } catch (IOException e) {
+            System.out.println("Some troubles with screenshot");
         }
     }
 
-    public void elementCheck(WebElement arg1, String arg2) {
-        System.out.println(arg1.getText().equals(arg2) ? arg2 + " has had correct title PASSED" : arg2 + " has not had correct title FAILED");
+    public void checkResult(boolean arg1) {
+        if (arg1) {
+            System.out.println("PASSED");
+        } else {
+            checkResultFailed();
+        }
     }
 
-    public void selectedElementCheck(WebElement arg1, String arg2) {
-        System.out.println(arg1.isSelected() ? arg2 + " has been selected PASSED" : arg2 + " has not been selected FAILED");
+    public void checkResultFailed() {
+        makeScreenshot();
+        Assert.fail("FAILED");
     }
 
-    public void unselectedElementCheck(WebElement arg1, String arg2) {
-        System.out.println(!(arg1.isSelected()) ? arg2 + " has not been selected PASSED" : arg2 + " has been selected FAILED");
+
+    public void hasRadioButtonTitleCheck(String arg1, String arg2) {
+        switch (arg1) {
+            case "Radio button 1":
+                checkResult(radioButton1Title.getText().equals(arg2));
+                break;
+            case "Radio button 2":
+                checkResult(radioButton2Title.getText().equals(arg2));
+                break;
+            case "Radio button 3":
+                checkResult(radioButton3Title.getText().equals(arg2));
+                break;
+        }
     }
 
     public void hasRadioButtonSelectionCheck(String arg1, String arg2) {
@@ -56,26 +71,26 @@ public class RadioButtonPage {
             case "selected":
                 switch (arg1) {
                     case "Radio button 1":
-                        selectedElementCheck(radioButton1, arg1);
+                        checkResult(radioButton1.isSelected());
                         break;
                     case "Radio button 2":
-                        selectedElementCheck(radioButton2, arg1);
+                        checkResult(radioButton2.isSelected());
                         break;
                     case "Radio button 3":
-                        selectedElementCheck(radioButton3, arg1);
+                        checkResult(radioButton3.isSelected());
                         break;
                 }
                 break;
             case "unselected":
                 switch (arg1) {
                     case "Radio button 1":
-                        unselectedElementCheck(radioButton1, arg1);
+                        checkResult(!(radioButton1.isSelected()));
                         break;
                     case "Radio button 2":
-                        unselectedElementCheck(radioButton2, arg1);
+                        checkResult(!(radioButton2.isSelected()));
                         break;
                     case "Radio button 3":
-                        unselectedElementCheck(radioButton3, arg1);
+                        checkResult(!(radioButton3.isSelected()));
                         break;
                 }
                 break;
@@ -112,6 +127,4 @@ public class RadioButtonPage {
     public void hasRadioButtonEnterCheck(){
         radioButton1.sendKeys(Keys.ENTER);
     }
-
-
 }

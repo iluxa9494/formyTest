@@ -18,9 +18,9 @@ public class ButtonsSteps extends Drive {
         buttonsPage.isCorrectButtonsTitle(arg1);
     }
 
-    @Then("Click on and check {string} button is clickable")
+    @Then("Click on and check {string} button is enabled, displayed")
     public void buttonsClickable(String arg1) {
-        buttonsPage.isButtonsClickable(arg1);
+        buttonsPage.isButtonsEnabledDisplayed(arg1);
     }
 
     @Then("Check dropdown list with Dropdown link 1, Dropdown link 2 elements has opened")

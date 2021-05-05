@@ -15,7 +15,7 @@ public class ModalSteps extends Drive {
 
     @Then("Check modal window {string} displayed")
     public void modalWindowDisplayed(String arg1) throws InterruptedException {
-        modalPage.hasModalWindowDisplayed();
+        modalPage.hasModalWindowDisplayed(arg1);
     }
 
     @Then("Check {string} title has a {string} text")

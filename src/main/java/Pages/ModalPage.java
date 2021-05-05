@@ -1,14 +1,19 @@
 package Pages;
 
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
+
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class ModalPage {
-
     WebDriver driver;
     DatepickerPage datepickerPage = PageFactory.initElements(driver, DatepickerPage.class);
-
     @FindBy(id = "modal-button")
     public static WebElement modalButton;
     @FindBy(id = "exampleModalLabel")
@@ -26,36 +31,66 @@ public class ModalPage {
         this.driver = driver;
     }
 
-    public void buttonTitleCheck(String arg1) {
-        System.out.println(modalButton.getText().equals(arg1) ? "Button has had correct title PASSED" :
-                "Button has not had correct title FAILED");
+    public void makeScreenshot() {
+        String arg1 = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss").format(new Date());
+        try {
+            File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+            FileUtils.copyFile(scrFile, new File("src/Screenshots/" + arg1 + ".png"));
+        } catch (IOException e) {
+            System.out.println("Some troubles with screenshot");
+        }
     }
 
-    public void hasModalWindowDisplayed() {
-        try {
-            System.out.println(modalWindow.isDisplayed() ? "Modal window has been displayed" : "Anything has gone wrong FAILED");
-        } catch (NoSuchElementException e) {
-            System.out.println("Modal window has been hidden");
+    public void checkResult(boolean arg1) {
+        if (arg1) {
+            System.out.println("PASSED");
+        } else {
+            checkResultFailed();
+        }
+    }
+
+    public void checkResultFailed() {
+        makeScreenshot();
+        Assert.fail("FAILED");
+    }
+
+    public void buttonTitleCheck(String arg1) {
+        checkResult(modalButton.getText().equals(arg1));
+    }
+
+    public void hasModalWindowDisplayed(String arg1) {
+        switch (arg1) {
+            case "has":
+                try {
+                    checkResult(modalWindow.isDisplayed());
+                } catch (NoSuchElementException e) {
+                    checkResultFailed();
+                }
+                break;
+            case "has not":
+                try {
+                    checkResult(!modalWindow.isDisplayed());
+                } catch (NoSuchElementException e) {
+                    System.out.println("PASSED");
+                }
+                break;
         }
     }
 
     public void hasModalWindowTitlesCheck(String arg1, String arg2) {
         switch (arg1) {
             case "first":
-                System.out.println(modalWindowFirstTitle.getText().equals(arg2) ? "First title has been displayed correctly PASSED" :
-                        "First title has been displayed incorrectly FAILED");
+                checkResult(modalWindowFirstTitle.getText().equals(arg2));
                 break;
             case "second":
                 WebElement modalWindowSecondTitle = driver.findElement(By.xpath("//div[@class='modal-body']"));
-                System.out.println(modalWindowSecondTitle.getText().equals(arg2) ? "Second title has been displayed correctly PASSED" :
-                        "Second title has been displayed incorrectly FAILED");
+                checkResult(modalWindowSecondTitle.getText().equals(arg2));
                 break;
         }
     }
 
     public void hasModalButtonNotSelectedEnabled() {
-        System.out.println(!(modalButton.isSelected()) && modalButton.isEnabled() ? "Modal button has not selected and enabled PASSED" :
-                "Modal button has selected or enabled FAILED?");
+        checkResult(!modalButton.isSelected() && modalButton.isEnabled());
     }
 
     public void hasModalElementClick(String arg1) throws InterruptedException {

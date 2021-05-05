@@ -1,16 +1,21 @@
 package Pages;
 
+import io.cucumber.datatable.DataTable;
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
-
+import org.testng.Assert;
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.StringSelection;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.Properties;
 
 public class DatepickerPage {
@@ -30,7 +35,8 @@ public class DatepickerPage {
     @FindBy(xpath = "//a[@id='navbarDropdownMenuLink']")
     public static WebElement headerDropdownComponents;
     LocalDate currentDate = LocalDate.now();
-
+    @FindBy(xpath = "//td[@class='today day']")
+    public static WebElement todayDay;
     //months
     String currentMonth = String.valueOf(currentDate.getMonth());
     LocalDate prevMonth = currentDate.minusMonths(1);
@@ -56,6 +62,29 @@ public class DatepickerPage {
         this.driver = driver;
     }
 
+    public void makeScreenshot() {
+        String arg1 = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss").format(new Date());
+        try {
+            File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+            FileUtils.copyFile(scrFile, new File("src/Screenshots/" + arg1 + ".png"));
+        } catch (IOException e) {
+            System.out.println("Some troubles with screenshot");
+        }
+    }
+
+    public void checkResult(boolean arg1) {
+        if (arg1) {
+            System.out.println("PASSED");
+        } else {
+            checkResultFailed();
+        }
+    }
+
+    public void checkResultFailed() {
+        makeScreenshot();
+        Assert.fail("FAILED");
+    }
+
     public String getOSValue() throws IOException {
         FileInputStream fis = new FileInputStream("src/main/resources/config.properties");
         Properties prop = new Properties();
@@ -72,22 +101,31 @@ public class DatepickerPage {
         choosePage.click();
     }
 
-    public void isCalendarOpened() throws Exception {
+    public void isCalendarOpened(String arg1) throws Exception {
         inputFieldDatepicker.click();
-        isDropdownClose();
+        isDropdownClose(arg1);
     }
 
-    public void isDropdownClose() {
-        try {
-            if (calendarBody.isDisplayed()) {
-                System.out.println("Calendar dropdown is opened");
-            }
-        } catch (NoSuchElementException e) {
-            System.out.println("Calendar dropdown is closed");
+    public void isDropdownClose(String arg1) {
+        switch (arg1) {
+            case "closed":
+                try {
+                    checkResult(!calendarBody.isDisplayed());
+                } catch (NoSuchElementException e) {
+                    System.out.println("PASSED");
+                }
+                break;
+            case "opened":
+                try {
+                    checkResult(calendarBody.isDisplayed());
+                } catch (NoSuchElementException e) {
+                    checkResultFailed();
+                }
+                break;
         }
     }
 
-    public void chooseElementIsOpened(String button, String date) throws Exception {
+    public void chooseElementIsOpened(String button, String date) {
         if (button.equals("next") || button.equals("previous")) {
             if (date.equals("month")) {
                 date = "day";
@@ -123,66 +161,59 @@ public class DatepickerPage {
             case "prev":
                 switch (date) {
                     case "day":
-                        calendarConditions(getCurrentValueFromCalendar, previousMonth);
+                        checkResult(getCurrentValueFromCalendar.equals(previousMonth));
                         break;
                     case "month":
-                        calendarConditions(getCurrentValueFromCalendar, previousYear);
+                        checkResult(getCurrentValueFromCalendar.equals(previousYear));
                         break;
                     case "year":
-                        calendarConditions(getCurrentValueFromCalendar, previousDecade);
+                        checkResult(getCurrentValueFromCalendar.equals(previousDecade));
                         break;
                     case "decade":
-                        calendarConditions(getCurrentValueFromCalendar, previousCentury);
+                        checkResult(getCurrentValueFromCalendar.equals(previousCentury));
                         break;
                     case "centurie":
-                        calendarConditions(getCurrentValueFromCalendar, previousMillennium);
+                        checkResult(getCurrentValueFromCalendar.equals(previousMillennium));
                         break;
                 }
                 break;
             case "next":
                 switch (date) {
                     case "day":
-                        calendarConditions(getCurrentValueFromCalendar, nextMonth);
+                        checkResult(getCurrentValueFromCalendar.equals(nextMonth));
                         break;
                     case "month":
-                        calendarConditions(getCurrentValueFromCalendar, nextYear);
+                        checkResult(getCurrentValueFromCalendar.equals(nextYear));
                         break;
                     case "year":
-                        calendarConditions(getCurrentValueFromCalendar, nextDecade);
+                        checkResult(getCurrentValueFromCalendar.equals(nextDecade));
                         break;
                     case "decade":
-                        calendarConditions(getCurrentValueFromCalendar, nextCentury);
+                        checkResult(getCurrentValueFromCalendar.equals(nextCentury));
                         break;
                     case "centurie":
-                        calendarConditions(getCurrentValueFromCalendar, nextMillennium);
+                        checkResult(getCurrentValueFromCalendar.equals(nextMillennium));
                         break;
                 }
                 break;
         }
     }
 
-    public void calendarConditions(String calendarValue, String realValue) {
-        if (calendarValue.equals(realValue)) {
-            System.out.println("Calendar and real value has matched PASSED");
-        } else {
-            System.out.println("Calendar and real value hasn't matched FAILED");
-        }
-    }
-
-    public void pickAndCheckCalendarDateIsDisplayed(String date) throws Exception {
-        switch (date) {
+    public void pickAndCheckCalendarDateIsDisplayed(String arg1, String arg2) throws Exception {
+        switch (arg1) {
             case "1th day":
                 WebElement firstCalendarDay = driver.findElement(By.xpath("//tr[1]//td[text()='1']"));
                 firstCalendarDay.click();
-                isDropdownClose();
-                getCalendarPlaceholderValueByClipboard(date);
+                Thread.sleep(500);
+                isDropdownClose(arg2);
+                Thread.sleep(500);
+                getCalendarPlaceholderValueByClipboard(arg1);
                 break;
 
             case "current date":
-                WebElement currentCalendarDay = driver.findElement(By.xpath("//td[@class='today day']"));
-                currentCalendarDay.click();
-                isDropdownClose();
-                getCalendarPlaceholderValueByClipboard(date);
+                todayDay.click();
+                isDropdownClose(arg2);
+                getCalendarPlaceholderValueByClipboard(arg1);
                 break;
         }
     }
@@ -205,43 +236,30 @@ public class DatepickerPage {
 
     public void currentDateCheck() throws Exception {
         DateTimeFormatter format = DateTimeFormatter.ofPattern("MM/dd/YYYY");
-        String inputCalendarPlaceholderValue = getInputFieldValue();
-        String dateFormat = currentDate.format(format);
-        if (inputCalendarPlaceholderValue.equals(dateFormat)) {
-            System.out.println("Displays correctly PASSED");
-        } else {
-            System.out.println("Displays incorrectly FAILED");
-        }
+        checkResult(getInputFieldValue().equals(currentDate.format(format)));
     }
 
     public void checkCalendarValue(String arg1, String arg2) throws Exception {
         if (arg1.equals("current") && arg2.equals("date")) {
             currentDateCheck();
         }
-
-        if (arg1.equals("01/01/2021")) {
-            System.out.println(getInputFieldValue().equals(arg1) ? arg1 + " " + arg2 + " displays correctly PASSED"
-                    : arg1 + " " + arg2 + " displays incorrectly FAILED");
+        if (arg1.equals("current date") && arg2.equals("in the calendar")) {
+            todayDay.click();
+            currentDateCheck();
         }
-
+        if (arg1.equals("01/01/2021")) {
+            checkResult(getInputFieldValue().equals(arg1));
+        }
         if ((arg1.equals("current") || arg1.equals("previous")) && arg2.equals("month")) {
             WebElement calendarSwitcher = driver.findElement(By.xpath("//div[@class='datepicker-days']//th[@class='datepicker-switch']"));
             String getCurrentValueFromCalendar = calendarSwitcher.getText();
             String getSwitcherValue = getCurrentValueFromCalendar.substring(0, getCurrentValueFromCalendar.length() - 5).toUpperCase();
             switch (arg1) {
                 case "current":
-                    if (getSwitcherValue.equals(currentMonth)) {
-                        System.out.println(arg1 + " " + arg2 + " displays correctly PASSED");
-                    } else {
-                        System.out.println(arg1 + " " + arg2 + " displays incorrectly FAILED");
-                    }
+                    checkResult(getSwitcherValue.equals(currentMonth));
                     break;
                 case "previous":
-                    if (getSwitcherValue.equals(previousMonth)) {
-                        System.out.println(arg1 + " " + arg2 + " displays correctly PASSED");
-                    } else {
-                        System.out.println(arg1 + " " + arg2 + " displays incorrectly FAILED");
-                    }
+                    checkResult(getSwitcherValue.equals(previousMonth));
                     break;
             }
         }
@@ -250,17 +268,16 @@ public class DatepickerPage {
     public void getCalendarPlaceholderValueByClipboard(String date) throws Exception {
         switch (date) {
             case "1th day":
-                System.out.println(getInputFieldValue().startsWith("/01/", 2) ? "The " + date + " has displayed in the input field PASSED"
-                        : "The " + date + " hasn't displayed in the input field FAILED");
+                checkResult(getInputFieldValue().startsWith("/01/", 2));
                 break;
-
             case "current date":
                 currentDateCheck();
                 break;
         }
     }
 
-    public void chooseAndCheckCurrentYearIsDisplayed(String arg1, String arg2, String arg3, String arg4, String... arg5) throws Exception { //переделать
+    public void chooseAndCheckCurrentYearIsDisplayed(String arg1, String arg2, String arg3, String arg4, DataTable table) {
+        java.util.List<String> monthsElements = table.asList();
         if (arg1.equals("month") || arg1.equals("year") || arg1.equals("decade") || arg1.equals("century")) {
 
             if (arg1.equals("month")) {
@@ -291,18 +308,19 @@ public class DatepickerPage {
             String switcherValueType1 = dateSwitcherAfterChanging.getText();
             try {
                 if (switcherValueType1.equals(arg3)) {
-                    for (String a : arg5) {
+                    for (String a : monthsElements) {
                         WebElement tableDateElement = driver.findElement(By.xpath("//div[@class='datepicker-" + arg1 + "s']//span[text()='" + a + "']"));
                         tableDateElement.getText();
                     }
-                    System.out.println(arg3 + " and " + arg4 + " have displayed PASSED");
+                    System.out.println("PASSED");
                 }
             } catch (NoSuchElementException e) {
-                System.out.println(arg3 + " and " + arg4 + " haven't displayed FAILED");
+                checkResultFailed();
             }
         }
 
-        if (arg1.equals("1000") || arg1.equals("1900") || arg1.equals("2010") || arg1.equals("2030") || arg1.equals("2100") || arg1.equals("3000")) {
+        if (arg1.equals("1000") || arg1.equals("1900") || arg1.equals("2010") || arg1.equals("2030") || arg1.equals("2100")
+                || arg1.equals("3000")) {
             if (arg2.equals("year") || arg2.equals("decade") || arg2.equals("century")) {
                 if (arg2.equals("century")) {
                     arg2 = "centurie";
@@ -312,26 +330,26 @@ public class DatepickerPage {
                 try {
                     WebElement getDateSwitcherValue = driver.findElement(By.xpath("//div[@class='datepicker-" + arg4 + "']//th[text()='" + arg3 + "']"));
                     getDateSwitcherValue.getText();
-                    for (String a : arg5) {
+                    for (String a : monthsElements) {
                         WebElement tableDateElement = driver.findElement(By.xpath("//div[@class='datepicker-" + arg4 + "']//span[text()='" + a + "']"));
                         tableDateElement.getText();
                     }
-                    System.out.println(arg3 + " and " + arg4 + " have displayed PASSED");
+                    System.out.println("PASSED");
                 } catch (NoSuchElementException e) {
-                    System.out.println(arg3 + " and " + arg4 + " haven't displayed FAILED");
+                    checkResultFailed();
                 }
             }
         }
     }
 
+
     public void typeAndPress(String arg1) {
         inputFieldDatepicker.sendKeys(arg1, Keys.ENTER);
-        System.out.println(arg1 + " has been typed PASSED");
     }
 
-    public void clickOnTitleCheck() throws Exception {
+    public void clickOnTitleCheck(String arg1) {
         titleDatepicker.click();
-        isDropdownClose();
+        isDropdownClose(arg1);
     }
 
     //header
@@ -360,9 +378,9 @@ public class DatepickerPage {
         if ("Welcome to Formy".equals(arg2)) {
             try {
                 WebElement welcomeTitle = driver.findElement(By.xpath("//h1[text()='Welcome to Formy']"));
-                System.out.println(welcomeTitle.isEnabled() ? arg2 + " is opened PASSED" : arg2 + " is not opened FAILED");
+                checkResult(welcomeTitle.isEnabled());
             } catch (NoSuchElementException e) {
-                System.out.println(arg2 + " Something went wrong FAILED");
+                checkResultFailed();
             }
         } else {
             openedPageCheck(driver.getCurrentUrl(), arg2);
@@ -370,16 +388,15 @@ public class DatepickerPage {
     }
 
     public void openedPageCheck(String arg1, String arg2) {
-        System.out.println(arg1.substring(36).equals(arg2) ? arg2 + " page has opened PASSED"
-                : arg2 + " page has not opened FAILED");
+        checkResult(arg1.substring(36).equals(arg2));
     }
 
     public void output(WebElement arg1, String arg2) {
         try {
             arg1.getText();
-            System.out.println(arg2 + " has opened");
+            System.out.println("PASSED");
         } catch (NoSuchElementException e) {
-            System.out.println(arg2 + " has not opened");
+            checkResultFailed();
         }
     }
 
@@ -421,7 +438,6 @@ public class DatepickerPage {
                 WebElement pageTitleThanks = driver.findElement(By.xpath("//h1[text()='Thanks for submitting your form']"));
                 output(pageTitleThanks, arg1);
                 break;
-
             default:
                 WebElement findElementsInComponentsDropdown = driver.findElement(By.xpath("//h1[text()='" + arg1 + "']"));
                 output(findElementsInComponentsDropdown, arg1);
@@ -429,21 +445,22 @@ public class DatepickerPage {
         }
     }
 
-    public void headerComponentsCheck(String arg1, String... arg2) {
+    public void headerComponentsCheck(String arg1, DataTable table) {
+        java.util.List<String> elements = table.asList();
         String getComponentsName = headerDropdownComponents.getText();
         if (getComponentsName.equals(arg1)) {
             headerDropdownComponents.click();
         } else {
-            System.out.println("Wrong button name components in header FAILED");
+            checkResultFailed();
         }
         try {
-            for (String a : arg2) {
+            for (String a : elements) {
                 WebElement findElementsInComponentsDropdown = driver.findElement(By.xpath("//a[@class='dropdown-item' and text()='" + a + "']"));
                 findElementsInComponentsDropdown.getText();
             }
-            System.out.println("all elements are in components dropdown PASSED");
+            System.out.println("PASSED");
         } catch (NoSuchElementException e) {
-            System.out.println("not all elements are in components dropdown FAILED");
+            checkResultFailed();
         }
     }
 }
