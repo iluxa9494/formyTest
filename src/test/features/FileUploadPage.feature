@@ -4,7 +4,12 @@ Feature: File upload page
     * Open browser and go to Formy site
     * Go to "File Upload" page
 
-#web layout
+#nonfunctional - layout/visual
+  Scenario: Layout test
+#    * Make page dump of "FileUpload" page
+    * Check layout "FileUploadPageVisual" file
+    * Close browser
+
   Scenario: Page title File upload - displays correctly
     * Check "File upload" has page title "File upload"
     * Close browser
@@ -20,7 +25,6 @@ Feature: File upload page
   Scenario: File upload field - placeholder is "Choose a file..."
     * Check "file upload field" has "placeholder" "Choose a file..."
     * Close browser
-
 #functional
   Scenario: Choose button - enabled, clickable, not selected
     * Check "choose button" is enabled, not selected

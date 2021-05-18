@@ -4,7 +4,12 @@ Feature: Modal page
     * Open browser and go to Formy site
     * Go to "Modal" page
 
-#web layout
+#nonfunctional - layout/visual
+  Scenario: Layout test
+#    * Make page dump of "Modal" page
+    * Check layout "ModalPageVisual" file
+    * Close browser
+
   Scenario: Page title Modal - displays correctly
     * Check "Modal" has page title "Modal"
     * Close browser
@@ -19,7 +24,6 @@ Feature: Modal page
     * Check "first" title has a "Modal title" text
     * Check "second" title has a "Some text here" text
     * Close browser
-
 # functional
   Scenario: Open modal button - enabled, unselected
     * Check open modal button has not selected and enabled

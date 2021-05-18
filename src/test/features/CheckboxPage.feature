@@ -4,8 +4,11 @@ Feature: Checkbox page
     * Open browser and go to Formy site
     * Go to "Checkbox" page
 
-#web layout
-
+#nonfunctional - layout/visual
+  Scenario: Layout test
+#    * Make page dump of "Checkbox" page
+    * Check layout "CheckboxPageVisual" file
+    * Close browser
 #functional
   Scenario: Page title Checkboxes - displays correctly
     * Check "Checkbox" has page title "Checkboxes"

@@ -22,14 +22,18 @@ Feature: Error page
       | Complete Web Form             |
     * Click on "File Download" in dropdown list and check "filedownload" page has opened
 
-#web layout
+#nonfunctional - layout/visual
+  Scenario: Layout test
+#    * Make page dump of "Error" page
+    * Check layout "ErrorPageVisual" file
+    * Close browser
+
   Scenario: Titles has displayed
     * Click on "Refresh" and check "filedownload" page has opened
     * Check "first" title "The page you were looking for doesn't exist." has displayed
     * Check "second" title "You may have mistyped the address or the page may have moved." has displayed
     * Check "third" title "If you are the application owner check the logs for more information." has displayed
     * Close browser
-
 #functional
   Scenario: Forward - window with titles has displayed
     * Click on "Backward" and check "dropdown" page has opened

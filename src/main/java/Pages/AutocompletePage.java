@@ -122,7 +122,7 @@ public class AutocompletePage {
                 .equals("") && getInputFieldValue(inputFieldCountry).equals(""));
     }
 
-    public void enterDataInField(String arg1, DataTable table)throws Exception {
+    public void enterDataInField(String arg1, DataTable table) throws Exception {
         java.util.List<String> fieldData = table.asList();
         switch (arg1) {
             case "Address":
@@ -156,7 +156,7 @@ public class AutocompletePage {
         }
     }
 
-    public void dropdownDisplayed(String arg1){
+    public void dropdownDisplayed(String arg1) {
         switch (arg1) {
             case "Address":
                 inputFieldAddress.sendKeys(Keys.RIGHT);
@@ -277,16 +277,16 @@ public class AutocompletePage {
     public void isFieldTitlePlaceholderDisplayedCorrectly(String arg1, String arg2, String arg3) {
         if (arg2.equals("title")) {
             try {
-            WebElement fieldTitle = driver.findElement(By.xpath("//label[text()='" + arg1 + "']"));
+                WebElement fieldTitle = driver.findElement(By.xpath("//label[text()='" + arg1 + "']"));
                 fieldTitle.getText();
                 System.out.println("PASSED");
             } catch (NoSuchElementException e) {
-               checkResultFailed();
+                checkResultFailed();
             }
         }
         if (arg2.equals("placeholder")) {
             try {
-            WebElement placeholderField = driver.findElement(By.xpath("//input[@placeholder='" + arg3 + "']"));
+                WebElement placeholderField = driver.findElement(By.xpath("//input[@placeholder='" + arg3 + "']"));
                 placeholderField.getText();
                 System.out.println("PASSED");
             } catch (NoSuchElementException e) {

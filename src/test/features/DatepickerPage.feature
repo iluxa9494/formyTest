@@ -4,8 +4,11 @@ Feature: Datepicker page
     * Open browser and go to Formy site
     * Go to "Datepicker" page
 
-#web layout
-
+#nonfunctional - layout/visual
+  Scenario: Layout test
+#    * Make page dump of "Datepicker" page
+    * Check layout "DatepickerPageVisual" file
+    * Close browser
 #functional
   Scenario: Pick the date from last month
     * Refresh the page and check: the datepicker page is opened and the input field is empty

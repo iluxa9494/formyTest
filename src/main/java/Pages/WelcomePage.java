@@ -5,6 +5,7 @@ import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
+
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -68,9 +69,6 @@ public class WelcomePage {
             checkResultFailed();
         }
     }
-
-//    public void hasWelcomeElementCirclesMarkerCheck(String arg1) {
-//    }
 
     public void haswelcomeElementUnselectedEnabledCheck(String arg1) {
         try {

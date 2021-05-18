@@ -4,7 +4,12 @@ Feature: Scroll page
     * Open browser and go to Formy site
     * Go to "Page Scroll" page
 
-#web layout
+#nonfunctional - layout/visual
+  Scenario: Layout test
+#    * Make page dump of "Scroll" page
+    * Check layout "ScrollPageVisual" file
+    * Close browser
+
   Scenario: Page title Large page content - displays correctly
     * Check "Page Scroll" has page title "Large page content"
     * Close browser
@@ -37,7 +42,6 @@ Feature: Scroll page
     * Check "Full Name" placeholder has a "Full name" text
     * Check "Date" placeholder has a "MM/DD/YYYY" text
     * Close browser
-
 #functional
   Scenario: Full Name and Date fields - unselected, enabled
     * Check "Full name" field has been unselected, enabled

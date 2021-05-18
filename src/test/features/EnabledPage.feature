@@ -4,11 +4,15 @@ Feature: Enabled and disabled elements page
     * Open browser and go to Formy site
     * Go to "Enabled and disabled elements" page
 
-#web layout
+#nonfunctional - layout/visual
+  Scenario: Layout test
+#    * Make page dump of "Enabled" page
+    * Check layout "EnabledPageVisual" file
+    * Close browser
+
   Scenario: Page title Dropdown - displays correctly
     * Check "Enabled and disabled elements" has page title "Enabled and Disabled elements"
     * Close browser
-
 #functional
 #disabled field
   Scenario: Disabled input - not selected, not enabled

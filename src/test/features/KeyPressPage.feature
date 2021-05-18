@@ -4,7 +4,12 @@ Feature: Key and mouse press page
     * Open browser and go to Formy site
     * Go to "Key and Mouse Press" page
 
-#web layout
+#nonfunctional - layout/visual
+  Scenario: Layout test
+#    * Make page dump of "KeyPress" page
+    * Check layout "KeyPressPageVisual" file
+    * Close browser
+
   Scenario: Page title Keyboard and Mouse Input - displays correctly
     * Check "Key and Mouse Press" has page title "Keyboard and Mouse Input"
     * Close browser
@@ -17,7 +22,6 @@ Feature: Key and mouse press page
   Scenario: Element placeholder - display correctly
     * Check "full name input" has a "Enter full name" "placeholder"
     * Close browser
-
 #functional
   Scenario: Elements - enabled, unselected
     * Check "full name input" has not selected and enabled

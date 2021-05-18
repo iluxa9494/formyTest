@@ -4,7 +4,12 @@ Feature: Radio button page
     * Open browser and go to Formy site
     * Go to "Radio Button" page
 
-#web layout
+#nonfunctional - layout/visual
+  Scenario: Layout test
+    * Make page dump of "RadioButton" page
+    * Check layout "RadioButtonPageVisual" file
+    * Close browser
+
   Scenario: Page title Radio buttons - displays correctly
     * Check "Radio Button" has page title "Radio buttons"
     * Close browser
@@ -14,7 +19,6 @@ Feature: Radio button page
     * Check radio button "Radio button 2" has a "Radio button 2" title
     * Check radio button "Radio button 3" has a "Radio button 3" title
     * Close browser
-
 #functional
   Scenario: Radio buttons - successful select
     * Check "Radio button 1" radio button has "selected"

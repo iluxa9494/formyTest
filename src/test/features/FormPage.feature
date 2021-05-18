@@ -4,7 +4,12 @@ Feature: Form page
     * Open browser and go to Formy site
     * Go to "Complete Web Form" page
 
-#web layout
+#nonfunctional - layout/visual
+  Scenario: Layout test
+#    * Make page dump of "Form" page
+    * Check layout "FormPageVisual" file
+    * Close browser
+
   Scenario: Page title Form - displays correctly
     * Check "Form" has page title "Complete Web Form"
     * Close browser
@@ -29,7 +34,6 @@ Feature: Form page
     * Check element experience selector has a Select an option, 0-1, 2-4, 5-9, 10+ titles
     * Check element "input date" has a "mm/dd/yyyy" placeholder
     * Close browser
-
 #functional
   Scenario: First name field - successful data entry
     * Check "first name input" has empty

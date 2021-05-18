@@ -6,7 +6,12 @@ Feature: Thanks page
     * Click on the "submit button"
     * Check "Thanks" page has opened
 
-#web layout
+#nonfunctional - layout/visual
+  Scenario: Layout test
+#    * Make page dump of "Thanks" page
+    * Check layout "ThanksPageVisual" file
+    * Close browser
+
   Scenario: Page title Thanks for submitting your form - displays correctly
     * Check "Thanks" has page title "Thanks for submitting your form"
     * Close browser
@@ -14,7 +19,6 @@ Feature: Thanks page
   Scenario: Success title - displays correctly
     * Check success title has a "The form was successfully submitted!" text
     * Close browser
-
 #functional
   Scenario: Success title - unselected
     * Check "success title" has been unselected

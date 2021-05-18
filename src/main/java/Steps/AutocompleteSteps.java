@@ -20,7 +20,7 @@ public class AutocompleteSteps extends Drive {
     }
 
     @Then("Check dropdown of {string} field {string} displayed")
-    public void isDropdownDisplayed(String arg1, String arg2){
+    public void isDropdownDisplayed(String arg1, String arg2) {
         autocompletePage.dropdownDisplayed(arg1);
     }
 

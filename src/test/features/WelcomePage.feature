@@ -3,7 +3,12 @@ Feature: Welcome to Formy page
   Background:
     * Open browser and go to Formy site
 
-#web layout
+#nonfunctional - layout/visual
+  Scenario: Layout test
+#    * Make page dump of "Welcome" page
+    * Check layout "WelcomePageVisual" file
+    * Close browser
+
   Scenario: Page title Form - displays correctly
     * Check "Welcome Page" has page title "Welcome to Formy"
     * Close browser
@@ -30,25 +35,6 @@ Feature: Welcome to Formy page
       | Switch Window                 |
       | Complete Web Form             |
     * Close browser
-
-#layouts in next steps
-#  Scenario: All components list - all elements have markers
-#    * Check "Autocomplete" has a circles marker in the list
-#    * Check "Buttons" has a circles marker in the list
-#    * Check "Checkbox" has a circles marker in the list
-#    * Check "Datepicker" has a circles marker in the list
-#    * Check "Drag and Drop" has a circles marker in the list
-#    * Check "Dropdown" has a circles marker in the list
-#    * Check "Enabled and disabled elements" has a circles marker in the list
-#    * Check "File Upload" has a circles marker in the list
-#    * Check "Key and Mouse Press" has a circles marker in the list
-#    * Check "Modal" has a circles marker in the list
-#    * Check "Page Scroll" has a circles marker in the list
-#    * Check "Radio Button" has a circles marker in the list
-#    * Check "Switch Window" has a circles marker in the list
-#    * Check "Complete Web Form" has a circles marker in the list
-#    * Close browser
-
 #functional
   Scenario: All components list - go to its page
     * Go to "Autocomplete" page

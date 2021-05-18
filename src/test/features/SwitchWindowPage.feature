@@ -4,7 +4,12 @@ Feature: Switch window page
     * Open browser and go to Formy site
     * Go to "Switch Window" page
 
-#web layout
+#nonfunctional - layout/visual
+  Scenario: Layout test
+#    * Make page dump of "SwitchWindow" page
+    * Check layout "SwitchWindowPageVisual" file
+    * Close browser
+
   Scenario: Page title Switch Window - displays correctly
     * Check "Switch Window" has page title "Switch Window"
     * Close browser
@@ -13,7 +18,6 @@ Feature: Switch window page
     * Check "open new tab" button has an "Open new tab" title
     * Check "open alert" button has an "Open alert" title
     * Close browser
-
 #functional
   Scenario: Open new tab and Open alert buttons - enabled, unselected
     * Check "open new tab" has been unselected and enabled

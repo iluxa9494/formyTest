@@ -19,11 +19,6 @@ public class WelcomeSteps extends Drive {
         welcomePage.hasAllElementsInListCheck(table);
     }
 
-//    @Then("Check {string} has a circles marker in the list")
-//    public void welcomeElementCirclesMarkerCheck(String arg1) {
-//        welcomePage.hasWelcomeElementCirclesMarkerCheck(arg1);
-//    }
-
     @Then("Check {string} element has been unselected, enabled")
     public void welcomeElementUnselectedEnabledCheck(String arg1) {
         welcomePage.haswelcomeElementUnselectedEnabledCheck(arg1);

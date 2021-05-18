@@ -4,11 +4,15 @@ Feature: Dropdown page
     * Open browser and go to Formy site
     * Go to "Dropdown" page
 
-#web layout
+#nonfunctional - layout/visual
+  Scenario: Layout test
+#    * Make page dump of "Dropdown" page
+    * Check layout "DropdownPageVisual" file
+    * Close browser
+
   Scenario: Page title Dropdown - displays correctly
     * Check "Dropdown" has page title "Dropdown"
     * Close browser
-
 #functional
   Scenario: Dropdown button  - displays and clickable
     * Check Dropdown button has title "Dropdown button"

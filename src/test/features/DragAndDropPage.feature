@@ -4,7 +4,12 @@ Feature: Drag and drop page
     * Open browser and go to Formy site
     * Go to "Drag and Drop" page
 
-#web layout
+#nonfunctional - layout/visual
+  Scenario: Layout test
+#    * Make page dump of "DragAndDrop" page
+    * Check layout "DragAndDropPageVisual" file
+    * Close browser
+
   Scenario: Title Drag and Drop - displays correctly
     * Check "Drag and Drop" has page title "Drag the image into the box"
     * Close browser
@@ -16,7 +21,6 @@ Feature: Drag and drop page
   Scenario: Selenium logo - display
     * Check logo Selenium has displayed
     * Close browser
-
 #functional
   Scenario: Drop logo - success dropping and box title changed
     * Click on "Refresh" and check "dragdrop" page has opened

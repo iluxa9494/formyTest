@@ -1,0 +1,1318 @@
+{
+  "testId" : "1-test-layout",
+  "name" : "test layout",
+  "report" : {
+    "nodes" : [ {
+      "name" : "check test layout",
+      "status" : "info",
+      "time" : 1621355993396,
+      "includedTags" : [ "desktop" ],
+      "excludedTags" : [ ],
+      "sections" : [ {
+        "name" : "Header for all pages",
+        "place" : {
+          "filePath" : "src/main/specs/NavigationBar.gspec",
+          "lineNumber" : 7
+        },
+        "objects" : [ {
+          "name" : "navbar",
+          "specs" : [ {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/NavigationBar.gspec",
+              "lineNumber" : 9
+            },
+            "name" : "visible",
+            "highlight" : [ "navbar" ]
+          }, {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/NavigationBar.gspec",
+              "lineNumber" : 10
+            },
+            "name" : "width > 85 % of screen/width",
+            "meta" : [ {
+              "from" : {
+                "object" : "navbar",
+                "edge" : "left"
+              },
+              "to" : {
+                "object" : "navbar",
+                "edge" : "right"
+              },
+              "expectedDistance" : "> 85% [1075px]",
+              "realDistance" : "87% [1110px]"
+            } ],
+            "highlight" : [ "navbar" ]
+          }, {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/NavigationBar.gspec",
+              "lineNumber" : 11
+            },
+            "name" : "height 86px",
+            "meta" : [ {
+              "from" : {
+                "object" : "navbar",
+                "edge" : "top"
+              },
+              "to" : {
+                "object" : "navbar",
+                "edge" : "bottom"
+              },
+              "expectedDistance" : "86px",
+              "realDistance" : "86px"
+            } ],
+            "highlight" : [ "navbar" ]
+          }, {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/NavigationBar.gspec",
+              "lineNumber" : 12
+            },
+            "name" : "inside screen 0 px top",
+            "meta" : [ {
+              "from" : {
+                "object" : "navbar",
+                "edge" : "top"
+              },
+              "to" : {
+                "object" : "screen",
+                "edge" : "top"
+              },
+              "expectedDistance" : "0px",
+              "realDistance" : "0px"
+            } ],
+            "highlight" : [ "navbar", "screen" ]
+          }, {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/NavigationBar.gspec",
+              "lineNumber" : 13
+            },
+            "name" : "css justify-content contains \"flex-start\"",
+            "highlight" : [ "navbar" ]
+          }, {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/NavigationBar.gspec",
+              "lineNumber" : 14
+            },
+            "name" : "css position is \"relative\"",
+            "highlight" : [ "navbar" ]
+          }, {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/NavigationBar.gspec",
+              "lineNumber" : 15
+            },
+            "name" : "css display is \"flex\"",
+            "highlight" : [ "navbar" ]
+          }, {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/NavigationBar.gspec",
+              "lineNumber" : 16
+            },
+            "name" : "css align-items is \"center\"",
+            "highlight" : [ "navbar" ]
+          }, {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/NavigationBar.gspec",
+              "lineNumber" : 17
+            },
+            "name" : "css align-items is \"center\"",
+            "highlight" : [ "navbar" ]
+          }, {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/NavigationBar.gspec",
+              "lineNumber" : 18
+            },
+            "name" : "css box-sizing is \"border-box\"",
+            "highlight" : [ "navbar" ]
+          }, {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/NavigationBar.gspec",
+              "lineNumber" : 19
+            },
+            "name" : "css flex-direction is \"row\"",
+            "highlight" : [ "navbar" ]
+          }, {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/NavigationBar.gspec",
+              "lineNumber" : 20
+            },
+            "name" : "css flex-wrap is \"nowrap\"",
+            "highlight" : [ "navbar" ]
+          }, {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/NavigationBar.gspec",
+              "lineNumber" : 21
+            },
+            "name" : "css font-size is \"16px\"",
+            "highlight" : [ "navbar" ]
+          }, {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/NavigationBar.gspec",
+              "lineNumber" : 22
+            },
+            "name" : "css font-weight is \"400\"",
+            "highlight" : [ "navbar" ]
+          }, {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/NavigationBar.gspec",
+              "lineNumber" : 23
+            },
+            "name" : "css line-height is \"24px\"",
+            "highlight" : [ "navbar" ]
+          }, {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/NavigationBar.gspec",
+              "lineNumber" : 24
+            },
+            "name" : "css justify-content is \"flex-start\"",
+            "highlight" : [ "navbar" ]
+          }, {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/NavigationBar.gspec",
+              "lineNumber" : 25
+            },
+            "name" : "css text-align is \"left\"",
+            "highlight" : [ "navbar" ]
+          }, {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/NavigationBar.gspec",
+              "lineNumber" : 26
+            },
+            "name" : "css text-size-adjust is \"100%\"",
+            "highlight" : [ "navbar" ]
+          } ]
+        }, {
+          "name" : "logo",
+          "specs" : [ {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/NavigationBar.gspec",
+              "lineNumber" : 29
+            },
+            "name" : "visible",
+            "highlight" : [ "logo" ]
+          }, {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/NavigationBar.gspec",
+              "lineNumber" : 30
+            },
+            "name" : "css text-transform is \"uppercase\"",
+            "highlight" : [ "logo" ]
+          }, {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/NavigationBar.gspec",
+              "lineNumber" : 31
+            },
+            "name" : "css letter-spacing is \"-1px\"",
+            "highlight" : [ "logo" ]
+          } ]
+        }, {
+          "name" : "formNav",
+          "specs" : [ {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/NavigationBar.gspec",
+              "lineNumber" : 34
+            },
+            "name" : "visible",
+            "highlight" : [ "formNav" ]
+          }, {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/NavigationBar.gspec",
+              "lineNumber" : 35
+            },
+            "name" : "css display is \"block\"",
+            "highlight" : [ "formNav" ]
+          }, {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/NavigationBar.gspec",
+              "lineNumber" : 36
+            },
+            "name" : "css cursor is \"pointer\"",
+            "highlight" : [ "formNav" ]
+          } ]
+        }, {
+          "name" : "componentsDropdown",
+          "specs" : [ {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/NavigationBar.gspec",
+              "lineNumber" : 39
+            },
+            "name" : "visible",
+            "highlight" : [ "componentsDropdown" ]
+          }, {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/NavigationBar.gspec",
+              "lineNumber" : 40
+            },
+            "name" : "css display is \"block\"",
+            "highlight" : [ "componentsDropdown" ]
+          }, {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/NavigationBar.gspec",
+              "lineNumber" : 41
+            },
+            "name" : "css cursor is \"pointer\"",
+            "highlight" : [ "componentsDropdown" ]
+          } ]
+        } ]
+      }, {
+        "name" : "Header",
+        "place" : {
+          "filePath" : "src/main/specs/WelcomePageVisual.gspec",
+          "lineNumber" : 28
+        },
+        "objects" : [ {
+          "name" : "navbar",
+          "specs" : [ {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/WelcomePageVisual.gspec",
+              "lineNumber" : 30
+            },
+            "name" : "visible",
+            "highlight" : [ "navbar" ]
+          }, {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/WelcomePageVisual.gspec",
+              "lineNumber" : 31
+            },
+            "name" : "image file pagedumpWelcome/objects/navbar.png, error 1%",
+            "highlight" : [ "navbar" ]
+          }, {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/WelcomePageVisual.gspec",
+              "lineNumber" : 32
+            },
+            "name" : "above pageTitle 0 px",
+            "meta" : [ {
+              "from" : {
+                "object" : "navbar",
+                "edge" : "bottom"
+              },
+              "to" : {
+                "object" : "pageTitle",
+                "edge" : "top"
+              },
+              "expectedDistance" : "0px",
+              "realDistance" : "0px"
+            } ],
+            "highlight" : [ "navbar", "pageTitle" ]
+          }, {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/WelcomePageVisual.gspec",
+              "lineNumber" : 33
+            },
+            "name" : "above secondTitle 94 px",
+            "meta" : [ {
+              "from" : {
+                "object" : "navbar",
+                "edge" : "bottom"
+              },
+              "to" : {
+                "object" : "secondTitle",
+                "edge" : "top"
+              },
+              "expectedDistance" : "94px",
+              "realDistance" : "94px"
+            } ],
+            "highlight" : [ "navbar", "secondTitle" ]
+          }, {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/WelcomePageVisual.gspec",
+              "lineNumber" : 34
+            },
+            "name" : "above horizontalLine 148 px",
+            "meta" : [ {
+              "from" : {
+                "object" : "navbar",
+                "edge" : "bottom"
+              },
+              "to" : {
+                "object" : "horizontalLine",
+                "edge" : "top"
+              },
+              "expectedDistance" : "148px",
+              "realDistance" : "148px"
+            } ],
+            "highlight" : [ "navbar", "horizontalLine" ]
+          }, {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/WelcomePageVisual.gspec",
+              "lineNumber" : 35
+            },
+            "name" : "above thirdTitle 173 px",
+            "meta" : [ {
+              "from" : {
+                "object" : "navbar",
+                "edge" : "bottom"
+              },
+              "to" : {
+                "object" : "thirdTitle",
+                "edge" : "top"
+              },
+              "expectedDistance" : "173px",
+              "realDistance" : "173px"
+            } ],
+            "highlight" : [ "navbar", "thirdTitle" ]
+          }, {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/WelcomePageVisual.gspec",
+              "lineNumber" : 36
+            },
+            "name" : "above autocompleteList 213 px",
+            "meta" : [ {
+              "from" : {
+                "object" : "navbar",
+                "edge" : "bottom"
+              },
+              "to" : {
+                "object" : "autocompleteList",
+                "edge" : "top"
+              },
+              "expectedDistance" : "213px",
+              "realDistance" : "213px"
+            } ],
+            "highlight" : [ "navbar", "autocompleteList" ]
+          }, {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/WelcomePageVisual.gspec",
+              "lineNumber" : 37
+            },
+            "name" : "above buttonsList 261 px",
+            "meta" : [ {
+              "from" : {
+                "object" : "navbar",
+                "edge" : "bottom"
+              },
+              "to" : {
+                "object" : "buttonsList",
+                "edge" : "top"
+              },
+              "expectedDistance" : "261px",
+              "realDistance" : "261px"
+            } ],
+            "highlight" : [ "navbar", "buttonsList" ]
+          }, {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/WelcomePageVisual.gspec",
+              "lineNumber" : 38
+            },
+            "name" : "above checkboxList 309 px",
+            "meta" : [ {
+              "from" : {
+                "object" : "navbar",
+                "edge" : "bottom"
+              },
+              "to" : {
+                "object" : "checkboxList",
+                "edge" : "top"
+              },
+              "expectedDistance" : "309px",
+              "realDistance" : "309px"
+            } ],
+            "highlight" : [ "navbar", "checkboxList" ]
+          }, {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/WelcomePageVisual.gspec",
+              "lineNumber" : 39
+            },
+            "name" : "above datepickerList 357 px",
+            "meta" : [ {
+              "from" : {
+                "object" : "navbar",
+                "edge" : "bottom"
+              },
+              "to" : {
+                "object" : "datepickerList",
+                "edge" : "top"
+              },
+              "expectedDistance" : "357px",
+              "realDistance" : "357px"
+            } ],
+            "highlight" : [ "navbar", "datepickerList" ]
+          }, {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/WelcomePageVisual.gspec",
+              "lineNumber" : 40
+            },
+            "name" : "above dragAndDropList 405 px",
+            "meta" : [ {
+              "from" : {
+                "object" : "navbar",
+                "edge" : "bottom"
+              },
+              "to" : {
+                "object" : "dragAndDropList",
+                "edge" : "top"
+              },
+              "expectedDistance" : "405px",
+              "realDistance" : "405px"
+            } ],
+            "highlight" : [ "navbar", "dragAndDropList" ]
+          }, {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/WelcomePageVisual.gspec",
+              "lineNumber" : 41
+            },
+            "name" : "above dropdownList 453 px",
+            "meta" : [ {
+              "from" : {
+                "object" : "navbar",
+                "edge" : "bottom"
+              },
+              "to" : {
+                "object" : "dropdownList",
+                "edge" : "top"
+              },
+              "expectedDistance" : "453px",
+              "realDistance" : "453px"
+            } ],
+            "highlight" : [ "navbar", "dropdownList" ]
+          }, {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/WelcomePageVisual.gspec",
+              "lineNumber" : 42
+            },
+            "name" : "above enabledList 501 px",
+            "meta" : [ {
+              "from" : {
+                "object" : "navbar",
+                "edge" : "bottom"
+              },
+              "to" : {
+                "object" : "enabledList",
+                "edge" : "top"
+              },
+              "expectedDistance" : "501px",
+              "realDistance" : "501px"
+            } ],
+            "highlight" : [ "navbar", "enabledList" ]
+          }, {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/WelcomePageVisual.gspec",
+              "lineNumber" : 43
+            },
+            "name" : "above fileUploadList 549 px",
+            "meta" : [ {
+              "from" : {
+                "object" : "navbar",
+                "edge" : "bottom"
+              },
+              "to" : {
+                "object" : "fileUploadList",
+                "edge" : "top"
+              },
+              "expectedDistance" : "549px",
+              "realDistance" : "549px"
+            } ],
+            "highlight" : [ "navbar", "fileUploadList" ]
+          }, {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/WelcomePageVisual.gspec",
+              "lineNumber" : 44
+            },
+            "name" : "above keyAndMouseList 597 px",
+            "meta" : [ {
+              "from" : {
+                "object" : "navbar",
+                "edge" : "bottom"
+              },
+              "to" : {
+                "object" : "keyAndMouseList",
+                "edge" : "top"
+              },
+              "expectedDistance" : "597px",
+              "realDistance" : "597px"
+            } ],
+            "highlight" : [ "navbar", "keyAndMouseList" ]
+          }, {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/WelcomePageVisual.gspec",
+              "lineNumber" : 45
+            },
+            "name" : "above modalList 645 px",
+            "meta" : [ {
+              "from" : {
+                "object" : "navbar",
+                "edge" : "bottom"
+              },
+              "to" : {
+                "object" : "modalList",
+                "edge" : "top"
+              },
+              "expectedDistance" : "645px",
+              "realDistance" : "645px"
+            } ],
+            "highlight" : [ "navbar", "modalList" ]
+          }, {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/WelcomePageVisual.gspec",
+              "lineNumber" : 46
+            },
+            "name" : "above pageScrollList 693 px",
+            "meta" : [ {
+              "from" : {
+                "object" : "navbar",
+                "edge" : "bottom"
+              },
+              "to" : {
+                "object" : "pageScrollList",
+                "edge" : "top"
+              },
+              "expectedDistance" : "693px",
+              "realDistance" : "693px"
+            } ],
+            "highlight" : [ "navbar", "pageScrollList" ]
+          }, {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/WelcomePageVisual.gspec",
+              "lineNumber" : 47
+            },
+            "name" : "above radioButtonList 741 px",
+            "meta" : [ {
+              "from" : {
+                "object" : "navbar",
+                "edge" : "bottom"
+              },
+              "to" : {
+                "object" : "radioButtonList",
+                "edge" : "top"
+              },
+              "expectedDistance" : "741px",
+              "realDistance" : "741px"
+            } ],
+            "highlight" : [ "navbar", "radioButtonList" ]
+          }, {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/WelcomePageVisual.gspec",
+              "lineNumber" : 48
+            },
+            "name" : "above switchWindowList 789 px",
+            "meta" : [ {
+              "from" : {
+                "object" : "navbar",
+                "edge" : "bottom"
+              },
+              "to" : {
+                "object" : "switchWindowList",
+                "edge" : "top"
+              },
+              "expectedDistance" : "789px",
+              "realDistance" : "789px"
+            } ],
+            "highlight" : [ "navbar", "switchWindowList" ]
+          }, {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/WelcomePageVisual.gspec",
+              "lineNumber" : 49
+            },
+            "name" : "above completeWebFormList 837 px",
+            "meta" : [ {
+              "from" : {
+                "object" : "navbar",
+                "edge" : "bottom"
+              },
+              "to" : {
+                "object" : "completeWebFormList",
+                "edge" : "top"
+              },
+              "expectedDistance" : "837px",
+              "realDistance" : "837px"
+            } ],
+            "highlight" : [ "navbar", "completeWebFormList" ]
+          } ]
+        }, {
+          "name" : "logo",
+          "specs" : [ {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/WelcomePageVisual.gspec",
+              "lineNumber" : 52
+            },
+            "name" : "image file pagedumpWelcome/objects/logo.png, error 1%",
+            "highlight" : [ "logo" ]
+          } ]
+        }, {
+          "name" : "formNav",
+          "specs" : [ {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/WelcomePageVisual.gspec",
+              "lineNumber" : 55
+            },
+            "name" : "image file pagedumpWelcome/objects/formNav.png, error 1%",
+            "highlight" : [ "formNav" ]
+          } ]
+        }, {
+          "name" : "componentsDropdown",
+          "specs" : [ {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/WelcomePageVisual.gspec",
+              "lineNumber" : 58
+            },
+            "name" : "image file pagedumpWelcome/objects/componentsDropdown.png, error 1%",
+            "highlight" : [ "componentsDropdown" ]
+          } ]
+        } ]
+      }, {
+        "name" : "Body",
+        "place" : {
+          "filePath" : "src/main/specs/WelcomePageVisual.gspec",
+          "lineNumber" : 60
+        },
+        "objects" : [ {
+          "name" : "pageTitle",
+          "specs" : [ {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/WelcomePageVisual.gspec",
+              "lineNumber" : 62
+            },
+            "name" : "visible",
+            "highlight" : [ "pageTitle" ]
+          }, {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/WelcomePageVisual.gspec",
+              "lineNumber" : 63
+            },
+            "name" : "image file pagedumpWelcome/objects/pageTitle.png, error 1%",
+            "highlight" : [ "pageTitle" ]
+          }, {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/WelcomePageVisual.gspec",
+              "lineNumber" : 64
+            },
+            "name" : "css box-sizing is \"border-box\"",
+            "highlight" : [ "pageTitle" ]
+          } ]
+        }, {
+          "name" : "secondTitle",
+          "specs" : [ {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/WelcomePageVisual.gspec",
+              "lineNumber" : 67
+            },
+            "name" : "visible",
+            "highlight" : [ "secondTitle" ]
+          }, {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/WelcomePageVisual.gspec",
+              "lineNumber" : 68
+            },
+            "name" : "image file pagedumpWelcome/objects/secondTitle.png, error 5%",
+            "highlight" : [ "secondTitle" ]
+          }, {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/WelcomePageVisual.gspec",
+              "lineNumber" : 69
+            },
+            "name" : "css box-sizing is \"border-box\"",
+            "highlight" : [ "secondTitle" ]
+          } ]
+        }, {
+          "name" : "thirdTitle",
+          "specs" : [ {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/WelcomePageVisual.gspec",
+              "lineNumber" : 72
+            },
+            "name" : "visible",
+            "highlight" : [ "thirdTitle" ]
+          }, {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/WelcomePageVisual.gspec",
+              "lineNumber" : 73
+            },
+            "name" : "image file pagedumpWelcome/objects/thirdTitle.png, error 1%",
+            "highlight" : [ "thirdTitle" ]
+          }, {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/WelcomePageVisual.gspec",
+              "lineNumber" : 74
+            },
+            "name" : "css box-sizing is \"border-box\"",
+            "highlight" : [ "thirdTitle" ]
+          } ]
+        }, {
+          "name" : "horizontalLine",
+          "specs" : [ {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/WelcomePageVisual.gspec",
+              "lineNumber" : 77
+            },
+            "name" : "visible",
+            "highlight" : [ "horizontalLine" ]
+          }, {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/WelcomePageVisual.gspec",
+              "lineNumber" : 78
+            },
+            "name" : "image file pagedumpWelcome/objects/horizontalLine.png, error 5%",
+            "highlight" : [ "horizontalLine" ]
+          } ]
+        }, {
+          "name" : "autocompleteList",
+          "specs" : [ {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/WelcomePageVisual.gspec",
+              "lineNumber" : 81
+            },
+            "name" : "visible",
+            "highlight" : [ "autocompleteList" ]
+          }, {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/WelcomePageVisual.gspec",
+              "lineNumber" : 82
+            },
+            "name" : "image file pagedumpWelcome/objects/autocompleteList.png, error 1%",
+            "highlight" : [ "autocompleteList" ]
+          }, {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/WelcomePageVisual.gspec",
+              "lineNumber" : 83
+            },
+            "name" : "css box-sizing is \"border-box\"",
+            "highlight" : [ "autocompleteList" ]
+          }, {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/WelcomePageVisual.gspec",
+              "lineNumber" : 84
+            },
+            "name" : "css cursor is \"pointer\"",
+            "highlight" : [ "autocompleteList" ]
+          } ]
+        }, {
+          "name" : "buttonsList",
+          "specs" : [ {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/WelcomePageVisual.gspec",
+              "lineNumber" : 87
+            },
+            "name" : "visible",
+            "highlight" : [ "buttonsList" ]
+          }, {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/WelcomePageVisual.gspec",
+              "lineNumber" : 88
+            },
+            "name" : "image file pagedumpWelcome/objects/buttonsList.png, error 1%",
+            "highlight" : [ "buttonsList" ]
+          }, {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/WelcomePageVisual.gspec",
+              "lineNumber" : 89
+            },
+            "name" : "css box-sizing is \"border-box\"",
+            "highlight" : [ "buttonsList" ]
+          }, {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/WelcomePageVisual.gspec",
+              "lineNumber" : 90
+            },
+            "name" : "css cursor is \"pointer\"",
+            "highlight" : [ "buttonsList" ]
+          } ]
+        }, {
+          "name" : "checkboxList",
+          "specs" : [ {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/WelcomePageVisual.gspec",
+              "lineNumber" : 93
+            },
+            "name" : "visible",
+            "highlight" : [ "checkboxList" ]
+          }, {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/WelcomePageVisual.gspec",
+              "lineNumber" : 94
+            },
+            "name" : "image file pagedumpWelcome/objects/checkboxList.png, error 1%",
+            "highlight" : [ "checkboxList" ]
+          }, {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/WelcomePageVisual.gspec",
+              "lineNumber" : 95
+            },
+            "name" : "css box-sizing is \"border-box\"",
+            "highlight" : [ "checkboxList" ]
+          }, {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/WelcomePageVisual.gspec",
+              "lineNumber" : 96
+            },
+            "name" : "css cursor is \"pointer\"",
+            "highlight" : [ "checkboxList" ]
+          } ]
+        }, {
+          "name" : "datepickerList",
+          "specs" : [ {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/WelcomePageVisual.gspec",
+              "lineNumber" : 99
+            },
+            "name" : "visible",
+            "highlight" : [ "datepickerList" ]
+          }, {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/WelcomePageVisual.gspec",
+              "lineNumber" : 100
+            },
+            "name" : "image file pagedumpWelcome/objects/datepickerList.png, error 1%",
+            "highlight" : [ "datepickerList" ]
+          }, {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/WelcomePageVisual.gspec",
+              "lineNumber" : 101
+            },
+            "name" : "css box-sizing is \"border-box\"",
+            "highlight" : [ "datepickerList" ]
+          }, {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/WelcomePageVisual.gspec",
+              "lineNumber" : 102
+            },
+            "name" : "css cursor is \"pointer\"",
+            "highlight" : [ "datepickerList" ]
+          } ]
+        }, {
+          "name" : "dragAndDropList",
+          "specs" : [ {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/WelcomePageVisual.gspec",
+              "lineNumber" : 105
+            },
+            "name" : "visible",
+            "highlight" : [ "dragAndDropList" ]
+          }, {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/WelcomePageVisual.gspec",
+              "lineNumber" : 106
+            },
+            "name" : "image file pagedumpWelcome/objects/dragAndDropList.png, error 1%",
+            "highlight" : [ "dragAndDropList" ]
+          }, {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/WelcomePageVisual.gspec",
+              "lineNumber" : 107
+            },
+            "name" : "css box-sizing is \"border-box\"",
+            "highlight" : [ "dragAndDropList" ]
+          }, {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/WelcomePageVisual.gspec",
+              "lineNumber" : 108
+            },
+            "name" : "css cursor is \"pointer\"",
+            "highlight" : [ "dragAndDropList" ]
+          } ]
+        }, {
+          "name" : "dropdownList",
+          "specs" : [ {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/WelcomePageVisual.gspec",
+              "lineNumber" : 111
+            },
+            "name" : "visible",
+            "highlight" : [ "dropdownList" ]
+          }, {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/WelcomePageVisual.gspec",
+              "lineNumber" : 112
+            },
+            "name" : "image file pagedumpWelcome/objects/dropdownList.png, error 1%",
+            "highlight" : [ "dropdownList" ]
+          }, {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/WelcomePageVisual.gspec",
+              "lineNumber" : 113
+            },
+            "name" : "css box-sizing is \"border-box\"",
+            "highlight" : [ "dropdownList" ]
+          }, {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/WelcomePageVisual.gspec",
+              "lineNumber" : 114
+            },
+            "name" : "css cursor is \"pointer\"",
+            "highlight" : [ "dropdownList" ]
+          } ]
+        }, {
+          "name" : "enabledList",
+          "specs" : [ {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/WelcomePageVisual.gspec",
+              "lineNumber" : 117
+            },
+            "name" : "visible",
+            "highlight" : [ "enabledList" ]
+          }, {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/WelcomePageVisual.gspec",
+              "lineNumber" : 118
+            },
+            "name" : "image file pagedumpWelcome/objects/enabledList.png, error 1%",
+            "highlight" : [ "enabledList" ]
+          }, {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/WelcomePageVisual.gspec",
+              "lineNumber" : 119
+            },
+            "name" : "css box-sizing is \"border-box\"",
+            "highlight" : [ "enabledList" ]
+          }, {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/WelcomePageVisual.gspec",
+              "lineNumber" : 120
+            },
+            "name" : "css cursor is \"pointer\"",
+            "highlight" : [ "enabledList" ]
+          } ]
+        }, {
+          "name" : "fileUploadList",
+          "specs" : [ {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/WelcomePageVisual.gspec",
+              "lineNumber" : 123
+            },
+            "name" : "visible",
+            "highlight" : [ "fileUploadList" ]
+          }, {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/WelcomePageVisual.gspec",
+              "lineNumber" : 124
+            },
+            "name" : "css box-sizing is \"border-box\"",
+            "highlight" : [ "fileUploadList" ]
+          }, {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/WelcomePageVisual.gspec",
+              "lineNumber" : 125
+            },
+            "name" : "css cursor is \"pointer\"",
+            "highlight" : [ "fileUploadList" ]
+          } ]
+        }, {
+          "name" : "keyAndMouseList",
+          "specs" : [ {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/WelcomePageVisual.gspec",
+              "lineNumber" : 128
+            },
+            "name" : "visible",
+            "highlight" : [ "keyAndMouseList" ]
+          }, {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/WelcomePageVisual.gspec",
+              "lineNumber" : 129
+            },
+            "name" : "css box-sizing is \"border-box\"",
+            "highlight" : [ "keyAndMouseList" ]
+          }, {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/WelcomePageVisual.gspec",
+              "lineNumber" : 130
+            },
+            "name" : "css cursor is \"pointer\"",
+            "highlight" : [ "keyAndMouseList" ]
+          } ]
+        }, {
+          "name" : "modalList",
+          "specs" : [ {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/WelcomePageVisual.gspec",
+              "lineNumber" : 133
+            },
+            "name" : "visible",
+            "highlight" : [ "modalList" ]
+          }, {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/WelcomePageVisual.gspec",
+              "lineNumber" : 134
+            },
+            "name" : "css box-sizing is \"border-box\"",
+            "highlight" : [ "modalList" ]
+          }, {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/WelcomePageVisual.gspec",
+              "lineNumber" : 135
+            },
+            "name" : "css cursor is \"pointer\"",
+            "highlight" : [ "modalList" ]
+          } ]
+        }, {
+          "name" : "pageScrollList",
+          "specs" : [ {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/WelcomePageVisual.gspec",
+              "lineNumber" : 138
+            },
+            "name" : "visible",
+            "highlight" : [ "pageScrollList" ]
+          }, {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/WelcomePageVisual.gspec",
+              "lineNumber" : 139
+            },
+            "name" : "css box-sizing is \"border-box\"",
+            "highlight" : [ "pageScrollList" ]
+          }, {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/WelcomePageVisual.gspec",
+              "lineNumber" : 140
+            },
+            "name" : "css cursor is \"pointer\"",
+            "highlight" : [ "pageScrollList" ]
+          } ]
+        }, {
+          "name" : "radioButtonList",
+          "specs" : [ {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/WelcomePageVisual.gspec",
+              "lineNumber" : 143
+            },
+            "name" : "visible",
+            "highlight" : [ "radioButtonList" ]
+          }, {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/WelcomePageVisual.gspec",
+              "lineNumber" : 144
+            },
+            "name" : "css box-sizing is \"border-box\"",
+            "highlight" : [ "radioButtonList" ]
+          }, {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/WelcomePageVisual.gspec",
+              "lineNumber" : 145
+            },
+            "name" : "css cursor is \"pointer\"",
+            "highlight" : [ "radioButtonList" ]
+          } ]
+        }, {
+          "name" : "switchWindowList",
+          "specs" : [ {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/WelcomePageVisual.gspec",
+              "lineNumber" : 148
+            },
+            "name" : "visible",
+            "highlight" : [ "switchWindowList" ]
+          }, {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/WelcomePageVisual.gspec",
+              "lineNumber" : 149
+            },
+            "name" : "css box-sizing is \"border-box\"",
+            "highlight" : [ "switchWindowList" ]
+          }, {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/WelcomePageVisual.gspec",
+              "lineNumber" : 150
+            },
+            "name" : "css cursor is \"pointer\"",
+            "highlight" : [ "switchWindowList" ]
+          } ]
+        }, {
+          "name" : "completeWebFormList",
+          "specs" : [ {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/WelcomePageVisual.gspec",
+              "lineNumber" : 153
+            },
+            "name" : "visible",
+            "highlight" : [ "completeWebFormList" ]
+          }, {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/WelcomePageVisual.gspec",
+              "lineNumber" : 154
+            },
+            "name" : "css box-sizing is \"border-box\"",
+            "highlight" : [ "completeWebFormList" ]
+          }, {
+            "status" : "info",
+            "place" : {
+              "filePath" : "src/main/specs/WelcomePageVisual.gspec",
+              "lineNumber" : 155
+            },
+            "name" : "css cursor is \"pointer\"",
+            "highlight" : [ "completeWebFormList" ]
+          } ]
+        } ]
+      } ],
+      "objects" : {
+        "formNav" : {
+          "area" : [ 199, 23, 54, 40 ]
+        },
+        "autocompleteList" : {
+          "area" : [ 99, 299, 156, 48 ]
+        },
+        "fileUploadList" : {
+          "area" : [ 99, 635, 132, 48 ]
+        },
+        "pageTitle" : {
+          "area" : [ 77, 86, 1110, 86 ]
+        },
+        "screen" : {
+          "area" : [ 0, 0, 1265, 971 ]
+        },
+        "radioButtonList" : {
+          "area" : [ 99, 827, 146, 48 ]
+        },
+        "switchWindowList" : {
+          "area" : [ 99, 875, 169, 48 ]
+        },
+        "dragAndDropList" : {
+          "area" : [ 99, 491, 160, 48 ]
+        },
+        "navbar" : {
+          "area" : [ 77, 0, 1110, 86 ]
+        },
+        "checkboxList" : {
+          "area" : [ 99, 395, 122, 48 ]
+        },
+        "enabledList" : {
+          "area" : [ 99, 587, 304, 48 ]
+        },
+        "secondTitle" : {
+          "area" : [ 77, 180, 1110, 30 ]
+        },
+        "horizontalLine" : {
+          "area" : [ 77, 234, 1110, 1 ]
+        },
+        "buttonsList" : {
+          "area" : [ 99, 347, 101, 48 ]
+        },
+        "logo" : {
+          "area" : [ 93, 8, 91, 70 ]
+        },
+        "pageScrollList" : {
+          "area" : [ 99, 779, 130, 48 ]
+        },
+        "thirdTitle" : {
+          "area" : [ 77, 259, 1110, 24 ]
+        },
+        "modalList" : {
+          "area" : [ 99, 731, 88, 48 ]
+        },
+        "completeWebFormList" : {
+          "area" : [ 99, 923, 212, 48 ]
+        },
+        "componentsDropdown" : {
+          "area" : [ 253, 23, 127, 40 ]
+        },
+        "datepickerList" : {
+          "area" : [ 99, 443, 128, 48 ]
+        },
+        "keyAndMouseList" : {
+          "area" : [ 99, 683, 220, 48 ]
+        },
+        "dropdownList" : {
+          "area" : [ 99, 539, 124, 48 ]
+        }
+      },
+      "screenshot" : "layout-1-screenshot.png",
+      "type" : "layout"
+    } ]
+  }
+}
